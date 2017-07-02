@@ -14,19 +14,13 @@ import cn.foxnickel.enterpriselearning.R;
  */
 public class ProfileFragment extends Fragment {
 
-    private static ProfileFragment mProfileFragment;
-
     public ProfileFragment() {
         // Required empty public constructor
     }
 
     public static ProfileFragment newInstance() {
 
-        if (mProfileFragment == null) {
-            mProfileFragment = new ProfileFragment();
-        }
-
-        return mProfileFragment;
+        return new ProfileFragment();
     }
 
     @Override

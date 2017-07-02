@@ -14,17 +14,12 @@ import cn.foxnickel.enterpriselearning.R;
  */
 public class CoursesFragment extends Fragment {
 
-    private static CoursesFragment mCoursesFragment;
-
     public CoursesFragment() {
         // Required empty public constructor
     }
 
     public static CoursesFragment newInstance() {
-        if (mCoursesFragment == null) {
-            mCoursesFragment = new CoursesFragment();
-        }
-        return mCoursesFragment;
+        return new CoursesFragment();
     }
 
     @Override
