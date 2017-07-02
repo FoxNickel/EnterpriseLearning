@@ -1,12 +1,14 @@
 package cn.foxnickel.enterpriselearning.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.foxnickel.enterpriselearning.R;
 
 /**
@@ -15,6 +17,9 @@ import cn.foxnickel.enterpriselearning.R;
 public class MainPageFragment extends Fragment {
 
     private static MainPageFragment mMainPageFragment;
+    private View mRootView;
+    private BGABanner mBGABanner;
+    private Context mContext = getContext();
 
     public MainPageFragment() {
         // Required empty public constructor
@@ -31,8 +36,14 @@ public class MainPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_page, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_main_page, container, false);
+        initBanner();
+        return mRootView;
+    }
+
+    private void initBanner() {
+        mBGABanner = (BGABanner) mRootView.findViewById(R.id.banner);
+        mBGABanner.setData(R.drawable.login_bg, R.drawable.login_bg2, R.drawable.login_bg3, R.drawable.login_bg4);
     }
 
 }
