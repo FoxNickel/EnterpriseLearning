@@ -41,11 +41,11 @@
 
     <View
         android:layout_width="0dp"
-        android:layout_height="0.5dp"
+        android:layout_height="3dp"
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:background="@color/gray"
+        android:background="@drawable/shape_shadow"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationBar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
