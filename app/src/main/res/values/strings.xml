@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">EnterpriseLearning</string>
+    <string name="welcome">欢迎登录在线学习平台</string>
+    <string name="job_number">工号</string>
+    <string name="password">密码</string>
+    <string name="login">登录</string>
+    <string name="reset_password">忘记密码</string>
 </resources>
