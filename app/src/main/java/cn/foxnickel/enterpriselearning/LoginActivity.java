@@ -2,6 +2,7 @@ package cn.foxnickel.enterpriselearning;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -185,6 +186,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             if (success) {
                 finish();
+                Intent startMainActivity = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(startMainActivity);
             } else {
                 mEtPassword.setError(getString(R.string.error_incorrect_password));
                 mEtPassword.requestFocus();
