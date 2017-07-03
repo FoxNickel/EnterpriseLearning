@@ -21,6 +21,9 @@ public class CourseRecommendAdapter extends RecyclerView.Adapter<CourseRecommend
         mContext = context;
     }
 
+    int mCourseRecommendPic[] = {R.drawable.course_recommend_pic4, R.drawable.course_recommend_pic2,
+            R.drawable.course_recommend_pic3, R.drawable.course_recommend_pic1};
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_item_course_recommend, parent, false);
@@ -29,7 +32,7 @@ public class CourseRecommendAdapter extends RecyclerView.Adapter<CourseRecommend
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mLinearLayout.setBackgroundResource(R.drawable.login_bg);
+        holder.mLinearLayout.setBackgroundResource(mCourseRecommendPic[position]);
         holder.mCourseName.setText("这是课程名称");
         holder.mChapterTitle.setText("这是章节名称");
         holder.mChapterDescription.setText("这是章节内容，这是章节内容，这是章节内容，这是章节内容。");

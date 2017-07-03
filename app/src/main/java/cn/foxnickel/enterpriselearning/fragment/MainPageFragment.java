@@ -52,7 +52,7 @@ public class MainPageFragment extends Fragment {
 
     private void initBanner() {
         mBGABanner = (BGABanner) mRootView.findViewById(R.id.banner);
-        mBGABanner.setData(R.drawable.login_bg2, R.drawable.login_bg2, R.drawable.login_bg3, R.drawable.login_bg4);
+        mBGABanner.setData(R.drawable.login_bg2, R.drawable.login_bg2, R.drawable.login_bg4, R.drawable.login_bg4);
     }
 
     private void initView() {
@@ -68,7 +68,7 @@ public class MainPageFragment extends Fragment {
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mRecyclerView.setAdapter(mCourseRecommendAdapter);
 
-        /*
+        /**
          * 解决ScrollView里面布局很长的时候会自动滑动到底部的问题
          */
         mIvTask.setFocusable(true);
