@@ -1,5 +1,6 @@
 package cn.foxnickel.enterpriselearning;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
             case R.id.action_search:
                 break;
             case R.id.action_notification:
+                startActivity(new Intent(MainActivity.this, NotificationActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
