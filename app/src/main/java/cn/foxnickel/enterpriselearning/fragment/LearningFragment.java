@@ -14,18 +14,13 @@ import cn.foxnickel.enterpriselearning.R;
  */
 public class LearningFragment extends Fragment {
 
-    private static LearningFragment mLearningFragment;
-
     public LearningFragment() {
         // Required empty public constructor
     }
 
     public static LearningFragment newInstance() {
 
-        if (mLearningFragment == null)
-            mLearningFragment = new LearningFragment();
-
-        return mLearningFragment;
+        return new LearningFragment();
     }
 
     @Override
