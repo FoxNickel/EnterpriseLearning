@@ -52,7 +52,7 @@ public class MainPageFragment extends Fragment {
 
     private void initBanner() {
         mBGABanner = (BGABanner) mRootView.findViewById(R.id.banner);
-        mBGABanner.setData(R.drawable.login_bg, R.drawable.login_bg2, R.drawable.login_bg3, R.drawable.login_bg4);
+        mBGABanner.setData(R.drawable.login_bg2, R.drawable.login_bg2, R.drawable.login_bg4, R.drawable.login_bg4);
     }
 
     private void initView() {

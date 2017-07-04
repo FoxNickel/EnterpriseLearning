@@ -1,14 +1,36 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="cn.foxnickel.enterpriselearning.fragment.CoursesFragment">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.foxnickel.enterpriselearning.fragment.CoursesFragment"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:text="This is course page"
-        android:textColor="@color/colorPrimary"/>
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@color/gray_first_class_bg">
 
-</FrameLayout>
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="24dp"
+            android:id="@+id/recycler_view_first_classification"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/chapter_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@android:color/white">
+
+    </FrameLayout>
+
+</LinearLayout>

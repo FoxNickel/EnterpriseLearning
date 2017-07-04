@@ -33,4 +33,6 @@
     <string name="ok">确定</string>
     <string name="rememberpwd">记住密码</string>
     <string name="get_phone_number">获取手机号</string>
+    <string name="click_to_watch">点击查看</string>
+    <string name="my_notification">我的消息</string>
 </resources>

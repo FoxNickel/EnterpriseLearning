@@ -1,0 +1,65 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.foxnickel.enterpriselearning.fragment.subfragment.CourseContentFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/courses_rank"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/login_bg2">
+
+            <TextView
+                android:id="@+id/tv_first_classification_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_watch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/border_white"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="@string/click_to_watch"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_first_classification_name"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_second_classification"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+</ScrollView>
