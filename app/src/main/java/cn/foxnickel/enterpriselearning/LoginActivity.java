@@ -6,18 +6,18 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private Button mBtLogin;//登录按钮
     private ProgressBar mProgressView;//登录过程显示的Progressbar
@@ -25,6 +25,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private AutoCompleteTextView mEtJobNumber;//员工账号
     private EditText mEtPassword;//密码
     private UserLoginTask mAuthTask = null;//异步登录验证的task
+    private TextView mTvForgetPass;//忘记密码
+    private CheckBox mCbRememberPwd;
 
 
     @Override
@@ -39,7 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mBtLogin.setOnClickListener(this);
         mProgressView = (ProgressBar) findViewById(R.id.login_progress);
         mLoginFormView = (ConstraintLayout) findViewById(R.id.login_form);
-        mEtJobNumber = (AutoCompleteTextView) findViewById(R.id.et_job_number);
+        mEtJobNumber = (AutoCompleteTextView) findViewById(R.id.et_phone_number);
         mEtPassword = (EditText) findViewById(R.id.et_password);
         /*在密码框按回车键的监听事件*/
         mEtPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -52,6 +54,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 return false;
             }
         });
+        mTvForgetPass = (TextView) findViewById(R.id.tv_forget_pass);
+        mTvForgetPass.setOnClickListener(this);
+        mCbRememberPwd = (CheckBox) findViewById(R.id.cb_remember_pwd);
+        mCbRememberPwd.setOnClickListener(this);
     }
 
     @Override
@@ -59,6 +65,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.bt_login:
                 attemptLogin();
+                break;
+            case R.id.tv_forget_pass:
+                startActivity(new Intent(this, RetriPasswordActivity.class));
                 break;
         }
     }

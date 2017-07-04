@@ -24,4 +24,13 @@
     <string name="plan">计划</string>
     <string name="task">任务</string>
     <string name="change">换一换</string>
+    <string name="retrieve_password">找回密码</string>
+    <string name="phone_number">请输入手机号</string>
+    <string name="set_password">请输入密码</string>
+    <string name="set_repassword">再次输入密码</string>
+    <string name="verify_number">请输入验证码</string>
+    <string name="verify">发送验证码</string>
+    <string name="ok">确定</string>
+    <string name="rememberpwd">记住密码</string>
+    <string name="get_phone_number">获取手机号</string>
 </resources>

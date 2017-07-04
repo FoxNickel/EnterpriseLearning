@@ -19,7 +19,7 @@ import static cn.foxnickel.enterpriselearning.R.id.bottomNavigationBar;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
 
-    
+
     private Toolbar mToolbar;
     private BottomNavigationBar mBottomNavigationBar;
     private MainPageFragment mMainPageFragment;
