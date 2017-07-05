@@ -35,4 +35,7 @@
     <string name="get_phone_number">获取手机号</string>
     <string name="click_to_watch">点击查看</string>
     <string name="my_notification">我的消息</string>
+    <string name="start_learn">开始学习</string>
+    <string name="course_image">课程图片</string>
+    <string name="username">用户名</string>
 </resources>
