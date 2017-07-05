@@ -38,4 +38,13 @@
     <string name="start_learn">开始学习</string>
     <string name="course_image">课程图片</string>
     <string name="username">用户名</string>
+    <string name="my_question">我的问答</string>
+    <string name="my_history">我的足迹</string>
+    <string name="my_data">我的数据</string>
+    <string name="arrow"><![CDATA[>]]></string>
+    <string name="my_task">我的任务</string>
+    <string name="my_plan">我的计划</string>
+    <string name="my_training">我的培训</string>
+    <string name="my_note">我的笔记</string>
+    <string name="setting">设置</string>
 </resources>
