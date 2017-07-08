@@ -47,4 +47,6 @@
     <string name="my_training">我的培训</string>
     <string name="my_note">我的笔记</string>
     <string name="setting">设置</string>
+    <string name="offline_training">线下培训</string>
+    <string name="sign_up">我要报名</string>
 </resources>
