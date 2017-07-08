@@ -49,6 +49,8 @@
 
         <activity android:name=".TrainingActivity">
         </activity>
+        <activity android:name=".TrainingDetailActivity">
+        </activity>
     </application>
 
 </manifest>
