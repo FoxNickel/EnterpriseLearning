@@ -15,6 +15,7 @@ import java.util.List;
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.adapter.LearningPagerAdapter;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.MyCourseFragment;
+import cn.foxnickel.enterpriselearning.fragment.subfragment.MyExamFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +42,7 @@ public class LearningFragment extends Fragment {
         mViewPager = (ViewPager) mRootView.findViewById(R.id.view_pager_learning);
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(MyCourseFragment.newInstance());
-        fragmentList.add(MyCourseFragment.newInstance());
+        fragmentList.add(MyExamFragment.newInstance());
         LearningPagerAdapter learningPagerAdapter = new LearningPagerAdapter(getChildFragmentManager(), fragmentList, getContext());
         mViewPager.setAdapter(learningPagerAdapter);
 

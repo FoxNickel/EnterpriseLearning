@@ -3,6 +3,7 @@ package cn.foxnickel.enterpriselearning;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -16,6 +17,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import cn.foxnickel.enterpriselearning.config.Config;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
@@ -33,6 +36,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        if (Config.sSp.getBoolean(Config.KEY_REMEMBER_PAS, false)) {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+        }
         initView();
     }
 
@@ -194,6 +201,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             showProgress(false);
 
             if (success) {
+                SharedPreferences.Editor editor = Config.sSp.edit();
+                editor.putBoolean(Config.KEY_REMEMBER_PAS, mCbRememberPwd.isChecked());
+                editor.apply();
+                editor.commit();
                 finish();
                 Intent startMainActivity = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(startMainActivity);
@@ -209,4 +220,5 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             showProgress(false);
         }
     }
+
 }

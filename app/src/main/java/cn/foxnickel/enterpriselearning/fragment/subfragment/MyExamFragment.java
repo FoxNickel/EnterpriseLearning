@@ -11,12 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import cn.foxnickel.enterpriselearning.R;
-import cn.foxnickel.enterpriselearning.adapter.MyCourseRecyclerAdapter;
+import cn.foxnickel.enterpriselearning.adapter.MyExamRecyclerAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyCourseFragment extends Fragment {
+public class MyExamFragment extends Fragment {
 
     private View mRootView;
     private RecyclerView mRecyclerView;
@@ -25,29 +25,29 @@ public class MyCourseFragment extends Fragment {
     private View view;
     private SwipeRefreshLayout mSwipeRefresh;
 
-    public MyCourseFragment() {
+    public MyExamFragment() {
         // Required empty public constructor
     }
 
-    public static MyCourseFragment newInstance() {
+    public static MyExamFragment newInstance() {
 
-        return new MyCourseFragment();
+        return new MyExamFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.fragment_my_course, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_my_exam, container, false);
         initView();
         return mRootView;
     }
 
     private void initView() {
-        mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recycler_view_my_course);
+        mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recycler_view_my_exam);
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        MyCourseRecyclerAdapter myCourseRecyclerAdapter = new MyCourseRecyclerAdapter(getContext());
-        mRecyclerView.setAdapter(myCourseRecyclerAdapter);
-        mSwipeRefresh = (SwipeRefreshLayout) mRootView.findViewById(R.id.course_swipe_refresh);
+        MyExamRecyclerAdapter myExamRecyclerAdapter = new MyExamRecyclerAdapter(getContext());
+        mRecyclerView.setAdapter(myExamRecyclerAdapter);
+        mSwipeRefresh = (SwipeRefreshLayout) mRootView.findViewById(R.id.exam_swipe_refresh);
     }
 }

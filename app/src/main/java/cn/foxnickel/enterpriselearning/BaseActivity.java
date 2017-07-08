@@ -16,7 +16,7 @@ import cn.foxnickel.enterpriselearning.config.Config;
 
 /**
  * Created by Night on 2017/3/5.
- * Desc:
+ * Desc:权限申请
  */
 
 public class BaseActivity extends AppCompatActivity {

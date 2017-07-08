@@ -1,12 +1,7 @@
 package cn.foxnickel.enterpriselearning;
 
-import android.content.ContentResolver;
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -36,13 +31,11 @@ public class RetriPasswordActivity extends AppCompatActivity implements View.OnC
     private EventHandler mEventHandler;
     private CountDownTime mTime;
     private boolean isSuccess = false;
-    private Button mBtGetPhoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retrieve_password);
-        SMSSDK.setAskPermisionOnReadContact(true);
         initView();
         // 创建EventHandler对象
         mEventHandler = new EventHandler() {
@@ -79,12 +72,11 @@ public class RetriPasswordActivity extends AppCompatActivity implements View.OnC
         mTime = new CountDownTime(60000, 1000);
         mBtVerify.setOnClickListener(this);
         btOk.setOnClickListener(this);
-        mBtGetPhoneNumber = (Button) findViewById(R.id.bt_get_phone_number);
-        mBtGetPhoneNumber.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+
         String userPhone = mEtPhoneNumber.getText().toString().trim();
         String pass = mEtPassword.getText().toString().trim();
         String repass = mEtRepassword.getText().toString().trim();
@@ -115,58 +107,7 @@ public class RetriPasswordActivity extends AppCompatActivity implements View.OnC
                 }
                 isSuccess = false;
                 break;
-            case R.id.bt_get_phone_number:
-                Uri uri = ContactsContract.Contacts.CONTENT_URI;
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        uri);
-                startActivityForResult(intent, 0);
-                break;
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case 0:
-                if (data == null) {
-                    return;
-                }
-//处理返回的data,获取选择的联系人信息
-                Uri uri = data.getData();
-                String contacts = getPhoneContacts(uri);
-                String[] phonenum = contacts.split("\\+86", 2);
-                if (phonenum.length < 2) {
-                    mEtPhoneNumber.setText(phonenum[0]);
-                } else {
-                    mEtPhoneNumber.setText(phonenum[1]);
-                }
-
-                break;
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    private String getPhoneContacts(Uri uri) {
-        String contact = "";
-//得到ContentResolver对象
-        ContentResolver cr = getContentResolver();
-//取得电话本中开始一项的光标
-        Cursor cursor = cr.query(uri, null, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-            String ContactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
-            Cursor phone = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
-                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + ContactId, null, null);
-            if (phone != null) {
-                phone.moveToFirst();
-                contact = phone.getString(phone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-            }
-            phone.close();
-            cursor.close();
-        } else {
-            return null;
-        }
-        return contact;
     }
 
 

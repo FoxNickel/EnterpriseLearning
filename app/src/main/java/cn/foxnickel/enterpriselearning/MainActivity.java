@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private CoursesFragment mCoursesFragment;
     private LearningFragment mLearningFragment;
     private ProfileFragment mProfileFragment;
-
+    public static int mBackClickTimes = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,5 +144,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     @Override
     public void onTabReselected(int position) {
 
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        mBackClickTimes = 0;
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public void finish() {
+        mBackClickTimes++;
+        if (mBackClickTimes == 1) {
+            Toast.makeText(this, "再按一次即可退出", Toast.LENGTH_SHORT).show();
+        } else if (mBackClickTimes == 2) {
+            super.finish();
+        }
     }
 }
