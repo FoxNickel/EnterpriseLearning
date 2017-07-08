@@ -51,6 +51,8 @@
         </activity>
         <activity android:name=".TrainingDetailActivity">
         </activity>
+        <activity android:name=".NoteActivity">
+        </activity>
     </application>
 
 </manifest>

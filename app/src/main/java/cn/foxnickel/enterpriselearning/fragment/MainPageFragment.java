@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import cn.bingoogolapple.bgabanner.BGABanner;
+import cn.foxnickel.enterpriselearning.NoteActivity;
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.TrainingActivity;
 import cn.foxnickel.enterpriselearning.adapter.CourseRecommendAdapter;
@@ -68,7 +70,10 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mRecyclerView.setAdapter(mCourseRecommendAdapter);
 
+        mIvTask.setOnClickListener(this);
+        mIvPlan.setOnClickListener(this);
         mIvTraining.setOnClickListener(this);
+        mIvNote.setOnClickListener(this);
 
         /*
          * 解决ScrollView里面布局很长的时候会自动滑动到底部的问题
@@ -81,8 +86,17 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.iv_task:
+                Toast.makeText(getContext(), "任务", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.iv_plan:
+                Toast.makeText(getContext(), "计划", Toast.LENGTH_SHORT).show();
+                break;
             case R.id.iv_training:
                 startActivity(new Intent(getActivity(), TrainingActivity.class));
+                break;
+            case R.id.iv_note:
+                startActivity(new Intent(getActivity(), NoteActivity.class));
                 break;
         }
     }
