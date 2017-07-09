@@ -70,4 +70,10 @@
     <string name="gender">性别</string>
     <string name="phone">手机</string>
     <string name="email">邮箱</string>
+    <string name="learning_data">学习数据</string>
+    <string name="get">获得</string>
+    <string name="score">学分</string>
+    <string name="learning_time">学习时长(分钟)</string>
+    <string name="chapter_complete">完成小节(节)</string>
+    <string name="grade">考试成绩(分)</string>
 </resources>

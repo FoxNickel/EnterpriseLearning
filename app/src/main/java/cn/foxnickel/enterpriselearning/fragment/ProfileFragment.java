@@ -7,7 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import cn.foxnickel.enterpriselearning.LearningDataActivity;
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.SettingsActivity;
 import cn.foxnickel.enterpriselearning.UserInfoActivity;
@@ -20,6 +23,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private View mRootView;
     private View mSettingView;
     private View mUerInfo;
+    private ImageView mIvMyData;
+    private TextView mTvMyData;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -44,6 +49,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         mUerInfo = mRootView.findViewById(R.id.layout_user_info);
         mUerInfo.setOnClickListener(this);
+
+        mIvMyData = (ImageView) mRootView.findViewById(R.id.iv_my_data);
+        mIvMyData.setOnClickListener(this);
+
+        mTvMyData = (TextView) mRootView.findViewById(R.id.tv_my_data);
+        mTvMyData.setOnClickListener(this);
     }
 
     @Override
@@ -54,6 +65,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.layout_user_info:
                 startActivity(new Intent(getContext(), UserInfoActivity.class));
+                break;
+            case R.id.iv_my_data:
+            case R.id.tv_my_data:
+                startActivity(new Intent(getContext(), LearningDataActivity.class));
                 break;
         }
     }
