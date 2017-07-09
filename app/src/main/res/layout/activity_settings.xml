@@ -39,7 +39,9 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="0dp"
+        android:id="@+id/layout_user_info"
+        android:background="@drawable/ripple_white">
 
         <TextView
             android:id="@+id/textView7"
@@ -58,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:text="用户名"
+            android:text="@string/username"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.SettingsActivity;
+import cn.foxnickel.enterpriselearning.UserInfoActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +19,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private View mRootView;
     private View mSettingView;
+    private View mUerInfo;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -39,6 +41,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private void initView() {
         mSettingView = mRootView.findViewById(R.id.layout_setting);
         mSettingView.setOnClickListener(this);
+
+        mUerInfo = mRootView.findViewById(R.id.layout_user_info);
+        mUerInfo.setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +51,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.layout_setting:
                 startActivity(new Intent(getContext(), SettingsActivity.class));
+                break;
+            case R.id.layout_user_info:
+                startActivity(new Intent(getContext(), UserInfoActivity.class));
                 break;
         }
     }

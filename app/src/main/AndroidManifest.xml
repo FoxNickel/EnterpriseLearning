@@ -57,6 +57,8 @@
             android:name=".SettingsActivity"
             android:theme="@style/SettingTheme">
         </activity>
+        <activity android:name=".UserInfoActivity">
+        </activity>
     </application>
 
 </manifest>

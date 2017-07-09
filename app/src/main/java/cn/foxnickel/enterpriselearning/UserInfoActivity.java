@@ -1,23 +1,21 @@
 package cn.foxnickel.enterpriselearning;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class SettingsActivity extends AppCompatActivity {
+public class UserInfoActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
-    private View mUserInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-
+        setContentView(R.layout.activity_user_info);
         initView();
+
     }
 
     private void initView() {
@@ -31,14 +29,6 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-            }
-        });
-
-        mUserInfo = findViewById(R.id.layout_user_info);
-        mUserInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SettingsActivity.this, UserInfoActivity.class));
             }
         });
 
