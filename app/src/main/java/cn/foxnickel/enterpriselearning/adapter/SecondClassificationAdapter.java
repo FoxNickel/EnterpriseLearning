@@ -1,6 +1,7 @@
 package cn.foxnickel.enterpriselearning.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.foxnickel.enterpriselearning.R;
+import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
 
 /**
  * Created by NickelFox on 2017/7/3.
@@ -39,6 +41,12 @@ public class SecondClassificationAdapter extends RecyclerView.Adapter<SecondClas
         StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.HORIZONTAL);
         holder.mThirdClassificationRecycler.setLayoutManager(manager);
         ThirdClassificationAdapter thirdClassificationAdapter = new ThirdClassificationAdapter(mThirdClassificationNameList, mContext);
+        thirdClassificationAdapter.setOnItemClickListener(new ThirdClassificationAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                mContext.startActivity(new Intent(mContext, SpecificCouseActivity.class));
+            }
+        });
         holder.mThirdClassificationRecycler.setAdapter(thirdClassificationAdapter);
     }
 

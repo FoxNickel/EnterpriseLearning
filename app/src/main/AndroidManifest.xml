@@ -38,6 +38,8 @@
         <activity android:name=".RetriPasswordActivity"
                   android:theme="@style/HiddenStatusBar"/>
         <activity android:name=".NotificationActivity"/>
+        <activity android:name=".SpecificCouseActivity"
+                  android:configChanges="orientation|screenSize"/>
         <meta-data android:name="Mob-AppKey" android:value="1f1b400703990"/>
         <meta-data android:name="Mob-AppSecret" android:value="142721de9ebb9a1f297d164dc4108f2b"/>
     </application>

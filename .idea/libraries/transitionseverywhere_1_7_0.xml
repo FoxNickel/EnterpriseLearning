@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="transitionseverywhere-1.7.0">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/657470ae06293f4b25c014a0bc883bf30f456b4d/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/657470ae06293f4b25c014a0bc883bf30f456b4d/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.andkulikov/transitionseverywhere/1.7.0/a3fc689428ad561d81a3d5a31f09bddfc702ac1e/transitionseverywhere-1.7.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

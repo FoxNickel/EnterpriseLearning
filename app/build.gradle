@@ -43,4 +43,5 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile files('libs/MobCommons-2017.0607.1736.jar')
     compile files('libs/MobTools-2017.0607.1736.jar')
+    compile 'com.shuyu:GSYVideoPlayer:1.6.8'
 }

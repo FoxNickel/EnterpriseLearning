@@ -18,7 +18,13 @@ import cn.foxnickel.enterpriselearning.R;
 public class ThirdClassificationAdapter extends RecyclerView.Adapter<ThirdClassificationAdapter.ViewHolder> {
     private List<String> mThirdClassificationNameList;
     private Context mContext;
+    private OnItemClickListener mOnItemClickListener = null;
 
+
+    //define interface
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
     public ThirdClassificationAdapter(List<String> thirdClassificationNameList, Context context) {
         mThirdClassificationNameList = thirdClassificationNameList;
         mContext = context;
@@ -40,13 +46,27 @@ public class ThirdClassificationAdapter extends RecyclerView.Adapter<ThirdClassi
         return mThirdClassificationNameList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             mTextView = (TextView) itemView.findViewById(R.id.tv_third_classification_name);
         }
+
+        @Override
+        public void onClick(View v) {
+            if (mOnItemClickListener != null) {
+                //注意这里使用getTag方法获取position
+                mOnItemClickListener.onItemClick(v, getPosition());
+            }
+        }
+
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mOnItemClickListener = listener;
     }
 }
