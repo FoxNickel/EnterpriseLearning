@@ -167,7 +167,9 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_my_task"
+                android:background="@drawable/ripple_white">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -207,7 +209,9 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_my_plan"
+                android:background="@drawable/ripple_white">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -247,7 +251,9 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_my_training"
+                android:background="@drawable/ripple_white">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -286,8 +292,10 @@
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
+                android:id="@+id/layout_my_note"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_white">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -328,10 +336,11 @@
         </LinearLayout>
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/layout_setting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@android:color/white">
+            android:background="@drawable/ripple_white">
 
             <TextView
                 android:layout_width="wrap_content"
