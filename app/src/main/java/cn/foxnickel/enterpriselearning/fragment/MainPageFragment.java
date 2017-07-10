@@ -1,7 +1,7 @@
 package cn.foxnickel.enterpriselearning.fragment;
 
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,22 +10,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import cn.bingoogolapple.bgabanner.BGABanner;
+import cn.foxnickel.enterpriselearning.NoteActivity;
 import cn.foxnickel.enterpriselearning.R;
+import cn.foxnickel.enterpriselearning.TrainingActivity;
 import cn.foxnickel.enterpriselearning.adapter.CourseRecommendAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainPageFragment extends Fragment {
+public class MainPageFragment extends Fragment implements View.OnClickListener {
 
     private View mRootView;
     private BGABanner mBGABanner;
-    private Context mContext = getContext();
     private View view;
     private ImageView mIvNote;
-    private ImageView mIvTrainning;
+    private ImageView mIvTraining;
     private ImageView mIvPlan;
     private ImageView mIvTask;
     private RecyclerView mRecyclerView;
@@ -57,18 +59,23 @@ public class MainPageFragment extends Fragment {
 
     private void initView() {
         mIvNote = (ImageView) mRootView.findViewById(R.id.iv_note);
-        mIvTrainning = (ImageView) mRootView.findViewById(R.id.iv_training);
+        mIvTraining = (ImageView) mRootView.findViewById(R.id.iv_training);
         mIvPlan = (ImageView) mRootView.findViewById(R.id.iv_plan);
         mIvTask = (ImageView) mRootView.findViewById(R.id.iv_task);
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recycler_view);
 
-        mGridLayoutManager = new GridLayoutManager(mContext, 2);
+        mGridLayoutManager = new GridLayoutManager(getContext(), 2);
         mCourseRecommendAdapter = new CourseRecommendAdapter(getContext());
 
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mRecyclerView.setAdapter(mCourseRecommendAdapter);
 
-        /**
+        mIvTask.setOnClickListener(this);
+        mIvPlan.setOnClickListener(this);
+        mIvTraining.setOnClickListener(this);
+        mIvNote.setOnClickListener(this);
+
+        /*
          * 解决ScrollView里面布局很长的时候会自动滑动到底部的问题
          */
         mIvTask.setFocusable(true);
@@ -76,4 +83,21 @@ public class MainPageFragment extends Fragment {
         mIvTask.requestFocus();
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_task:
+                Toast.makeText(getContext(), "任务", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.iv_plan:
+                Toast.makeText(getContext(), "计划", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.iv_training:
+                startActivity(new Intent(getActivity(), TrainingActivity.class));
+                break;
+            case R.id.iv_note:
+                startActivity(new Intent(getActivity(), NoteActivity.class));
+                break;
+        }
+    }
 }
