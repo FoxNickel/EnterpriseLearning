@@ -14,7 +14,7 @@ import java.util.List;
 public class SpecificCoursePagerAdapter extends FragmentPagerAdapter {
     private List<Fragment> mFragmentList;
     private Context mContext;
-    private String[] mPagerTitles = {"章节", "详情", "评论", "问答"};
+    private String[] mPagerTitles = {"章节", "详情", "问答", "笔记"};
 
     public SpecificCoursePagerAdapter(FragmentManager fm, List<Fragment> fragmentList, Context context) {
         super(fm);

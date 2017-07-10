@@ -6,12 +6,9 @@
         android:viewportWidth="1024.0"
         android:viewportHeight="1024.0">
     <path
-        android:fillColor="@color/gray_bg"
-        android:pathData="M972.8 51.2H51.2a51.2 51.2 0 0 0-51.2 51.2v614.4a51.2 51.2 0 0 0 51.2 51.2h128v204.8l332.8-204.8h460.8a51.2 51.2 0 0 0 51.2-51.2V102.4a51.2 51.2 0 0 0-51.2-51.2z m0 665.6H497.536l-12.3392 7.6032L230.4 881.1776V716.8H51.2V102.4h921.6v614.4z"
+        android:fillColor="@color/gray"
+        android:pathData="M139.291 966.837c-24.964 0-43.092-19.256-43.092-45.802V102.966c0-26.546 18.127-45.803 43.092-45.803 8.581 0 17.291 2.291 25.901 6.774l771.009 410.194c16.579 8.71 26.224 22.547 26.224 37.869s-9.645 29.128-26.29 37.901L165.323 959.968c-8.741 4.579-17.451 6.869-26.032 6.869z m6.162-859.452v809.2L905.977 512 145.453 107.385z"
         tools:ignore="VectorRaster"/>
-    <path
-        android:fillColor="@color/gray_bg"
-        android:pathData="M230.4 230.4h563.2v51.2H230.4zM230.4 384h563.2v51.2H230.4zM230.4 537.6h563.2v51.2H230.4z"
-        tools:ignore="VectorRaster"/>
+
 
 </vector>

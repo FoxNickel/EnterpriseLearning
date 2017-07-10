@@ -55,4 +55,27 @@
     <string name="more_detail">更多详情请下载附件：</string>
     <string name="click_to_download">点击下载</string>
     <string name="expand">展开</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="receive_notification">接受推送通知</string>
+    <string name="notice">请谨慎选择开启 避免过度使用流量</string>
+    <string name="wifi">允许非WIFI网络播放</string>
+    <string name="feedback">意见反馈</string>
+    <string name="version_update">版本更新</string>
+    <string name="logout">退出登录</string>
+    <string name="user_info">个人信息</string>
+    <string name="avatar">头像</string>
+    <string name="name">姓名</string>
+    <string name="department">部门</string>
+    <string name="position">职位</string>
+    <string name="gender">性别</string>
+    <string name="phone">手机</string>
+    <string name="email">邮箱</string>
+    <string name="learning_data">学习数据</string>
+    <string name="get">获得</string>
+    <string name="score">学分</string>
+    <string name="learning_time">学习时长(分钟)</string>
+    <string name="chapter_complete">完成小节(节)</string>
+    <string name="grade">考试成绩(分)</string>
+    <string name="overall_score">综合评分</string>
+    <string name="course_recommend">相关课程推荐</string>
 </resources>

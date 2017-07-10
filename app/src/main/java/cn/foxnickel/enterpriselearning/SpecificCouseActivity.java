@@ -24,7 +24,7 @@ import java.util.List;
 
 import cn.foxnickel.enterpriselearning.adapter.SpecificCoursePagerAdapter;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.SCChaptersFragment;
-import cn.foxnickel.enterpriselearning.fragment.subfragment.SCCommentsFragment;
+import cn.foxnickel.enterpriselearning.fragment.subfragment.SCNoteFragment;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.SCDetailsFragment;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.SCQAFragment;
 import cn.foxnickel.enterpriselearning.module.SwitchVideoModel;
@@ -63,8 +63,8 @@ public class SpecificCouseActivity extends AppCompatActivity {
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(SCChaptersFragment.newInstance());
         fragmentList.add(SCDetailsFragment.newInstance());
-        fragmentList.add(SCCommentsFragment.newInstance());
         fragmentList.add(SCQAFragment.newInstance());
+        fragmentList.add(SCNoteFragment.newInstance());
         SpecificCoursePagerAdapter specificCoursePagerAdapter = new SpecificCoursePagerAdapter(getSupportFragmentManager(), fragmentList, getContext());
         mViewPagerCourse.setAdapter(specificCoursePagerAdapter);
         mTabLayout.setupWithViewPager(mViewPagerCourse);

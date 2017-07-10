@@ -11,13 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import cn.foxnickel.enterpriselearning.R;
-import cn.foxnickel.enterpriselearning.adapter.MyExamRecyclerAdapter;
+import cn.foxnickel.enterpriselearning.adapter.NoteRecyclerAdapter;
 
 /**
  * Created by Night on 2017/7/8.
  * Desc:Specific course comments Fragment
  */
-public class SCCommentsFragment extends Fragment {
+public class SCNoteFragment extends Fragment {
 
     private View mRootView;
     private RecyclerView mRecyclerView;
@@ -26,13 +26,13 @@ public class SCCommentsFragment extends Fragment {
     private View view;
     private SwipeRefreshLayout mSwipeRefresh;
 
-    public SCCommentsFragment() {
+    public SCNoteFragment() {
         // Required empty public constructor
     }
 
-    public static SCCommentsFragment newInstance() {
+    public static SCNoteFragment newInstance() {
 
-        return new SCCommentsFragment();
+        return new SCNoteFragment();
     }
 
     @Override
@@ -47,8 +47,8 @@ public class SCCommentsFragment extends Fragment {
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recycler_view_my_exam);
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        MyExamRecyclerAdapter myExamRecyclerAdapter = new MyExamRecyclerAdapter(getContext());
-        mRecyclerView.setAdapter(myExamRecyclerAdapter);
+        NoteRecyclerAdapter noteRecyclerAdapter = new NoteRecyclerAdapter(getContext());
+        mRecyclerView.setAdapter(noteRecyclerAdapter);
         mSwipeRefresh = (SwipeRefreshLayout) mRootView.findViewById(R.id.exam_swipe_refresh);
     }
 }

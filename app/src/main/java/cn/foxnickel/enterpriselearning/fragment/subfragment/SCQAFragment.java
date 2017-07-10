@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import cn.foxnickel.enterpriselearning.R;
-import cn.foxnickel.enterpriselearning.adapter.MyExamRecyclerAdapter;
+import cn.foxnickel.enterpriselearning.adapter.SCQAAdapter;
 
 /**
  * Created by Night on 2017/7/8.
@@ -47,8 +47,8 @@ public class SCQAFragment extends Fragment {
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recycler_view_my_exam);
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        MyExamRecyclerAdapter myExamRecyclerAdapter = new MyExamRecyclerAdapter(getContext());
-        mRecyclerView.setAdapter(myExamRecyclerAdapter);
+        SCQAAdapter scqaAdapter = new SCQAAdapter(getContext());
+        mRecyclerView.setAdapter(scqaAdapter);
         mSwipeRefresh = (SwipeRefreshLayout) mRootView.findViewById(R.id.exam_swipe_refresh);
     }
 }

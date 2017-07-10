@@ -8,29 +8,28 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_exam_name"
+        android:id="@+id/tv_question_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginStart="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="新员工入职考试"
+        android:text="数据库连接失败"
         android:textColor="@android:color/black"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:id="@+id/tv_exam_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/iv_write_answer"
+        android:layout_width="48dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="32dp"
-        android:text="2017-5-11"
-        android:textColor="@color/colorPrimary"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/write_answer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_exam_name"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_question_name"/>
 
     <View
         android:id="@+id/view_divider"
@@ -45,21 +44,16 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
-        android:id="@+id/tv_exam_score"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
-        android:scaleType="centerCrop"
-        android:text="80分"
-        android:textSize="24sp"
-        android:gravity="center"
-        android:background="@drawable/shape_exam_score_green"
+        android:id="@+id/tv_last_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="回答问题最高可获得3积分哦！"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/iv_write_answer"
+        app:layout_constraintTop_toBottomOf="@+id/tv_question_name"
+
     />
 
 </android.support.constraint.ConstraintLayout>

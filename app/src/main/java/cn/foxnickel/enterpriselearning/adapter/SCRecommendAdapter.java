@@ -13,11 +13,11 @@ import cn.foxnickel.enterpriselearning.R;
  * Created by NickelFox on 2017/7/2.
  */
 
-public class CourseRecommendAdapter extends RecyclerView.Adapter<CourseRecommendAdapter.ViewHolder> {
+public class SCRecommendAdapter extends RecyclerView.Adapter<SCRecommendAdapter.ViewHolder> {
 
     private Context mContext;
 
-    public CourseRecommendAdapter(Context context) {
+    public SCRecommendAdapter(Context context) {
         mContext = context;
     }
 
@@ -26,7 +26,7 @@ public class CourseRecommendAdapter extends RecyclerView.Adapter<CourseRecommend
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_item_course_recommend, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_item_sc_recommend, parent, false);
         return new ViewHolder(view);
     }
 
