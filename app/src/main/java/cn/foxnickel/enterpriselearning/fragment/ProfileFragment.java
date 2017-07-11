@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import cn.foxnickel.enterpriselearning.HistoryActivity;
 import cn.foxnickel.enterpriselearning.LearningDataActivity;
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.SettingsActivity;
@@ -23,8 +25,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private View mRootView;
     private View mSettingView;
     private View mUerInfo;
-    private ImageView mIvMyData;
-    private TextView mTvMyData;
+    private ImageView mIvMyData, mIvMyQuestion, mIvMyHistory;
+    private TextView mTvMyData, mTvMyQuestion, mTvMyHistory;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -52,9 +54,18 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         mIvMyData = (ImageView) mRootView.findViewById(R.id.iv_my_data);
         mIvMyData.setOnClickListener(this);
-
         mTvMyData = (TextView) mRootView.findViewById(R.id.tv_my_data);
         mTvMyData.setOnClickListener(this);
+
+        mIvMyQuestion = (ImageView) mRootView.findViewById(R.id.iv_my_question);
+        mIvMyQuestion.setOnClickListener(this);
+        mTvMyQuestion = (TextView) mRootView.findViewById(R.id.tv_my_question);
+        mTvMyQuestion.setOnClickListener(this);
+
+        mIvMyHistory = (ImageView) mRootView.findViewById(R.id.iv_my_history);
+        mIvMyHistory.setOnClickListener(this);
+        mTvMyHistory = (TextView) mRootView.findViewById(R.id.tv_my_history);
+        mTvMyHistory.setOnClickListener(this);
     }
 
     @Override
@@ -69,6 +80,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             case R.id.iv_my_data:
             case R.id.tv_my_data:
                 startActivity(new Intent(getContext(), LearningDataActivity.class));
+                break;
+            case R.id.iv_my_question:
+            case R.id.tv_my_question:
+                Toast.makeText(getContext(), "我的问答", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.iv_my_history:
+            case R.id.tv_my_history:
+                startActivity(new Intent(getContext(), HistoryActivity.class));
                 break;
         }
     }
