@@ -1,4 +1,4 @@
-package cn.foxnickel.enterpriselearning.fragment;
+package cn.foxnickel.enterpriselearning.fragment.subfragment;
 
 
 import android.os.Bundle;
@@ -15,25 +15,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.foxnickel.enterpriselearning.R;
-import cn.foxnickel.enterpriselearning.fragment.subfragment.CourseContentFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 
-public class CoursesFragment extends Fragment {
+public class PlanFragment extends Fragment {
 
     private View mRootView;
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     List<String> mFirstClassificationNameList;
 
-    public CoursesFragment() {
+    public PlanFragment() {
         // Required empty public constructor
     }
 
-    public static CoursesFragment newInstance() {
-        return new CoursesFragment();
+    public static PlanFragment newInstance() {
+        return new PlanFragment();
     }
 
     @Override
@@ -62,7 +61,7 @@ public class CoursesFragment extends Fragment {
         Bundle args = new Bundle();
         args.putString("firstClassificationName", mFirstClassificationNameList.get(position));
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.replace(R.id.chapter_content, CourseContentFragment.newInstance(args));
+        transaction.replace(R.id.chapter_content, PlanContentFragment.newInstance(args));
         transaction.commit();
     }
 
@@ -90,7 +89,7 @@ public class CoursesFragment extends Fragment {
                     Bundle args = new Bundle();
                     args.putString("firstClassificationName", mFirstClassificationNameList.get(pos));
                     FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-                    transaction.replace(R.id.chapter_content, CourseContentFragment.newInstance(args));
+                    transaction.replace(R.id.chapter_content, PlanContentFragment.newInstance(args));
                     transaction.commit();
                 }
             });

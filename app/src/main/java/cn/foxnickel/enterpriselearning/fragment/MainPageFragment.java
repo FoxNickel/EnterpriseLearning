@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.foxnickel.enterpriselearning.NoteActivity;
+import cn.foxnickel.enterpriselearning.PlanActivity;
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.TrainingActivity;
 import cn.foxnickel.enterpriselearning.adapter.CourseRecommendAdapter;
@@ -90,7 +91,7 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getContext(), "任务", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iv_plan:
-                Toast.makeText(getContext(), "计划", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getContext(), PlanActivity.class));
                 break;
             case R.id.iv_training:
                 startActivity(new Intent(getActivity(), TrainingActivity.class));

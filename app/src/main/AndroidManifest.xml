@@ -35,8 +35,6 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/HiddenStatusBar">
-
-
         </activity>
         <activity
             android:name=".RetriPasswordActivity"
@@ -68,6 +66,7 @@
         </activity>
         <activity android:name=".HistoryActivity">
         </activity>
+        <activity android:name=".PlanActivity"/>
     </application>
 
 </manifest>

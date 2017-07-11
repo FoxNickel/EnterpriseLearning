@@ -21,7 +21,7 @@ public class SCRecommendAdapter extends RecyclerView.Adapter<SCRecommendAdapter.
         mContext = context;
     }
 
-    int mCourseRecommendPic[] = {R.drawable.course_recommend_pic4, R.drawable.course_recommend_pic2,
+    private int mCourseRecommendPic[] = {R.drawable.course_recommend_pic4, R.drawable.course_recommend_pic2,
             R.drawable.course_recommend_pic3, R.drawable.course_recommend_pic1};
 
     @Override
