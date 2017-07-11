@@ -34,6 +34,7 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<NoteRecyclerAdapte
 
         holder.mTime.setText("2017-07-07");
         holder.mContent.setText("这是笔记，这是笔记，这是笔记，这是笔记，这是笔记，这是笔记，这是笔记，这是笔记，这是笔记，这是笔记，这是笔记，这是笔记");
+        holder.mSource.setText("源自:课程名称-小节名称");
         holder.mExpand.setOnClickListener(new View.OnClickListener() {
             boolean expanded = false;
 
@@ -42,10 +43,12 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<NoteRecyclerAdapte
                 if (expanded) {
                     holder.mContent.setMaxLines(2);
                     holder.mExpand.setText("展开");
+                    holder.mSource.setVisibility(View.GONE);
                     expanded = false;
                 } else {
                     holder.mContent.setMaxLines(9999);
                     holder.mExpand.setText("收起");
+                    holder.mSource.setVisibility(View.VISIBLE);
                     expanded = true;
                 }
             }
@@ -66,7 +69,7 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<NoteRecyclerAdapte
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView mTime, mContent, mExpand;
+        private TextView mTime, mContent, mExpand, mSource;
         private ImageView mDelete;
 
         public ViewHolder(View itemView) {
@@ -75,6 +78,7 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<NoteRecyclerAdapte
             mContent = (TextView) itemView.findViewById(R.id.tv_note_content);
             mExpand = (TextView) itemView.findViewById(R.id.tv_expand);
             mDelete = (ImageView) itemView.findViewById(R.id.iv_delete);
+            mSource = (TextView) itemView.findViewById(R.id.tv_source);
         }
     }
 }
