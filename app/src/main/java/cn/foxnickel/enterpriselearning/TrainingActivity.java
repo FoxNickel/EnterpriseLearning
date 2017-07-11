@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import cn.foxnickel.enterpriselearning.adapter.TrainingRecyclerAdapter;
 
@@ -46,6 +47,7 @@ public class TrainingActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -55,6 +57,8 @@ public class TrainingActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 break;
+            case R.id.action_search:
+                Toast.makeText(this, "搜索", Toast.LENGTH_SHORT).show();
             default:
                 break;
         }
