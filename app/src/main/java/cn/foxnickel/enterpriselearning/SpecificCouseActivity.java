@@ -18,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.github.clans.fab.FloatingActionButton;
 import com.shuyu.gsyvideoplayer.GSYPreViewManager;
 import com.shuyu.gsyvideoplayer.GSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
@@ -40,7 +41,7 @@ import static com.mob.MobSDK.getContext;
  * Desc:
  */
 
-public class SpecificCouseActivity extends AppCompatActivity {
+public class SpecificCouseActivity extends AppCompatActivity implements View.OnClickListener {
 
     private SampleVideo mVpPlayer;
     private TabLayout mTabLayout;
@@ -49,6 +50,7 @@ public class SpecificCouseActivity extends AppCompatActivity {
     private boolean isFullScreen = false;
     private ConstraintLayout mVideoLayout;
     private Toolbar mToolbar;
+    private FloatingActionButton mFabNote, mFabComment, mFabCollect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,13 @@ public class SpecificCouseActivity extends AppCompatActivity {
             }
         });
         setupVideo();
+
+        mFabNote = (FloatingActionButton) findViewById(R.id.fab_note);
+        mFabComment = (FloatingActionButton) findViewById(R.id.fab_comment);
+        mFabCollect = (FloatingActionButton) findViewById(R.id.fab_collect);
+        mFabNote.setOnClickListener(this);
+        mFabComment.setOnClickListener(this);
+        mFabCollect.setOnClickListener(this);
     }
 
     private void setupVideo() {
@@ -223,5 +232,20 @@ public class SpecificCouseActivity extends AppCompatActivity {
             Toast.makeText(this, "课程评价", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab_note:
+                Toast.makeText(this, "记笔记", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.fab_comment:
+                Toast.makeText(this, "发讨论", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.fab_collect:
+                Toast.makeText(this, "收藏课程", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }

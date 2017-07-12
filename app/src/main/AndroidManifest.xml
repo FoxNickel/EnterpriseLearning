@@ -58,6 +58,7 @@
         </activity>
         <activity
             android:name=".SpecificCouseActivity"
+            android:theme="@style/CourseDetailTheme"
             android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
         <activity
