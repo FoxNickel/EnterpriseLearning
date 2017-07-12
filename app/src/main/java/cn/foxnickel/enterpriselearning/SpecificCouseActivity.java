@@ -10,10 +10,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.shuyu.gsyvideoplayer.GSYPreViewManager;
 import com.shuyu.gsyvideoplayer.GSYVideoPlayer;
@@ -24,8 +27,8 @@ import java.util.List;
 
 import cn.foxnickel.enterpriselearning.adapter.SpecificCoursePagerAdapter;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.SCChaptersFragment;
-import cn.foxnickel.enterpriselearning.fragment.subfragment.SCNoteFragment;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.SCDetailsFragment;
+import cn.foxnickel.enterpriselearning.fragment.subfragment.SCNoteFragment;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.SCQAFragment;
 import cn.foxnickel.enterpriselearning.module.SwitchVideoModel;
 import cn.foxnickel.enterpriselearning.utils.DisplayUtil;
@@ -46,7 +49,6 @@ public class SpecificCouseActivity extends AppCompatActivity {
     private boolean isFullScreen = false;
     private ConstraintLayout mVideoLayout;
     private Toolbar mToolbar;
-    private ImageView mIvEvaluate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,18 @@ public class SpecificCouseActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         mVpPlayer = (SampleVideo) findViewById(R.id.vp_player);
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
         mVideoLayout = (ConstraintLayout) findViewById(R.id.cl_specific_course);
@@ -74,25 +88,7 @@ public class SpecificCouseActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
         setupVideo();
-        mIvEvaluate = (ImageView) findViewById(R.id.iv_evaluate);
-        mIvEvaluate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     private void setupVideo() {
@@ -213,5 +209,19 @@ public class SpecificCouseActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.evaluation, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_evaluate) {
+            Toast.makeText(this, "课程评价", Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
