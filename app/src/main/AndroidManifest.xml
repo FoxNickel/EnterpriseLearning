@@ -47,14 +47,17 @@
         <meta-data
             android:name="Mob-AppSecret"
             android:value="142721de9ebb9a1f297d164dc4108f2b"/>
+
         <activity android:name=".TrainingActivity">
         </activity>
         <activity android:name=".TrainingDetailActivity">
         </activity>
         <activity android:name=".NoteActivity">
         </activity>
-        <activity android:name=".SpecificCouseActivity"
-                  android:configChanges="keyboardHidden|orientation|screenSize">
+        <activity
+            android:name=".SpecificCouseActivity"
+            android:theme="@style/CourseDetailTheme"
+            android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
         <activity
             android:name=".SettingsActivity"

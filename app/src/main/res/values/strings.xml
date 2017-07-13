@@ -80,4 +80,5 @@
     <string name="course_recommend">相关课程推荐</string>
     <string name="primary">初级</string>
     <string name="courseoutline">课程提纲</string>
+    <string name="course_detail">课程详情</string>
 </resources>

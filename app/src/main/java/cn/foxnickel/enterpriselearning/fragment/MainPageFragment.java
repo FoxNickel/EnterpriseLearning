@@ -17,6 +17,7 @@ import cn.foxnickel.enterpriselearning.NoteActivity;
 import cn.foxnickel.enterpriselearning.PlanActivity;
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.TrainingActivity;
+import cn.foxnickel.enterpriselearning.TrainingDetailActivity;
 import cn.foxnickel.enterpriselearning.adapter.CourseRecommendAdapter;
 
 /**
@@ -56,6 +57,19 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
     private void initBanner() {
         mBGABanner = (BGABanner) mRootView.findViewById(R.id.banner);
         mBGABanner.setData(R.drawable.login_bg2, R.drawable.login_bg2, R.drawable.login_bg4, R.drawable.login_bg4);
+        mBGABanner.setDelegate(new BGABanner.Delegate() {
+            @Override
+            public void onBannerItemClick(BGABanner banner, View itemView, Object model, int position) {
+                Intent startTrainingDetailActivity = new Intent(getContext(), TrainingDetailActivity.class);
+                startTrainingDetailActivity.putExtra("training_name", "这是培训名称");
+                startTrainingDetailActivity.putExtra("training_intro", "        这是培训介绍，这是培训介绍，这是培训介绍，这是培训介绍，这是培训介绍，这是培训介绍，这是培训介绍，这是培训介绍，这是培训介绍");
+                startTrainingDetailActivity.putExtra("training_num", "报名人数:36人");
+                startTrainingDetailActivity.putExtra("training_place", "培训地点:二楼会议室");
+                startTrainingDetailActivity.putExtra("training_start_time", "开始时间:2017年7月7日 12:00");
+                startTrainingDetailActivity.putExtra("training_duration", "培训时长:2小时");
+                startActivity(startTrainingDetailActivity);
+            }
+        });
     }
 
     private void initView() {

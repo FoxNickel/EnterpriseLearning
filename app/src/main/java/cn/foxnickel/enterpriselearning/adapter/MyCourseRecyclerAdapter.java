@@ -1,6 +1,7 @@
 package cn.foxnickel.enterpriselearning.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.foxnickel.enterpriselearning.R;
+import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
 
 /**
  * Created by NickelFox on 2017/7/5.
@@ -32,6 +34,12 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mCourseName.setText("Java-从入门到放弃");
         holder.mCoursePic.setImageResource(R.drawable.login_bg2);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, SpecificCouseActivity.class));
+            }
+        });
     }
 
     @Override

@@ -39,14 +39,14 @@ public class SCChapterAdapter extends RecyclerView.Adapter<SCChapterAdapter.View
             holder.mChapterTime.setVisibility(View.GONE);
         } else if (position == 1) {
             holder.mChapterName.setText("1-1课程介绍");
-            holder.mChapterName.setTextSize(14);
+            holder.mChapterName.setTextSize(12);
         } else if (position == 2) {
             holder.mIVStop.setVisibility(View.GONE);
             holder.mChapterName.setText("第2章webUI课程简介");
             holder.mChapterTime.setVisibility(View.GONE);
         } else {
             holder.mChapterName.setText("2-" + position + "课程介绍");
-            holder.mChapterName.setTextSize(14);
+            holder.mChapterName.setTextSize(12);
         }
     }
 
