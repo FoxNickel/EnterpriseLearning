@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+    <com.github.vipulasri.timelineview.TimelineView
+        android:id="@+id/time_marker"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        app:line="@color/gray"
+        app:linePadding="5dp"
+        app:lineSize="3dp"
+        app:markerSize="10dp"/>
+    <TextView android:id="@+id/tv_course_chapter_name"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="16dp"
+              android:layout_toRightOf="@id/time_marker"
+              android:text="课程介绍"
+    />
+    <android.support.v7.widget.RecyclerView android:id="@+id/rv_course_chapter"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@id/tv_course_chapter_name"
+                                            android:layout_marginLeft="16dp"
+                                            android:layout_toRightOf="@id/time_marker"
+    />
+</RelativeLayout>

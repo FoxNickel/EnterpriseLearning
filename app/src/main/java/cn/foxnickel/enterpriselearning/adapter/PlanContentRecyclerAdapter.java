@@ -1,6 +1,7 @@
 package cn.foxnickel.enterpriselearning.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.foxnickel.enterpriselearning.R;
+import cn.foxnickel.enterpriselearning.SpecificPlanActivity;
 
 /**
  * Created by Night on 2017/7/11.
@@ -53,6 +55,12 @@ public class PlanContentRecyclerAdapter extends RecyclerView.Adapter<PlanContent
             mPlanName = (TextView) itemView.findViewById(R.id.tv_plan_name);
             mIVPlan = (ImageView) itemView.findViewById(R.id.iv_plan);
             mPlanState = (TextView) itemView.findViewById(R.id.tv_plan_state);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(new Intent(mContext, SpecificPlanActivity.class).putExtra("planname", mPlanName.getText().toString().trim()));
+                }
+            });
         }
     }
 }

@@ -45,5 +45,6 @@ dependencies {
     compile 'com.shuyu:GSYVideoPlayer:1.6.8'
     compile 'com.android.support:support-vector-drawable:25.3.1'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    compile 'com.github.open-android:Timeline:0.1.0'
     testCompile 'junit:junit:4.12'
 }

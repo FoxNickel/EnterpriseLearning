@@ -1,7 +1,10 @@
 package cn.foxnickel.enterpriselearning.config;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 import com.mob.MobApplication;
 
@@ -19,10 +22,12 @@ public class Config extends MobApplication {
 
     public static String KEY_REMEMBER_PAS = "KEY_REMEMBER_PAS";
     public static ExecutorService fixedThreadPool;
+
     @Override
     public void onCreate() {
         super.onCreate();
         sSp = PreferenceManager.getDefaultSharedPreferences(this);
         fixedThreadPool = Executors.newFixedThreadPool(5);
     }
+
 }

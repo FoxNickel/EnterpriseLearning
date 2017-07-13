@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Timeline-0.1.0">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/5b827e5c016ccf559e0cea49497d6cf9f5db0886/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/5b827e5c016ccf559e0cea49497d6cf9f5db0886/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.open-android/Timeline/0.1.0/cb2903225ea620c9d7da87664ec53a28fa96f18b/Timeline-0.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

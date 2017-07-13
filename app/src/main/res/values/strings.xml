@@ -78,4 +78,6 @@
     <string name="grade">考试成绩(分)</string>
     <string name="overall_score">综合评分</string>
     <string name="course_recommend">相关课程推荐</string>
+    <string name="primary">初级</string>
+    <string name="courseoutline">课程提纲</string>
 </resources>
