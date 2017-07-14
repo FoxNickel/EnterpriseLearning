@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
+import cn.foxnickel.enterpriselearning.config.Config;
 import cn.foxnickel.enterpriselearning.fragment.CoursesFragment;
 import cn.foxnickel.enterpriselearning.fragment.LearningFragment;
 import cn.foxnickel.enterpriselearning.fragment.MainPageFragment;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private LearningFragment mLearningFragment;
     private ProfileFragment mProfileFragment;
     public static int mBackClickTimes = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +39,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         initView();
         setSupportActionBar(mToolbar);
+        Config.fixedThreadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                initBottomNavBar();
+                initTab();
+            }
+        });
 
-        initBottomNavBar();
-        initTab();
     }
 
     private void initTab() {
@@ -55,25 +62,30 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         mBottomNavigationBar.setBarBackgroundColor(R.color.colorAccent);
         mBottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         mBottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);//适应大小
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mBottomNavigationBar.addItem(new BottomNavigationItem(
+                        R.drawable.ic_home_red_24dp, getString(R.string.main_page))
+                        .setInactiveIconResource(R.drawable.ic_home_gray_24dp)
+                        .setActiveColorResource(R.color.colorPrimary))
+                        .addItem(new BottomNavigationItem(
+                                R.drawable.ic_courses_red_24dp, getString(R.string.courses))
+                                .setInactiveIconResource(R.drawable.ic_courses_gray_24dp)
+                                .setActiveColorResource(R.color.colorPrimary))
+                        .addItem(new BottomNavigationItem(
+                                R.drawable.ic_learning_red_24dp, getString(R.string.learning))
+                                .setInactiveIconResource(R.drawable.ic_learning_gray_24dp)
+                                .setActiveColorResource(R.color.colorPrimary))
+                        .addItem(new BottomNavigationItem(
+                                R.drawable.ic_profile_red_24dp, getString(R.string.mine))
+                                .setInactiveIconResource(R.drawable.ic_profile_gray_24dp)
+                                .setActiveColorResource(R.color.colorPrimary))
+                        .setFirstSelectedPosition(0)//默认显示面板
+                        .initialise();//初始化
+            }
+        });
 
-        mBottomNavigationBar.addItem(new BottomNavigationItem(
-                R.drawable.ic_home_red_24dp, getString(R.string.main_page))
-                .setInactiveIconResource(R.drawable.ic_home_gray_24dp)
-                .setActiveColorResource(R.color.colorPrimary))
-                .addItem(new BottomNavigationItem(
-                        R.drawable.ic_courses_red_24dp, getString(R.string.courses))
-                        .setInactiveIconResource(R.drawable.ic_courses_gray_24dp)
-                        .setActiveColorResource(R.color.colorPrimary))
-                .addItem(new BottomNavigationItem(
-                        R.drawable.ic_learning_red_24dp, getString(R.string.learning))
-                        .setInactiveIconResource(R.drawable.ic_learning_gray_24dp)
-                        .setActiveColorResource(R.color.colorPrimary))
-                .addItem(new BottomNavigationItem(
-                        R.drawable.ic_profile_red_24dp, getString(R.string.mine))
-                        .setInactiveIconResource(R.drawable.ic_profile_gray_24dp)
-                        .setActiveColorResource(R.color.colorPrimary))
-                .setFirstSelectedPosition(0)//默认显示面板
-                .initialise();//初始化
     }
 
     private void initView() {

@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import cn.foxnickel.enterpriselearning.adapter.PlanContentRecyclerAdapter;
@@ -26,12 +25,11 @@ public class MyPlanActivity extends AppCompatActivity {
     private AppBarLayout mAppBarLayout;
     private RecyclerView mRecyclerViewMyExam;
     private SwipeRefreshLayout mExamSwipeRefresh;
-    private FrameLayout mFlPlan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plan_specific);
+        setContentView(R.layout.activity_my_plan);
         initView();
     }
 
@@ -48,17 +46,14 @@ public class MyPlanActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mTvPlanName = (TextView) findViewById(R.id.tv_plan_name);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
-        mTvPlanName.setText(R.string.my_plan);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout);
-        mRecyclerViewMyExam = (RecyclerView) findViewById(R.id.recycler_view_my_exam);
-        mExamSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.exam_swipe_refresh);
-        mFlPlan = (FrameLayout) findViewById(R.id.fl_plan_fragment);
+        mRecyclerViewMyExam = (RecyclerView) findViewById(R.id.recycler_view_plan);
+        mExamSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         PlanContentRecyclerAdapter planContentRecyclerAdapter = new PlanContentRecyclerAdapter(this);
         mRecyclerViewMyExam.setLayoutManager(linearLayoutManager);

@@ -11,7 +11,8 @@ import android.widget.TextView;
 import cn.foxnickel.enterpriselearning.R;
 
 /**
- * Created by NickelFox on 2017/7/5.
+ * Created by Night on 2017/7/5.
+ * Desc:A adapter for cous
  */
 
 public class SCQAAdapter extends RecyclerView.Adapter<SCQAAdapter.ViewHolder> {

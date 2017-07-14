@@ -38,16 +38,15 @@ public class LearningFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_learning, container, false);
-
         mViewPager = (ViewPager) mRootView.findViewById(R.id.view_pager_learning);
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(MyCourseFragment.newInstance());
         fragmentList.add(MyExamFragment.newInstance());
         LearningPagerAdapter learningPagerAdapter = new LearningPagerAdapter(getChildFragmentManager(), fragmentList, getContext());
         mViewPager.setAdapter(learningPagerAdapter);
-
         mTabLayout = (TabLayout) mRootView.findViewById(R.id.tabLayout);
         mTabLayout.setupWithViewPager(mViewPager);
+
 
         return mRootView;
     }

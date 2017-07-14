@@ -16,7 +16,7 @@ import cn.foxnickel.enterpriselearning.SpecificPlanActivity;
  * Created by Night on 2017/7/11.
  */
 
-public class PlanContentRecyclerAdapter extends RecyclerView.Adapter<PlanContentRecyclerAdapter.ViewHolder> {
+public class PlanContentRecyclerAdapter extends AnimRecyclerViewAdapter<PlanContentRecyclerAdapter.ViewHolder> {
     private Context mContext;
 
 
@@ -38,6 +38,7 @@ public class PlanContentRecyclerAdapter extends RecyclerView.Adapter<PlanContent
         } else {
             holder.mPlanState.setText("已开始");
         }
+        showItemAnim(holder.rootview, position);
     }
 
     @Override
@@ -49,9 +50,11 @@ public class PlanContentRecyclerAdapter extends RecyclerView.Adapter<PlanContent
         private TextView mPlanName;
         private ImageView mIVPlan;
         private TextView mPlanState;
+        private View rootview;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            rootview = itemView;
             mPlanName = (TextView) itemView.findViewById(R.id.tv_plan_name);
             mIVPlan = (ImageView) itemView.findViewById(R.id.iv_plan);
             mPlanState = (TextView) itemView.findViewById(R.id.tv_plan_state);

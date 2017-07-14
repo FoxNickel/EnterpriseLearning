@@ -10,14 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cn.foxnickel.enterpriselearning.HistoryActivity;
 import cn.foxnickel.enterpriselearning.LearningDataActivity;
+import cn.foxnickel.enterpriselearning.MyDiscussActivity;
 import cn.foxnickel.enterpriselearning.MyPlanActivity;
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.SettingsActivity;
 import cn.foxnickel.enterpriselearning.UserInfoActivity;
+import cn.foxnickel.enterpriselearning.config.Config;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,7 +47,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_profile, container, false);
-        initView();
+        Config.fixedThreadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                initView();
+            }
+        });
         return mRootView;
     }
 
@@ -94,7 +100,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.iv_my_question:
             case R.id.tv_my_question:
-                Toast.makeText(getContext(), "我的问答", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getContext(), MyDiscussActivity.class));
                 break;
             case R.id.iv_my_history:
             case R.id.tv_my_history:

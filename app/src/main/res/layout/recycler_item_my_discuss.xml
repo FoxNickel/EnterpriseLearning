@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="16dp"
+    app:cardCornerRadius="4dp">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingEnd="16dp"
+        android:paddingRight="16dp"
+        android:paddingStart="16dp">
+        <TextView android:id="@+id/tv_discuss_name"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="16dp"
+                  android:text="UI怎么切图"
+                  android:textColor="@android:color/black"
+                  android:textSize="16sp"
+                  app:layout_constraintLeft_toLeftOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"/>
+        <com.athkalia.emphasis.EmphasisTextView
+            android:id="@+id/tv_discuss_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:maxLines="2"
+            android:text="[最新 沐曦尘x 的回答] ps里面有切片工具"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_discuss_name"
+            app:layout_constraintVertical_bias="0.0"/>
+        <TextView android:id="@+id/tv_discuss_time"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="16dp"
+                  android:layout_marginBottom="8dp"
+                  android:layout_marginLeft="16dp"
+                  android:layout_marginTop="8dp"
+                  android:gravity="left"
+                  android:text="2017-2-2"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintLeft_toLeftOf="parent"
+                  app:layout_constraintTop_toBottomOf="@id/tv_discuss_content"
+                  app:layout_constraintVertical_bias="0.833"/>
+        <TextView android:id="@+id/tv_discuss_from"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="16dp"
+                  android:layout_marginBottom="8dp"
+                  android:layout_marginLeft="16dp"
+                  android:layout_marginRight="16dp"
+                  android:layout_marginTop="8dp"
+                  android:maxEms="12"
+                  android:singleLine="true"
+                  android:text="@string/discuss_from"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintHorizontal_bias="1.0"
+                  app:layout_constraintLeft_toRightOf="@id/tv_discuss_time"
+                  app:layout_constraintRight_toRightOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/tv_discuss_content"
+                  app:layout_constraintVertical_bias="0.833"/>
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

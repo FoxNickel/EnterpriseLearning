@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import cn.foxnickel.enterpriselearning.CourseActivity;
+import cn.foxnickel.enterpriselearning.PlayVideoActivity;
 import cn.foxnickel.enterpriselearning.R;
 
 /**
@@ -69,7 +69,7 @@ public class PlanStageRecyclerAdapter extends RecyclerView.Adapter<PlanStageRecy
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mContext.startActivity(new Intent(mContext, CourseActivity.class).putExtra("title", mCourseName.getText().toString().trim()));
+                    mContext.startActivity(new Intent(mContext, PlayVideoActivity.class).putExtra("title", mCourseName.getText().toString().trim()));
                 }
             });
         }

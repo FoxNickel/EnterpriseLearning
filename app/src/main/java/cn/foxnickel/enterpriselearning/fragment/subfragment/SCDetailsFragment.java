@@ -27,13 +27,14 @@ import cn.foxnickel.enterpriselearning.adapter.SCRecommendAdapter;
 public class SCDetailsFragment extends Fragment implements View.OnClickListener {
 
     private View mRootView;
-    private TextView mTvCourseName;
-    private ImageView mIvCollect;
-    private TextView mTvShortIntro;
+    private TextView mTvCourseName;//课程名字
+    private TextView mTvShortIntro;//简介
     private ImageView mIvOpen;
-    private TextView mTvCourseNotes;
-    private TextView mTvLearningWhat;
-    private RecyclerView mRecyclerViewCourseRecommend;
+    private TextView mTvCourseNotes;//课程须知
+    private TextView mTvLearningWhat;//老师告诉你能学到什么
+    private RecyclerView mRecyclerViewCourseRecommend;//相关课程推荐
+    private View mViewDivider1;
+    private TextView mTvCredit;//学分
 
 
     public SCDetailsFragment() {
@@ -55,8 +56,6 @@ public class SCDetailsFragment extends Fragment implements View.OnClickListener 
 
     private void initView() {
         mTvCourseName = (TextView) mRootView.findViewById(R.id.tv_course_name);
-        mIvCollect = (ImageView) mRootView.findViewById(R.id.iv_collect);
-        mIvCollect.setOnClickListener(this);
         mTvShortIntro = (TextView) mRootView.findViewById(R.id.tv_short_intro);
         mTvShortIntro.setOnClickListener(this);
         mIvOpen = (ImageView) mRootView.findViewById(R.id.iv_open);
@@ -69,6 +68,10 @@ public class SCDetailsFragment extends Fragment implements View.OnClickListener 
         mRecyclerViewCourseRecommend.setLayoutManager(linearLayoutManager);
         SCRecommendAdapter courseRecommendAdapter = new SCRecommendAdapter(getContext());
         mRecyclerViewCourseRecommend.setAdapter(courseRecommendAdapter);
+        mViewDivider1 = (View) mRootView.findViewById(R.id.view_divider1);
+        mViewDivider1.setOnClickListener(this);
+        mTvCredit = (TextView) mRootView.findViewById(R.id.tv_credit);
+        mTvCredit.setOnClickListener(this);
     }
 
     @Override
@@ -79,16 +82,10 @@ public class SCDetailsFragment extends Fragment implements View.OnClickListener 
             v.setTag(!((boolean) v.getTag()));
         }
         switch (v.getId()) {
-            case R.id.iv_collect:
-                if ((boolean) v.getTag()) {
-                    v.setBackgroundResource(R.drawable.ic_collect_red);
-                } else {
-                    v.setBackgroundResource(R.drawable.ic_collect_gray);
-                }
-                break;
             case R.id.iv_open:
                 startPropertyAnim(v, (boolean) v.getTag());
                 break;
+            case R.id.view_divider1:
             case R.id.tv_short_intro:
                 if (mIvOpen.getTag() == null) {
                     mIvOpen.setTag(true);

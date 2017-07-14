@@ -89,7 +89,6 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         mIvPlan.setOnClickListener(this);
         mIvTraining.setOnClickListener(this);
         mIvNote.setOnClickListener(this);
-
         /*
          * 解决ScrollView里面布局很长的时候会自动滑动到底部的问题
          */

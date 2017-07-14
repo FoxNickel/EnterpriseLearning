@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.foxnickel.enterpriselearning.R;
+import cn.foxnickel.enterpriselearning.config.Config;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.CourseContentFragment;
 
 /**
@@ -40,13 +41,17 @@ public class CoursesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_courses, container, false);
-        initView();
-        mFirstClassificationNameList = new ArrayList<>();
-        mFirstClassificationNameList.add("技术分享");
-        mFirstClassificationNameList.add("项目管理");
-        mFirstClassificationNameList.add("流程管理");
-
-        initFragment(0);
+        Config.fixedThreadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                initView();
+                mFirstClassificationNameList = new ArrayList<>();
+                mFirstClassificationNameList.add("技术分享");
+                mFirstClassificationNameList.add("项目管理");
+                mFirstClassificationNameList.add("流程管理");
+                initFragment(0);
+            }
+        });
         return mRootView;
     }
 

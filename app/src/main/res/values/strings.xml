@@ -81,4 +81,7 @@
     <string name="primary">初级</string>
     <string name="courseoutline">课程提纲</string>
     <string name="course_detail">课程详情</string>
+    <string name="plan_intro">计划介绍</string>
+    <string name="begin_learning">开始学习</string>
+    <string name="discuss_from"><![CDATA[源自:<<Web UI设计理论入门>>1-1课程介绍]]></string>
 </resources>
