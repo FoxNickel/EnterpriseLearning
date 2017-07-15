@@ -70,7 +70,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/my_question"
+                android:text="@string/my_discuss"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="@+id/guideline"
                 app:layout_constraintRight_toRightOf="parent"
@@ -91,7 +91,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/iv_my_history"/>
 
             <ImageView
-                android:contentDescription="@string/my_question"
+                android:contentDescription="@string/my_discuss"
                 android:id="@+id/iv_my_question"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

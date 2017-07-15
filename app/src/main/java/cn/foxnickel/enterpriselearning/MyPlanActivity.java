@@ -11,11 +11,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import cn.foxnickel.enterpriselearning.adapter.PlanContentRecyclerAdapter;
+import cn.foxnickel.enterpriselearning.adapter.MyPlanRecyclerAdapter;
 
 /**
  * Created by Night on 2017/7/13.
- * Desc:
+ * Desc:My plan activity
  */
 
 public class MyPlanActivity extends AppCompatActivity {
@@ -55,7 +55,7 @@ public class MyPlanActivity extends AppCompatActivity {
         mRecyclerViewMyExam = (RecyclerView) findViewById(R.id.recycler_view_plan);
         mExamSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        PlanContentRecyclerAdapter planContentRecyclerAdapter = new PlanContentRecyclerAdapter(this);
+        MyPlanRecyclerAdapter planContentRecyclerAdapter = new MyPlanRecyclerAdapter(this);
         mRecyclerViewMyExam.setLayoutManager(linearLayoutManager);
         mRecyclerViewMyExam.setAdapter(planContentRecyclerAdapter);
     }

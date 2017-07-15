@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import cn.foxnickel.enterpriselearning.CourseListActivity;
 import cn.foxnickel.enterpriselearning.R;
-import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
 
 /**
  * Created by NickelFox on 2017/7/3.
@@ -44,7 +44,7 @@ public class SecondClassificationAdapter extends RecyclerView.Adapter<SecondClas
         thirdClassificationAdapter.setOnItemClickListener(new ThirdClassificationAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                mContext.startActivity(new Intent(mContext, SpecificCouseActivity.class));
+                mContext.startActivity(new Intent(mContext, CourseListActivity.class));
             }
         });
         holder.mThirdClassificationRecycler.setAdapter(thirdClassificationAdapter);

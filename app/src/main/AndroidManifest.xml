@@ -21,11 +21,6 @@
         android:theme="@style/AppTheme.NoActionBar"
     >
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
             android:name="com.mob.tools.MobUIShell"
@@ -35,6 +30,11 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/HiddenStatusBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".RetriPasswordActivity"
@@ -71,12 +71,13 @@
         </activity>
         <activity android:name=".PlanActivity"/>
         <activity android:name=".SpecificPlanActivity"/>
-        <activity android:name=".CourseActivity"/>
         <activity android:name="MyPlanActivity"/>
         <activity android:name=".PlayVideoActivity"
                   android:configChanges="keyboardHidden|orientation|screenSize"
                   android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".MyDiscussActivity"/>
+        <activity android:name=".CourseListActivity">
+        </activity>
     </application>
 
 </manifest>

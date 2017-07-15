@@ -38,7 +38,7 @@
     <string name="start_learn">开始学习</string>
     <string name="course_image">课程图片</string>
     <string name="username">用户名</string>
-    <string name="my_question">我的问答</string>
+    <string name="my_discuss">我的讨论</string>
     <string name="my_history">我的足迹</string>
     <string name="my_data">我的数据</string>
     <string name="arrow"><![CDATA[>]]></string>
@@ -84,4 +84,6 @@
     <string name="plan_intro">计划介绍</string>
     <string name="begin_learning">开始学习</string>
     <string name="discuss_from"><![CDATA[源自:<<Web UI设计理论入门>>1-1课程介绍]]></string>
+    <string name="arrangement">排序:</string>
+    <string name="filter">筛选：</string>
 </resources>

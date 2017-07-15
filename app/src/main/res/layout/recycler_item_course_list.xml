@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="16dp">
+    <ImageView android:id="@+id/iv_course_pic"
+               android:layout_width="96dp"
+               android:layout_height="96dp"
+               android:layout_alignParentLeft="true"
+               android:layout_alignParentStart="true"
+               android:layout_alignParentTop="true"
+               android:src="@drawable/login_bg2"/>
+    <TextView android:id="@+id/tv_course_name"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="8dp"
+              android:layout_toRightOf="@id/iv_course_pic"
+              android:text="web UI设计理论入门"
+              android:textColor="@android:color/black"
+              android:textSize="16sp"/>
+    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+        android:id="@+id/rb_course_score"
+        style="@style/Widget.MaterialRatingBar.RatingBar.Indicator.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_course_name"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@id/iv_course_pic"
+        android:layout_toRightOf="@+id/iv_course_pic"
+        android:numStars="5"
+        android:rating="3.0"
+        app:mrb_progressTint="@color/colorPrimary"
+        app:mrb_secondaryProgressTint="@color/colorPrimary"/>
+
+    <TextView android:id="@+id/tv_course_learned"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/rb_course_score"
+              android:layout_marginLeft="8dp"
+              android:layout_marginStart="8dp"
+              android:layout_marginTop="32dp"
+              android:layout_toEndOf="@id/iv_course_pic"
+              android:layout_toRightOf="@+id/iv_course_pic"
+              android:text="20人学过"
+              android:textSize="8sp"/>
+</RelativeLayout>

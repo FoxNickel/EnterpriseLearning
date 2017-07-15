@@ -47,6 +47,7 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     compile 'com.github.open-android:Timeline:0.1.0'
     compile 'com.github.open-android:EmphasisTextView:0.1.0'
+    compile 'me.zhanghai.android.materialratingbar:library:1.0.2'
     testCompile 'junit:junit:4.12'
     compile 'com.github.clans:fab:1.6.4'
 }
