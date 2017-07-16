@@ -1,10 +1,9 @@
 package cn.foxnickel.enterpriselearning.config;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.DisplayMetrics;
-import android.view.WindowManager;
+import android.text.Layout;
+import android.widget.TextView;
 
 import com.mob.MobApplication;
 
@@ -30,4 +29,10 @@ public class Config extends MobApplication {
         fixedThreadPool = Executors.newFixedThreadPool(5);
     }
 
+    public static int getTextViewHeight(TextView pTextView) {
+        Layout layout = pTextView.getLayout();
+        int desired = layout.getLineTop(pTextView.getLineCount());
+        int padding = pTextView.getCompoundPaddingTop() + pTextView.getCompoundPaddingBottom();
+        return desired + padding;
+    }
 }

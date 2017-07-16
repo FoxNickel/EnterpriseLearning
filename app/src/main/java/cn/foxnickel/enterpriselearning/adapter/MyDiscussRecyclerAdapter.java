@@ -1,6 +1,7 @@
 package cn.foxnickel.enterpriselearning.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.athkalia.emphasis.EmphasisTextView;
 import com.athkalia.emphasis.HighlightMode;
 
+import cn.foxnickel.enterpriselearning.DiscussDetailsActivity;
 import cn.foxnickel.enterpriselearning.R;
 
 /**
@@ -70,7 +72,7 @@ public class MyDiscussRecyclerAdapter extends AnimRecyclerViewAdapter<MyDiscussR
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    mContext.startActivity(new Intent(mContext, DiscussDetailsActivity.class));
                 }
             });
         }

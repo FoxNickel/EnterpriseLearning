@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,9 @@ import android.widget.TextView;
 
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.adapter.SCRecommendAdapter;
+import cn.foxnickel.enterpriselearning.config.Config;
+
+import static cn.foxnickel.enterpriselearning.config.Config.getTextViewHeight;
 
 /**
  * Created by Night on 2017/7/8.
@@ -114,7 +116,7 @@ public class SCDetailsFragment extends Fragment implements View.OnClickListener 
             maxLines = 2;
             startangles = -180f;
             endangles = 0f;
-            tempHight = 2 * mTvShortIntro.getLineHeight() - getTextViewHeight(mTvShortIntro);
+            tempHight = 2 * mTvShortIntro.getLineHeight() - Config.getTextViewHeight(mTvShortIntro);
         }
         ObjectAnimator anim1 = ObjectAnimator.ofFloat(v, "rotation", startangles, endangles);
         anim1.setDuration(500);
@@ -139,10 +141,5 @@ public class SCDetailsFragment extends Fragment implements View.OnClickListener 
 
     }
 
-    private int getTextViewHeight(TextView pTextView) {
-        Layout layout = pTextView.getLayout();
-        int desired = layout.getLineTop(pTextView.getLineCount());
-        int padding = pTextView.getCompoundPaddingTop() + pTextView.getCompoundPaddingBottom();
-        return desired + padding;
-    }
+
 }

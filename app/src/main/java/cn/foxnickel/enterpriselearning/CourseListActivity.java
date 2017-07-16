@@ -50,6 +50,7 @@ public class CourseListActivity extends AppCompatActivity {
 
     private void initView() {
         mTvTitle = (TextView) findViewById(R.id.tv_title);
+        mTvTitle.setText(getIntent().getStringExtra("title"));
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mTvCourseCount = (TextView) findViewById(R.id.tv_course_count);
         mSpinner2 = (Spinner) findViewById(R.id.spinner2);

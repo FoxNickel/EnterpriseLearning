@@ -44,7 +44,7 @@ public class SecondClassificationAdapter extends RecyclerView.Adapter<SecondClas
         thirdClassificationAdapter.setOnItemClickListener(new ThirdClassificationAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                mContext.startActivity(new Intent(mContext, CourseListActivity.class));
+                mContext.startActivity(new Intent(mContext, CourseListActivity.class).putExtra("title", mThirdClassificationNameList.get(position)));
             }
         });
         holder.mThirdClassificationRecycler.setAdapter(thirdClassificationAdapter);
