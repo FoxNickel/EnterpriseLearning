@@ -68,7 +68,7 @@ public class PlayVideoActivity extends AppCompatActivity {
 
         //增加title
         mVpPlayer.getTitleTextView().setVisibility(View.VISIBLE);
-        mVpPlayer.getTitleTextView().setText("测试视频");
+        mVpPlayer.getTitleTextView().setText(getIntent().getStringExtra("title"));
 
         //设置返回键
         mVpPlayer.getBackButton().setVisibility(View.VISIBLE);

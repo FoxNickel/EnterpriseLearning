@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cn.foxnickel.enterpriselearning.R;
 
 /**
@@ -16,10 +18,25 @@ import cn.foxnickel.enterpriselearning.R;
 
 public class SpecificPlanRecyclerAdapter extends RecyclerView.Adapter<SpecificPlanRecyclerAdapter.ViewHolder> {
     private Context mContext;
+    private List<String> mStageList;
+    private List<List<String>> mStageNodeList;
+
+    private OnItemClickListener mOnItemClickListener = null;
 
 
-    public SpecificPlanRecyclerAdapter(Context context) {
+    //define interface
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mOnItemClickListener = listener;
+    }
+
+    public SpecificPlanRecyclerAdapter(Context context, List<String> planStage, List<List<String>> planStageNode) {
         mContext = context;
+        mStageList = planStage;
+        mStageNodeList = planStageNode;
     }
 
     @Override
@@ -30,29 +47,16 @@ public class SpecificPlanRecyclerAdapter extends RecyclerView.Adapter<SpecificPl
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        switch (position) {
-            case 0:
-                holder.mStageName.setText("第一阶段产品介绍");
-                break;
-            case 1:
-                holder.mStageName.setText("第二阶段产品介绍");
-                break;
-            case 2:
-                holder.mStageName.setText("第三阶段产品介绍");
-                break;
-            default:
-                break;
-        }
-        PlanStageRecyclerAdapter planStageRecyclerAdapter = new PlanStageRecyclerAdapter(mContext);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         holder.mRecyclerView.setLayoutManager(linearLayoutManager);
+        holder.mStageName.setText(mStageList.get(position));
+        PlanStageRecyclerAdapter planStageRecyclerAdapter = new PlanStageRecyclerAdapter(mContext, mStageNodeList.get(position));
         holder.mRecyclerView.setAdapter(planStageRecyclerAdapter);
-
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return mStageList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -64,5 +68,7 @@ public class SpecificPlanRecyclerAdapter extends RecyclerView.Adapter<SpecificPl
             mStageName = (TextView) itemView.findViewById(R.id.tv_plan_stage);
             mRecyclerView = (RecyclerView) itemView.findViewById(R.id.rv_plan_stage);
         }
+
+
     }
 }

@@ -79,6 +79,9 @@
         <activity android:name=".CourseListActivity">
         </activity>
         <activity android:name=".DiscussDetailsActivity"/>
+        <activity android:name=".AnswerActivity"/>
+        <activity android:name=".CommentActivity"/>
+        <activity android:name=".WriteCommentActivity"/>
     </application>
 
 </manifest>

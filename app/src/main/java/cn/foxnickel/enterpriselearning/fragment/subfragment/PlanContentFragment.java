@@ -13,6 +13,7 @@ import java.util.List;
 
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.adapter.PlanContentRecyclerAdapter;
+import cn.foxnickel.enterpriselearning.bean.StudyPlanning;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +25,7 @@ public class PlanContentFragment extends Fragment {
     List<String> secondClassificationNameList, thirdClassificationNameList;
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
-
+    private List<StudyPlanning> mStudyPlanningList;
     public PlanContentFragment() {
         // Required empty public constructor
     }

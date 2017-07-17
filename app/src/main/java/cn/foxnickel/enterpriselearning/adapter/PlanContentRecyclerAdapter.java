@@ -32,18 +32,40 @@ public class PlanContentRecyclerAdapter extends AnimRecyclerViewAdapter<PlanCont
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mPlanName.setText("新员工入职计划");
-        if (position % 2 == 0) {
-            holder.mPlanState.setText("未开始");
-        } else {
-            holder.mPlanState.setText("已开始");
+        switch (position) {
+            case 0:
+                holder.mPlanName.setText("新员工入职计划");
+                holder.mPlanState.setText("未开始");
+                break;
+            case 1:
+                holder.mIVPlan.setImageResource(R.drawable.service_communication);
+                holder.mPlanName.setText("Android强化：\n\n服务与通信");
+                holder.mPlanState.setText("未开始");
+                break;
+            case 2:
+                holder.mIVPlan.setImageResource(R.drawable.data_storge);
+                holder.mPlanName.setText("Android强化：\n\n网络与数据存储");
+                holder.mPlanState.setText("未开始");
+                break;
+            case 3:
+                holder.mIVPlan.setImageResource(R.drawable.high_anim);
+                holder.mPlanName.setText("Android强化：\n\n高级动画开发");
+                holder.mPlanState.setText("未开始");
+                break;
+            case 4:
+                holder.mIVPlan.setImageResource(R.drawable.kotlin);
+                holder.mPlanName.setText("Android强化：\n\nKotlin入门学习");
+                holder.mPlanState.setText("未开始");
+                break;
+            default:
+                break;
         }
         showItemAnim(holder.rootview, position);
     }
 
     @Override
     public int getItemCount() {
-        return 8;
+        return 5;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

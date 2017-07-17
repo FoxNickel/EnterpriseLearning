@@ -3,6 +3,7 @@ package cn.foxnickel.enterpriselearning;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.ActionBar;
@@ -12,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +32,7 @@ public class DiscussDetailsActivity extends AppCompatActivity implements View.On
     private RecyclerView mRecyclerViewMyExam;
     private ImageView mIvOpen;
     private TextView mTvQuestionContent;
+    private Button mBtAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,8 @@ public class DiscussDetailsActivity extends AppCompatActivity implements View.On
         mIvOpen = (ImageView) findViewById(R.id.iv_open);
         mIvOpen.setOnClickListener(this);
         mTvQuestionContent = (TextView) findViewById(R.id.tv_question_content);
+        mBtAnswer = (Button) findViewById(R.id.bt_answer);
+        mBtAnswer.setOnClickListener(this);
     }
 
     @Override
@@ -79,8 +84,12 @@ public class DiscussDetailsActivity extends AppCompatActivity implements View.On
             case R.id.iv_open:
                 startPropertyAnim(v, (boolean) v.getTag());
                 break;
+            case R.id.bt_answer:
+                startActivity(new Intent(this, AnswerActivity.class));
+                break;
             default:
                 break;
+
         }
     }
 

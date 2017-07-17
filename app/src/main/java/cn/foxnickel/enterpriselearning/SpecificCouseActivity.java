@@ -10,14 +10,20 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.github.clans.fab.FloatingActionButton;
 import com.shuyu.gsyvideoplayer.GSYPreViewManager;
 import com.shuyu.gsyvideoplayer.GSYVideoPlayer;
@@ -33,6 +39,7 @@ import cn.foxnickel.enterpriselearning.fragment.subfragment.SCNoteFragment;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.SCQAFragment;
 import cn.foxnickel.enterpriselearning.module.SwitchVideoModel;
 import cn.foxnickel.enterpriselearning.utils.DisplayUtil;
+import cn.foxnickel.enterpriselearning.utils.ScreenUtil;
 
 import static com.mob.MobSDK.getContext;
 
@@ -43,7 +50,7 @@ import static com.mob.MobSDK.getContext;
 
 public class SpecificCouseActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private SampleVideo mVpPlayer;
+    public static SampleVideo mVpPlayer;
     private TabLayout mTabLayout;
     private ViewPager mViewPagerCourse;
     private OrientationUtils orientationUtils;
@@ -51,6 +58,13 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
     private ConstraintLayout mVideoLayout;
     private Toolbar mToolbar;
     private FloatingActionButton mFabNote, mFabComment, mFabCollect;
+    //popupwindow组件
+    private LayoutInflater mLayoutInflater;
+    View popupView;
+    PopupWindow popupWindow;
+    private EditText mEtComment;
+    private Button mBtRelease;
+    private XLHRatingBar mRatingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +85,17 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
                 finish();
             }
         });
+
+        mLayoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        popupView = mLayoutInflater.inflate(R.layout.popupwindow_course_score, null);
+        mEtComment = (EditText) popupView.findViewById(R.id.et_comment);
+        mBtRelease = (Button) popupView.findViewById(R.id.bt_release);
+        mBtRelease.setOnClickListener(this);
+        mRatingBar = (XLHRatingBar) popupView.findViewById(R.id.ratingBar);
+        int density = (int) ScreenUtil.getDeviceDensity(this);
+        popupWindow = new PopupWindow(popupView, 300 * density, 280 * density);
+        popupWindow.setFocusable(true);
+        popupWindow.setOutsideTouchable(true);
 
         mVpPlayer = (SampleVideo) findViewById(R.id.vp_player);
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -230,6 +255,14 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_evaluate) {
             Toast.makeText(this, "课程评价", Toast.LENGTH_SHORT).show();
+            mEtComment.setText("");
+            mRatingBar.setCountSelected(0);
+            popupWindow.showAtLocation(
+                    mVpPlayer,
+                    Gravity.CENTER,
+                    0,
+                    0);
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -245,6 +278,9 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.fab_collect:
                 Toast.makeText(this, "收藏课程", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.bt_release:
+                popupWindow.dismiss();
                 break;
         }
     }

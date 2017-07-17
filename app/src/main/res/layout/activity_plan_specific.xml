@@ -76,13 +76,13 @@
                       android:layout_marginRight="16dp"
                       android:layout_marginTop="8dp"
                       android:layout_marginBottom="16dp"
-                      android:text="这是一条计划这是一条计划这是一条计划这是一条计划这是一条计划这是一条计划这是一条计划这是一条计划这是一条计划这是一条计划这是一条计划"
+                      android:text="本计划旨在使新进员工更好地融入企业环境，减少磨合周期，以及提升开发效率。"
             />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_my_exam"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
             >
 
             </android.support.v7.widget.RecyclerView>

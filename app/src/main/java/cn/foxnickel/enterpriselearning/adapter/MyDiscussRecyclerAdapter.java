@@ -34,7 +34,7 @@ public class MyDiscussRecyclerAdapter extends AnimRecyclerViewAdapter<MyDiscussR
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (position % 2 == 0) {
+        if (position % 2 != 0) {
             holder.mTvDiscussName.setText("UI怎么切图");
             holder.mTvDiscussContent.setText("[最新 沐曦尘x 的回答] ps里面有切片工具");
             holder.mTvDiscussContent.setTextToHighlight("[最新 沐曦尘x 的回答]");
@@ -42,9 +42,14 @@ public class MyDiscussRecyclerAdapter extends AnimRecyclerViewAdapter<MyDiscussR
             holder.mTvDiscussContent.setCaseInsensitive(false);
             holder.mTvDiscussContent.setHighlightMode(HighlightMode.TEXT);
             holder.mTvDiscussContent.highlight();
-        } else if (position % 3 == 0) {
+        } else {
             holder.mTvDiscussName.setText("有哪些浏览器支持css3？");
             holder.mTvDiscussContent.setText("[已采纳 梦飞翔2 的回答] ie9+；chrome；flex\n以及主流浏览器");
+            holder.mTvDiscussContent.setTextToHighlight("[已采纳 梦飞翔2 的回答]");
+            holder.mTvDiscussContent.setTextHighlightColor(R.color.green);
+            holder.mTvDiscussContent.setCaseInsensitive(false);
+            holder.mTvDiscussContent.setHighlightMode(HighlightMode.TEXT);
+            holder.mTvDiscussContent.highlight();
         }
 
         showItemAnim(holder.rootview, position);
@@ -52,7 +57,7 @@ public class MyDiscussRecyclerAdapter extends AnimRecyclerViewAdapter<MyDiscussR
 
     @Override
     public int getItemCount() {
-        return 8;
+        return 4;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

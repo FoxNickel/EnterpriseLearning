@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:xlhRatingBar="http://schemas.android.com/apk/res-auto"
+              android:layout_width="184dp"
+              android:layout_height="168dp"
+              android:background="#FFFF"
+              android:orientation="vertical" android:weightSum="1">
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:textSize="16sp"
+              android:text="课程评价"
+    />
+    <com.example.xlhratingbar_lib.XLHRatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        xlhRatingBar:canEdit="true"
+        xlhRatingBar:countSelected="0"
+        xlhRatingBar:dividerWidth="5dp"
+        xlhRatingBar:starCount="5"
+        xlhRatingBar:stateResId="@drawable/comment_ratingbar_selector"
+        xlhRatingBar:widthAndHeight="24dp"
+    />
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#f5f6f8"
+                    android:orientation="vertical">
+        <EditText android:id="@+id/et_comment"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:background="@null"
+                  android:hint="评价：100字以内"
+                  android:textSize="12sp"
+                  android:gravity="top|start"
+                  android:textColorHint="@color/gray"/>
+
+        <Button android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="发布"
+                android:id="@+id/bt_release"
+                android:background="@color/colorPrimary"
+                android:layout_alignParentBottom="true"
+                android:textColor="@color/gray_bg"/>
+    </RelativeLayout>
+</LinearLayout>
