@@ -5,17 +5,26 @@
 package cn.foxnickel.enterpriselearning.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.athkalia.emphasis.EmphasisTextView;
 import com.athkalia.emphasis.HighlightMode;
 
 import cn.foxnickel.enterpriselearning.R;
+import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
+import cn.foxnickel.enterpriselearning.WriteCommentActivity;
+import cn.foxnickel.enterpriselearning.utils.ScreenUtil;
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 /**
  * @author Night
@@ -23,10 +32,23 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class CommentAdapter extends AnimRecyclerViewAdapter<CommentAdapter.ViewHolder> {
     private final Context context;
+    //popupwindow组件
+    private LayoutInflater mLayoutInflater;
+    View popupView;
+    PopupWindow popupWindow;
+    private final Button mBtReply;
+    private final int density;
 
-
-    public CommentAdapter(Context context) {
+    public CommentAdapter(final Context context) {
         this.context = context;
+        mLayoutInflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+        popupView = mLayoutInflater.inflate(R.layout.popupwindow_comment, null);
+        mBtReply = (Button) popupView.findViewById(R.id.bt_reply);
+
+        density = (int) ScreenUtil.getDeviceDensity(context);
+        popupWindow = new PopupWindow(popupView, 104 * density, 64 * density);
+        popupWindow.setFocusable(true);
+        popupWindow.setOutsideTouchable(true);
     }
 
     @Override
@@ -56,7 +78,7 @@ public class CommentAdapter extends AnimRecyclerViewAdapter<CommentAdapter.ViewH
         return 2;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         public View rootView;
         private CircleImageView mIvAnswer;
         private TextView mTvAnswerName;
@@ -70,6 +92,26 @@ public class CommentAdapter extends AnimRecyclerViewAdapter<CommentAdapter.ViewH
             mTvAnswerName = (TextView) rootView.findViewById(R.id.tv_answer_name);
             mTvAnswer = (EmphasisTextView) rootView.findViewById(R.id.tv_answer);
             mTvCommentTime = (TextView) rootView.findViewById(R.id.tv_answer_time);
+            mBtReply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SpecificCouseActivity.mVpPlayer.onVideoPause();
+                    context.startActivity(new Intent(context, WriteCommentActivity.class)
+                            .putExtra("hint", "回复 " + mTvAnswerName.getText().toString().trim()));
+                }
+            });
+            rootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int location[] = new int[2];
+                    v.getLocationInWindow(location);
+                    popupWindow.showAtLocation(
+                            v,
+                            Gravity.NO_GRAVITY,
+                            location[0] + 240 * density,
+                            location[1] + 64 * density);
+                }
+            });
         }
     }
 }

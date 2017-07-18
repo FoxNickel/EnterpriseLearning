@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -48,6 +49,10 @@ public class WriteCommentActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
         mEtWriteReply = (EditText) findViewById(R.id.et_write_reply);
+        String s = getIntent().getStringExtra("hint");
+        if (!TextUtils.isEmpty(s)) {
+            mEtWriteReply.setHint(s);
+        }
         mBtRelease = (Button) findViewById(R.id.bt_release);
         mBtRelease.setOnClickListener(new View.OnClickListener() {
             @Override

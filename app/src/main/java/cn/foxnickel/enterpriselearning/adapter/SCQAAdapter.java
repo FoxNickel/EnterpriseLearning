@@ -14,6 +14,7 @@ import com.athkalia.emphasis.HighlightMode;
 
 import cn.foxnickel.enterpriselearning.DiscussDetailsActivity;
 import cn.foxnickel.enterpriselearning.R;
+import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
 
 /**
  * Created by Night on 2017/7/5.
@@ -76,6 +77,7 @@ public class SCQAAdapter extends RecyclerView.Adapter<SCQAAdapter.ViewHolder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    SpecificCouseActivity.mVpPlayer.onVideoPause();
                     mContext.startActivity(new Intent(mContext, DiscussDetailsActivity.class));
                 }
             });
