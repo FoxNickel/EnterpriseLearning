@@ -93,4 +93,12 @@
     <string name="reply">回复</string>
     <string name="write_reply">写回复</string>
     <string name="your_reply">请写下你的回复</string>
+    <string name="exam">考试</string>
+    <string name="exam_details">考试详情</string>
+    <string name="end_time">结束时间</string>
+    <string name="duration">考试时长</string>
+    <string name="total_score">总分</string>
+    <string name="pass">及格</string>
+    <string name="exam_score">考试得分</string>
+    <string name="exam_analysis">试题解析</string>
 </resources>

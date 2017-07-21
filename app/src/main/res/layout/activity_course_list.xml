@@ -79,7 +79,8 @@
              android:layout_marginLeft="8dp"
              android:layout_marginRight="16dp"
              android:layout_marginTop="12dp"
-             android:entries="@array/arrangement" app:layout_constraintHorizontal_bias="0.238"
+             android:entries="@array/filter"
+             app:layout_constraintHorizontal_bias="0.238"
              app:layout_constraintLeft_toRightOf="@+id/textView3"
              app:layout_constraintRight_toRightOf="parent"
              app:layout_constraintTop_toBottomOf="@+id/appBarLayout"/>

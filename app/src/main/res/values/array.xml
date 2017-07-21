@@ -5,4 +5,10 @@
         <item>最新</item>
         <item>最热</item>
     </string-array>
+    <string-array name="filter">
+        <item>全部</item>
+        <item>技术分享</item>
+        <item>项目管理</item>
+        <item>流程管理</item>
+    </string-array>
 </resources>

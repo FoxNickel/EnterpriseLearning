@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <TextView
+                android:id="@+id/tv_exam_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/exam"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"/>
+            <Chronometer android:id="@+id/ct_count_time"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="end"
+                         android:layout_marginEnd="16dp"
+                         android:layout_marginRight="16dp"
+                         android:format="%s"
+                         android:textColor="@android:color/white"
+                         android:textSize="16sp"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="right"
+                       android:background="@drawable/ic_colock_gray"
+            />
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+    <RelativeLayout android:id="@+id/rl_issue_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="#ebebeb"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignBaseline="@+id/tv_question_count"
+                  android:layout_alignBottom="@+id/tv_question_count"
+                  android:layout_alignParentLeft="true"
+                  android:layout_alignParentStart="true"
+                  android:layout_marginLeft="22dp"
+                  android:layout_marginStart="22dp"
+                  android:text="选择题" android:textColor="#576c7f"
+                  android:textSize="16sp"/>
+        <TextView android:id="@+id/tv_question_count"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentEnd="true"
+                  android:layout_alignParentRight="true"
+                  android:layout_margin="8dp"
+                  android:text="1/4"
+                  android:textColor="#EF5350"
+                  android:textSize="16sp"/>
+    </RelativeLayout>
+    <com.athkalia.emphasis.EmphasisTextView
+        android:id="@+id/emphasisTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="（单选题）关于数据解析下列说法正确的是："
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl_issue_type"/>
+
+
+    <LinearLayout android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:background="@color/colorPrimary"
+                  android:orientation="horizontal"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintLeft_toLeftOf="parent"
+                  app:layout_constraintRight_toRightOf="parent">
+        <Button android:id="@+id/bt_last_question"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:text="上一题"
+                android:visibility="invisible"/>
+        <Button android:id="@+id/bt_next_question"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:text="下一题"
+        />
+    </LinearLayout>
+    <LinearLayout android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/ll_b"
+                  android:clickable="true"
+                  android:background="@drawable/selector_ll"
+                  android:addStatesFromChildren="true"
+                  android:layout_marginTop="16dp"
+                  android:orientation="horizontal"
+                  app:layout_constraintHorizontal_bias="0.0"
+                  app:layout_constraintLeft_toLeftOf="parent"
+                  app:layout_constraintRight_toRightOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/ll_a">
+        <ImageView
+            android:id="@+id/iv_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="12dp"
+            android:clickable="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_a"
+            app:srcCompat="@drawable/ic_b_gray"/>
+        <TextView
+            android:id="@+id/tv_b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:clickable="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+        />
+    </LinearLayout>
+    <LinearLayout android:id="@+id/ll_a"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="17dp"
+                  android:orientation="horizontal"
+                  android:background="@drawable/selector_ll"
+                  android:addStatesFromChildren="true"
+                  app:layout_constraintHorizontal_bias="0.0"
+                  app:layout_constraintLeft_toLeftOf="parent"
+                  app:layout_constraintRight_toRightOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/emphasisTextView">
+        <ImageView
+            android:id="@+id/iv_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_iv_a"
+            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="12dp"
+            app:srcCompat="@drawable/ic_a_gray"/>
+        <TextView
+            android:id="@+id/tv_a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+        />
+    </LinearLayout>
+    <LinearLayout android:id="@+id/ll_c"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="17dp"
+                  android:orientation="horizontal"
+                  android:background="@drawable/selector_ll"
+                  android:addStatesFromChildren="true"
+                  app:layout_constraintHorizontal_bias="0.0"
+                  app:layout_constraintLeft_toLeftOf="parent"
+                  app:layout_constraintRight_toRightOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/ll_b">
+        <ImageView
+            android:id="@+id/iv_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_b"
+            app:srcCompat="@drawable/ic_c_gray"/>
+        <TextView
+            android:id="@+id/tv_c"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            app:layout_constraintHorizontal_bias="0.0"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/ll_d"
+                  android:layout_width="0dp"
+                  android:background="@drawable/selector_ll"
+                  android:addStatesFromChildren="true"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="17dp"
+                  android:orientation="horizontal"
+                  app:layout_constraintHorizontal_bias="0.0"
+                  app:layout_constraintLeft_toLeftOf="parent"
+                  app:layout_constraintRight_toRightOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/ll_c">
+        <ImageView
+            android:id="@+id/iv_d"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp" android:layout_marginStart="25dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_c"
+            app:srcCompat="@drawable/ic_d_gray"/>
+        <TextView
+            android:id="@+id/tv_d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+        />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

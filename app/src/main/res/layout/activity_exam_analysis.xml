@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <TextView
+                    android:id="@+id/tv_exam_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/exam_analysis"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"/>
+
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+        <RelativeLayout android:id="@+id/rl_issue_type"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="#ebebeb"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignBaseline="@+id/tv_question_count"
+                      android:layout_alignBottom="@+id/tv_question_count"
+                      android:layout_alignParentLeft="true"
+                      android:layout_alignParentStart="true"
+                      android:layout_marginLeft="22dp"
+                      android:layout_marginTop="8dp"
+                      android:layout_marginStart="22dp"
+                      android:text="新员工入职考试" android:textColor="#576c7f"
+                      android:textSize="16sp"/>
+            <TextView android:id="@+id/tv_exam_score"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentEnd="true"
+                      android:layout_alignParentRight="true"
+                      android:layout_margin="8dp"
+                      android:text="50分"
+                      android:textColor="#EF5350"
+                      android:textSize="16sp"/>
+        </RelativeLayout>
+        <com.athkalia.emphasis.EmphasisTextView
+            android:id="@+id/emphasisTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="（单选题）关于数据解析下列说法正确的是："
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintHorizontal_bias="0.071"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rl_issue_type"/>
+
+
+        <LinearLayout android:id="@+id/ll_b"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="16dp"
+                      android:background="@drawable/selector_ll"
+                      android:orientation="horizontal"
+                      app:layout_constraintHorizontal_bias="0.0"
+                      app:layout_constraintLeft_toLeftOf="parent"
+                      app:layout_constraintRight_toRightOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/ll_a">
+            <ImageView
+                android:id="@+id/iv_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
+                android:clickable="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_a"
+                app:srcCompat="@drawable/ic_b_gray"/>
+            <TextView
+                android:id="@+id/tv_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:text="TextView"
+            />
+        </LinearLayout>
+        <LinearLayout android:id="@+id/ll_a"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="17dp"
+                      android:orientation="horizontal"
+                      app:layout_constraintHorizontal_bias="0.0"
+                      app:layout_constraintLeft_toLeftOf="parent"
+                      app:layout_constraintRight_toRightOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/emphasisTextView">
+            <ImageView
+                android:id="@+id/iv_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/selector_iv_a"
+                app:srcCompat="@drawable/ic_a_gray"/>
+            <TextView
+                android:id="@+id/tv_a"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="TextView"
+            />
+        </LinearLayout>
+        <LinearLayout android:id="@+id/ll_c"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="17dp"
+                      android:orientation="horizontal"
+                      app:layout_constraintHorizontal_bias="0.0"
+                      app:layout_constraintLeft_toLeftOf="parent"
+                      app:layout_constraintRight_toRightOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/ll_b">
+            <ImageView
+                android:id="@+id/iv_c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_b"
+                app:srcCompat="@drawable/ic_c_gray"/>
+            <TextView
+                android:id="@+id/tv_c"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="TextView"
+                app:layout_constraintHorizontal_bias="0.0"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/ll_d"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="17dp"
+                      android:orientation="horizontal"
+                      app:layout_constraintHorizontal_bias="0.0"
+                      app:layout_constraintLeft_toLeftOf="parent"
+                      app:layout_constraintRight_toRightOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/ll_c">
+            <ImageView
+                android:id="@+id/iv_d"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp" android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_c"
+                app:srcCompat="@drawable/ic_d_gray"/>
+            <TextView
+                android:id="@+id/tv_d"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="TextView"
+            />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/ll_answer"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="16dp"
+                      android:orientation="horizontal"
+                      app:layout_constraintHorizontal_bias="0.0"
+                      app:layout_constraintLeft_toLeftOf="parent"
+                      app:layout_constraintRight_toRightOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/ll_d">
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="16dp"
+                      android:text="正确答案："
+            />
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="A"
+                      android:textColor="@color/green"
+                      android:id="@+id/tv_right_answer"
+            />
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="你的答案："
+                      android:layout_marginLeft="64dp"
+            />
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="A"
+                      android:id="@+id/tv_your_answer"
+                      android:textColor="@color/green"
+            />
+        </LinearLayout>
+        <TextView android:layout_width="368dp"
+                  android:layout_height="wrap_content"
+                  android:text="解析："
+                  android:id="@+id/tv_analysis"
+                  app:layout_constraintLeft_toLeftOf="parent"
+                  android:layout_margin="16dp"
+                  android:textColor="@android:color/black"
+                  app:layout_constraintTop_toBottomOf="@+id/ll_answer"
+        />
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:background="@color/colorPrimary"
+                      android:orientation="horizontal"
+                      android:layout_marginTop="96dp"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintHorizontal_bias="0.0"
+                      app:layout_constraintLeft_toLeftOf="parent"
+                      app:layout_constraintRight_toRightOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/tv_analysis"
+                      app:layout_constraintVertical_bias="1.0">
+            <Button android:id="@+id/bt_last_question"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:text="上一题"
+                    android:visibility="invisible"/>
+            <Button android:id="@+id/bt_next_question"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:text="下一题"
+            />
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

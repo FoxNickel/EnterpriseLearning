@@ -35,10 +35,36 @@ public class CourseRecommendAdapter extends RecyclerView.Adapter<CourseRecommend
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mLinearLayout.setBackgroundResource(mCourseRecommendPic[position]);
-        holder.mCourseName.setText("这是课程名称");
-        holder.mChapterTitle.setText("这是章节名称");
-        holder.mChapterDescription.setText("这是章节内容，这是章节内容，这是章节内容，这是章节内容。");
-        holder.mLearningNumber.setText("3000人学习");
+        switch (position) {
+            case 0:
+                holder.mCourseName.setText("设计基础");
+                holder.mChapterTitle.setText("UI设计小锦囊");
+                holder.mChapterDescription.setText("成为UI设计师的正确打开方法");
+                holder.mLearningNumber.setText("3000人学习");
+                break;
+            case 1:
+                holder.mCourseName.setText("Android");
+                holder.mChapterTitle.setText("Android常用异常集及解决方案");
+                holder.mChapterDescription.setText("介绍Android常用异常集及解决方案");
+                holder.mLearningNumber.setText("3000人学习");
+                break;
+            case 2:
+                holder.mCourseName.setText("Android");
+                holder.mChapterTitle.setText("Android语音词典");
+                holder.mChapterDescription.setText("讲解第三方讯飞语音如何使用，" +
+                        "如何实现数据解析");
+                holder.mLearningNumber.setText("3000人学习");
+                break;
+            case 3:
+                holder.mCourseName.setText("Android");
+                holder.mChapterTitle.setText("APP性能优化之内存优化");
+                holder.mChapterDescription.setText("介绍内存优化的理论，优化的问题，方法等知识");
+                holder.mLearningNumber.setText("3000人学习");
+                break;
+            default:
+                break;
+        }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,8 +1,10 @@
 package cn.foxnickel.enterpriselearning.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.foxnickel.enterpriselearning.PlayPPTActivity;
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
 
@@ -31,6 +34,7 @@ public class SCChapterAdapter extends RecyclerView.Adapter<SCChapterAdapter.View
         for (int i = 0; i < 7; i++) {
             isClicks.add(false);
         }
+        isClicks.set(1, true);
     }
 
     @Override
@@ -71,6 +75,7 @@ public class SCChapterAdapter extends RecyclerView.Adapter<SCChapterAdapter.View
                 holder.mChapterName.setTextSize(12);
                 break;
             case 6:
+                holder.mIVStop.setBackgroundResource(R.drawable.ic_ppt_gray);
                 holder.mChapterName.setText("2-4 网页是如何实现的");
                 holder.mChapterName.setTextSize(12);
                 break;
@@ -79,15 +84,26 @@ public class SCChapterAdapter extends RecyclerView.Adapter<SCChapterAdapter.View
         }
 
         if (isClicks.get(position)) {
-            holder.mIVStop.setBackgroundResource(R.drawable.ic_stop_red_24dp);
+            Log.e("TAG", "come in");
+            if (position == 6) {
+                holder.mIVStop.setBackgroundResource(R.drawable.ic_ppt_red);
+            } else {
+                holder.mIVStop.setBackgroundResource(R.drawable.ic_stop_red_24dp);
+                SpecificCouseActivity.mVpPlayer.getTitleTextView().setText(holder.mChapterName.getText().toString());
+                SpecificCouseActivity.mVpPlayer.startPlayLogic();
+
+            }
             holder.mChapterName.setTextColor(Color.argb(255, 253, 47, 81));
             holder.mChapterTime.setTextColor(Color.argb(255, 253, 47, 81));
         } else {
-            holder.mIVStop.setBackgroundResource(R.drawable.ic_stop_gray_24dp);
+            if (position == 6) {
+                holder.mIVStop.setBackgroundResource(R.drawable.ic_ppt_gray);
+            } else {
+                holder.mIVStop.setBackgroundResource(R.drawable.ic_stop_gray_24dp);
+            }
             holder.mChapterName.setTextColor(Color.BLACK);
             holder.mChapterTime.setTextColor(Color.BLACK);
         }
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,11 +111,16 @@ public class SCChapterAdapter extends RecyclerView.Adapter<SCChapterAdapter.View
                     isClicks.set(i, false);
                 }
                 isClicks.set(position, true);
+                Log.e("TAG", position + "");
                 notifyDataSetChanged();
-                SpecificCouseActivity.mVpPlayer.startPlayLogic();
-
+                if (position != 6) {
+                } else {
+                    SpecificCouseActivity.mVpPlayer.onVideoPause();
+                    mContext.startActivity(new Intent(mContext, PlayPPTActivity.class));
+                }
             }
         });
+
     }
 
 

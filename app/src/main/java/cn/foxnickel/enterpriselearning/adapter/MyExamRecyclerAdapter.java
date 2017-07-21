@@ -1,12 +1,15 @@
 package cn.foxnickel.enterpriselearning.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import cn.foxnickel.enterpriselearning.ExamActivity;
 import cn.foxnickel.enterpriselearning.R;
 
 /**
@@ -31,7 +34,12 @@ public class MyExamRecyclerAdapter extends RecyclerView.Adapter<MyExamRecyclerAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mExamName.setText("新员工入职考试");
-        if (position % 2 == 0) {
+        if (position == 0) {
+            holder.mExamScore.setTextSize(16);
+            holder.mExamScore.setText("未开始");
+            holder.mExamScore.setBackgroundColor(Color.WHITE);
+            holder.mExamTime.setText("2017-5-13 09:00—2017-5-20 00:00");
+        } else if (position % 2 == 0) {
             holder.mExamScore.setText("80分");
             holder.mExamTime.setText("2017-5-11");
         } else if (position % 3 == 0) {
@@ -60,6 +68,12 @@ public class MyExamRecyclerAdapter extends RecyclerView.Adapter<MyExamRecyclerAd
             mExamName = (TextView) itemView.findViewById(R.id.tv_exam_name);
             mExamScore = (TextView) itemView.findViewById(R.id.tv_exam_score);
             mExamTime = (TextView) itemView.findViewById(R.id.tv_exam_time);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(new Intent(mContext, ExamActivity.class));
+                }
+            });
         }
     }
 }

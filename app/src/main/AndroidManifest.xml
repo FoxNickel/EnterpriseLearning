@@ -82,6 +82,13 @@
         <activity android:name=".AnswerActivity"/>
         <activity android:name=".CommentActivity"/>
         <activity android:name=".WriteCommentActivity"/>
+        <activity android:name=".ExamActivity"/>
+        <activity android:name=".SpecificExamActivity"/>
+        <activity android:name=".ExamAnalysisActivity"/>
+        <activity android:name=".PlayPPTActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"
+                  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
