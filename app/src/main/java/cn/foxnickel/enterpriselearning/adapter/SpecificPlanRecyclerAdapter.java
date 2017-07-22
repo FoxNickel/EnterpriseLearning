@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.foxnickel.enterpriselearning.R;
@@ -36,6 +37,10 @@ public class SpecificPlanRecyclerAdapter extends RecyclerView.Adapter<SpecificPl
     public SpecificPlanRecyclerAdapter(Context context, List<String> planStage, List<List<String>> planStageNode) {
         mContext = context;
         mStageList = planStage;
+        mBooleanList = new ArrayList<>();
+        mBooleanList.add(false);
+        mBooleanList.add(false);
+        mBooleanList.add(true);
         mStageNodeList = planStageNode;
     }
 
@@ -45,6 +50,7 @@ public class SpecificPlanRecyclerAdapter extends RecyclerView.Adapter<SpecificPl
         return new ViewHolder(view);
     }
 
+    private List<Boolean> mBooleanList;
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
@@ -52,6 +58,12 @@ public class SpecificPlanRecyclerAdapter extends RecyclerView.Adapter<SpecificPl
         holder.mStageName.setText(mStageList.get(position));
         PlanStageRecyclerAdapter planStageRecyclerAdapter = new PlanStageRecyclerAdapter(mContext, mStageNodeList.get(position));
         holder.mRecyclerView.setAdapter(planStageRecyclerAdapter);
+        holder.mRecyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

@@ -240,6 +240,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/logout"
+        android:id="@+id/bt_sign_out"
         android:background="@drawable/ripple_button_red"
         android:textColor="@android:color/white"
         android:layout_marginTop="100dp"

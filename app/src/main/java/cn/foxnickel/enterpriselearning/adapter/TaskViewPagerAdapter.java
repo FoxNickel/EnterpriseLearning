@@ -11,13 +11,13 @@ import java.util.List;
  * Created by NickelFox on 17/7/4.
  */
 
-public class NotificationViewPagerAdapter extends FragmentPagerAdapter {
+public class TaskViewPagerAdapter extends FragmentPagerAdapter {
 
     private Context mContext;
-    private String[] mPagerTitles = {"通知", "私信"};
+    private String[] mPagerTitles = {"学习任务", "考试任务"};
     private List<Fragment> mFragmentList;
 
-    public NotificationViewPagerAdapter(FragmentManager fm, Context context, List<Fragment> fragmentList) {
+    public TaskViewPagerAdapter(FragmentManager fm, Context context, List<Fragment> fragmentList) {
         super(fm);
         mContext = context;
         mFragmentList = fragmentList;

@@ -280,6 +280,7 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
                 Toast.makeText(this, "收藏课程", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.bt_release:
+                Toast.makeText(this, "评价成功", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
                 break;
         }

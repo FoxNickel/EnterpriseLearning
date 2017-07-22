@@ -89,6 +89,7 @@
                   android:configChanges="keyboardHidden|orientation|screenSize"
                   android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+        <activity android:name=".TaskActivity"/>
     </application>
 
 </manifest>

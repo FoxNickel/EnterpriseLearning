@@ -12,13 +12,13 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.foxnickel.enterpriselearning.adapter.NotificationViewPagerAdapter;
-import cn.foxnickel.enterpriselearning.fragment.subfragment.NotificationFragment;
-import cn.foxnickel.enterpriselearning.fragment.subfragment.PrivateLetterFragment;
+import cn.foxnickel.enterpriselearning.adapter.TaskViewPagerAdapter;
+import cn.foxnickel.enterpriselearning.fragment.subfragment.MyCourseFragment;
+import cn.foxnickel.enterpriselearning.fragment.subfragment.MyExamFragment;
 
 import static cn.foxnickel.enterpriselearning.R.id.toolbar;
 
-public class NotificationActivity extends AppCompatActivity {
+public class TaskActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private ViewPager mViewPager;
@@ -27,7 +27,7 @@ public class NotificationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notification);
+        setContentView(R.layout.activity_task);
 
         mToolbar = (Toolbar) findViewById(toolbar);
         setSupportActionBar(mToolbar);
@@ -43,9 +43,9 @@ public class NotificationActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.view_pager_notification);
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(NotificationFragment.newInstance());
-        fragmentList.add(PrivateLetterFragment.newInstance());
-        NotificationViewPagerAdapter notificationViewPagerAdapter = new NotificationViewPagerAdapter(getSupportFragmentManager(), this, fragmentList);
+        fragmentList.add(MyCourseFragment.newInstance());
+        fragmentList.add(MyExamFragment.newInstance());
+        TaskViewPagerAdapter notificationViewPagerAdapter = new TaskViewPagerAdapter(getSupportFragmentManager(), this, fragmentList);
         mViewPager.setAdapter(notificationViewPagerAdapter);
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

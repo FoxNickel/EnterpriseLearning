@@ -12,7 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.foxnickel.enterpriselearning.adapter.NoteRecyclerAdapter;
+import cn.foxnickel.enterpriselearning.bean.Note;
 
 public class NoteActivity extends AppCompatActivity {
 
@@ -20,6 +24,7 @@ public class NoteActivity extends AppCompatActivity {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
+    private List<Note> mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +47,22 @@ public class NoteActivity extends AppCompatActivity {
             }
         });
 
+        mList = new ArrayList<>();
+        mList.add(new Note("源自:web UI设计理论入门-网页是如何实现的", "web 标准化布局原理\n" +
+                "把网页看成多个网格\n" +
+                "先有行再有列（从上到下）\n" +
+                "先做容器再做内容（从外到内）", "2017-07-10"));
+        mList.add(new Note("源自:web UI设计理论入门-关于分辨率", "分辨率：水平和垂直像素个数", "2017-07-09"));
+        mList.add(new Note("源自:web UI设计理论入门-webUI是什么", "UI的3个方向：\n" +
+                "1.用户研究\n" +
+                "2.交互设计\n" +
+                "3.界面设计", "2017-07-08"));
+        mList.add(new Note("源自:web UI设计理论入门-课程介绍", "ie9+、chrome、flex及主流浏览器都可兼容css3", "2017-07-07"));
+        mList.add(new Note("源自:web UI设计理论入门-课程介绍", "ps里面有切片工具可以用来切图", "2017-07-07"));
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_note);
         mLinearLayoutManager = new LinearLayoutManager(this);
-        NoteRecyclerAdapter noteRecyclerAdapter = new NoteRecyclerAdapter(this);
+        NoteRecyclerAdapter noteRecyclerAdapter = new NoteRecyclerAdapter(this, mList);
 
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(noteRecyclerAdapter);

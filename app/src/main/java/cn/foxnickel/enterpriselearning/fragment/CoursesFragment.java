@@ -1,6 +1,7 @@
 package cn.foxnickel.enterpriselearning.fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.foxnickel.enterpriselearning.R;
-import cn.foxnickel.enterpriselearning.config.Config;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.CourseContentFragment;
 
 /**
@@ -41,17 +41,12 @@ public class CoursesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_courses, container, false);
-        Config.fixedThreadPool.execute(new Runnable() {
-            @Override
-            public void run() {
-                initView();
-                mFirstClassificationNameList = new ArrayList<>();
-                mFirstClassificationNameList.add("技术分享");
-                mFirstClassificationNameList.add("项目管理");
-                mFirstClassificationNameList.add("流程管理");
-                initFragment(0);
-            }
-        });
+        initView();
+        mFirstClassificationNameList = new ArrayList<>();
+        mFirstClassificationNameList.add("技术分享");
+        mFirstClassificationNameList.add("项目管理");
+        mFirstClassificationNameList.add("流程管理");
+        initFragment(0);
         return mRootView;
     }
 
@@ -74,6 +69,7 @@ public class CoursesFragment extends Fragment {
     class FirstClassificationAdapter extends RecyclerView.Adapter<FirstClassificationAdapter.ViewHolder> {
 
         private int selectedPos = 0;
+        private List<Boolean> isClicks;//控件是否被点击,默认为false，如果被点击，改变值，控件根据值改变自身颜色
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -81,14 +77,31 @@ public class CoursesFragment extends Fragment {
             return new ViewHolder(view);
         }
 
+        public FirstClassificationAdapter() {
+            isClicks = new ArrayList<>();
+            for (int i = 0; i < 3; i++) {
+                isClicks.add(false);
+            }
+            isClicks.set(0, true);
+        }
+
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(ViewHolder holder, final int position) {
             holder.itemView.setSelected(selectedPos == position);
+            if (isClicks.get(position)) {
+                holder.mTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
+            } else {
+                holder.mTextView.setTextColor(Color.BLACK);
+            }
             holder.mTextView.setText(mFirstClassificationNameList.get(position));
             final int pos = holder.getAdapterPosition();
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    for (int i = 0; i < isClicks.size(); i++) {
+                        isClicks.set(i, false);
+                    }
+                    isClicks.set(position, true);
                     notifyItemChanged(selectedPos);
                     selectedPos = pos;
                     notifyItemChanged(selectedPos);

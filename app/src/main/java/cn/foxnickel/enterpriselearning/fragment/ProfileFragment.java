@@ -15,8 +15,10 @@ import cn.foxnickel.enterpriselearning.HistoryActivity;
 import cn.foxnickel.enterpriselearning.LearningDataActivity;
 import cn.foxnickel.enterpriselearning.MyDiscussActivity;
 import cn.foxnickel.enterpriselearning.MyPlanActivity;
+import cn.foxnickel.enterpriselearning.NoteActivity;
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.SettingsActivity;
+import cn.foxnickel.enterpriselearning.TaskActivity;
 import cn.foxnickel.enterpriselearning.UserInfoActivity;
 import cn.foxnickel.enterpriselearning.config.Config;
 
@@ -33,6 +35,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private TextView mTvMyPlan;
     private ImageView mIvMyPlan;
     private ConstraintLayout mLayoutMyPlan;
+    private ConstraintLayout mLayoutMyTask;
+    private ConstraintLayout mLayoutMyNote;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -83,6 +87,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         mIvMyPlan.setOnClickListener(this);
         mLayoutMyPlan = (ConstraintLayout) mRootView.findViewById(R.id.layout_my_plan);
         mLayoutMyPlan.setOnClickListener(this);
+        mLayoutMyTask = (ConstraintLayout) mRootView.findViewById(R.id.layout_my_task);
+        mLayoutMyTask.setOnClickListener(this);
+        mLayoutMyNote = (ConstraintLayout) mRootView.findViewById(R.id.layout_my_note);
+        mLayoutMyNote.setOnClickListener(this);
     }
 
     @Override
@@ -108,6 +116,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.layout_my_plan:
                 startActivity(new Intent(getContext(), MyPlanActivity.class));
+                break;
+            case R.id.layout_my_task:
+                startActivity(new Intent(getContext(), TaskActivity.class));
+                break;
+            case R.id.layout_my_note:
+                startActivity(new Intent(getContext(), NoteActivity.class));
                 break;
 
         }

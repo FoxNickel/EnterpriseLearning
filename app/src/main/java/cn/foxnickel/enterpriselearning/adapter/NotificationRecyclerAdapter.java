@@ -7,7 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cn.foxnickel.enterpriselearning.R;
+import cn.foxnickel.enterpriselearning.bean.Notification;
 
 /**
  * Created by NickelFox on 17/7/4.
@@ -15,10 +18,12 @@ import cn.foxnickel.enterpriselearning.R;
 
 public class NotificationRecyclerAdapter extends RecyclerView.Adapter<NotificationRecyclerAdapter.ViewHolder> {
 
+    private List<Notification> mList;
     private Context mContext;
 
-    public NotificationRecyclerAdapter(Context context) {
+    public NotificationRecyclerAdapter(Context context, List<Notification> list) {
         mContext = context;
+        mList = list;
     }
 
     @Override
@@ -30,8 +35,8 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mUsername.setText("管理员");
-        holder.mNotificationContent.setText("这是一条通知，这是一条通知，这是一条通知，这是一条通知");
-        holder.mReleaseTime.setText("2017-07-01 15:00");
+        holder.mNotificationContent.setText(mList.get(position).getPrivateLetterContent());
+        holder.mReleaseTime.setText(mList.get(position).getReleaseTime());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +50,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
 
     @Override
     public int getItemCount() {
-        return 8;
+        return mList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

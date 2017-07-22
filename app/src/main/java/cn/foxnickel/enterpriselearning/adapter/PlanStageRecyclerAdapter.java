@@ -11,11 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.foxnickel.enterpriselearning.ExamActivity;
 import cn.foxnickel.enterpriselearning.PlayVideoActivity;
 import cn.foxnickel.enterpriselearning.R;
 
@@ -24,6 +26,7 @@ import cn.foxnickel.enterpriselearning.R;
  */
 
 public class PlanStageRecyclerAdapter extends RecyclerView.Adapter<PlanStageRecyclerAdapter.ViewHolder> {
+    private boolean f;
     private List<String> mList;
     private Context mContext;
     private OnItemClickListener mOnItemClickListener = null;
@@ -42,6 +45,7 @@ public class PlanStageRecyclerAdapter extends RecyclerView.Adapter<PlanStageRecy
         for (int i = 0; i < list.size(); i++) {
             isClicks.add(false);
         }
+
     }
 
     @Override
@@ -55,6 +59,19 @@ public class PlanStageRecyclerAdapter extends RecyclerView.Adapter<PlanStageRecy
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mCourseName.setText(mList.get(position));
         holder.mFinished.setVisibility(View.GONE);
+        if (position == 0 || position == 5 || position == mList.size() - 2) {
+            holder.mCourseProgress.setVisibility(View.GONE);
+            holder.mIvStop.setVisibility(View.GONE);
+            holder.mCourseName.setClickable(false);
+            holder.mRlChapter.setClickable(false);
+        } else {
+            holder.mRlChapter.setBackgroundColor(Color.WHITE);
+        }
+        if (position == mList.size() - 1) {
+            holder.mRlChapter.setBackgroundColor(Color.WHITE);
+            holder.mCourseProgress.setVisibility(View.INVISIBLE);
+            holder.mIvStop.setVisibility(View.INVISIBLE);
+        }
         holder.mCourseProgress.setProgress(0);
         if (isClicks.get(position)) {
             holder.mCourseName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
@@ -75,7 +92,11 @@ public class PlanStageRecyclerAdapter extends RecyclerView.Adapter<PlanStageRecy
                 }
                 isClicks.set(position, true);
                 notifyDataSetChanged();
-                mContext.startActivity(new Intent(mContext, PlayVideoActivity.class).putExtra("title", holder.mCourseName.getText().toString().trim()));
+                if (position != mList.size() - 1) {
+                    mContext.startActivity(new Intent(mContext, PlayVideoActivity.class).putExtra("title", holder.mCourseName.getText().toString().trim()));
+                } else {
+                    mContext.startActivity(new Intent(mContext, ExamActivity.class));
+                }
                  /*   mFinished.setVisibility(View.VISIBLE);
                     mFinished.setText("已完成10%");
                     mFinished.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
@@ -95,6 +116,7 @@ public class PlanStageRecyclerAdapter extends RecyclerView.Adapter<PlanStageRecy
         private TextView mCourseName, mFinished;
         private ProgressBar mCourseProgress;
         private ImageView mIvStop;
+        private RelativeLayout mRlChapter;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -102,7 +124,7 @@ public class PlanStageRecyclerAdapter extends RecyclerView.Adapter<PlanStageRecy
             mFinished = (TextView) itemView.findViewById(R.id.tv_finished);
             mIvStop = (ImageView) itemView.findViewById(R.id.imageView4);
             mCourseProgress = (ProgressBar) itemView.findViewById(R.id.pb_finished);
-
+            mRlChapter = (RelativeLayout) itemView.findViewById(R.id.rl_chapter);
         }
     }
 }

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.foxnickel.enterpriselearning.adapter.PlanStageRecyclerAdapter;
 import cn.foxnickel.enterpriselearning.adapter.SpecificPlanRecyclerAdapter;
 
 /**
@@ -69,28 +70,28 @@ public class SpecificPlanActivity extends AppCompatActivity implements View.OnCl
         planStage = new ArrayList<String>();
         planStageNode = new ArrayList<List<String>>();
 
-        planStage.add("第一阶段：公司介绍");
         List<String> list = new ArrayList<>();
+        list.add("第一阶段：公司介绍");
         list.add("课时1:公司发展简介");
         list.add("课时2:公司管理制度 ");
         list.add("课时3:公司人力资源制度");
         list.add("课时4:公司企业文化");
         planStageNode.add(list);
 
-        planStage.add("第二阶段：专业知识培训");
-        list = new ArrayList<>();
+        list.add("第二阶段：专业知识培训");
+        //list = new ArrayList<>();
         list.add("课时1:公司代码规范");
         list.add("课时2:代码整洁之道");
         list.add("课时3:如何提升开发效率");
         planStageNode.add(list);
 
-        planStage.add("第三阶段：专业技能考核");
-        list = new ArrayList<>();
+        list.add("第三阶段：专业技能考核");
+        //list = new ArrayList<>();
         list.add("培训考核");
         planStageNode.add(list);
-
+        PlanStageRecyclerAdapter planStageRecyclerAdapter = new PlanStageRecyclerAdapter(SpecificPlanActivity.this, list);
         mSpecificPlanRecyclerAdapter = new SpecificPlanRecyclerAdapter(SpecificPlanActivity.this, planStage, planStageNode);
-        mRecyclerView.setAdapter(mSpecificPlanRecyclerAdapter);
+        mRecyclerView.setAdapter(planStageRecyclerAdapter);
 
         mBtSignUp = (Button) findViewById(R.id.bt_sign_up);
         mBtSignUp.setOnClickListener(this);

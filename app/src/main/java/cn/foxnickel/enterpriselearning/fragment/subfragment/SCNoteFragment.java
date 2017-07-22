@@ -10,8 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.adapter.NoteRecyclerAdapter;
+import cn.foxnickel.enterpriselearning.bean.Note;
 
 /**
  * Created by Night on 2017/7/8.
@@ -25,6 +29,7 @@ public class SCNoteFragment extends Fragment {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private View view;
     private SwipeRefreshLayout mSwipeRefresh;
+    private List<Note> mList;
 
     public SCNoteFragment() {
         // Required empty public constructor
@@ -46,8 +51,20 @@ public class SCNoteFragment extends Fragment {
     private void initView() {
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recycler_view_my_exam);
         mLinearLayoutManager = new LinearLayoutManager(getContext());
+        mList = new ArrayList<>();
+        mList.add(new Note("源自:web UI设计理论入门-网页是如何实现的", "web 标准化布局原理\n" +
+                "把网页看成多个网格\n" +
+                "先有行再有列（从上到下）\n" +
+                "先做容器再做内容（从外到内）", "2017-07-10"));
+        mList.add(new Note("源自:web UI设计理论入门-关于分辨率", "分辨率：水平和垂直像素个数", "2017-07-09"));
+        mList.add(new Note("源自:web UI设计理论入门-webUI是什么", "UI的3个方向：\n" +
+                "1.用户研究\n" +
+                "2.交互设计\n" +
+                "3.界面设计", "2017-07-08"));
+        mList.add(new Note("源自:web UI设计理论入门-课程介绍", "ie9+、chrome、flex及主流浏览器都可兼容css3", "2017-07-07"));
+        mList.add(new Note("源自:web UI设计理论入门-课程介绍", "ps里面有切片工具可以用来切图", "2017-07-07"));
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        NoteRecyclerAdapter noteRecyclerAdapter = new NoteRecyclerAdapter(getContext());
+        NoteRecyclerAdapter noteRecyclerAdapter = new NoteRecyclerAdapter(getContext(), mList);
         mRecyclerView.setAdapter(noteRecyclerAdapter);
         mSwipeRefresh = (SwipeRefreshLayout) mRootView.findViewById(R.id.exam_swipe_refresh);
     }
