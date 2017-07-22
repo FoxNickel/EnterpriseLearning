@@ -43,8 +43,8 @@ public class NotificationActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.view_pager_notification);
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(PrivateLetterFragment.newInstance());
         fragmentList.add(NotificationFragment.newInstance());
+        fragmentList.add(PrivateLetterFragment.newInstance());
         NotificationViewPagerAdapter notificationViewPagerAdapter = new NotificationViewPagerAdapter(getSupportFragmentManager(), this, fragmentList);
         mViewPager.setAdapter(notificationViewPagerAdapter);
 

@@ -7,7 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cn.foxnickel.enterpriselearning.R;
+import cn.foxnickel.enterpriselearning.bean.PrivateLetter;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -17,9 +20,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class PrivateLetterRecyclerAdapter extends RecyclerView.Adapter<PrivateLetterRecyclerAdapter.ViewHolder> {
 
     private Context mContext;
+    private List<PrivateLetter> mList;
 
-    public PrivateLetterRecyclerAdapter(Context context) {
+    public PrivateLetterRecyclerAdapter(Context context, List<PrivateLetter> list) {
         mContext = context;
+        mList = list;
     }
 
     @Override
@@ -31,9 +36,9 @@ public class PrivateLetterRecyclerAdapter extends RecyclerView.Adapter<PrivateLe
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mUserAvatar.setImageResource(R.drawable.login_bg2);
-        holder.mUsername.setText("管理员");
-        holder.mPrivateLetterContent.setText("这是私信内容，这是私信内容，这是私信内容");
-        holder.mReleaseTime.setText("07-01");
+        holder.mUsername.setText(mList.get(position).getUserName());
+        holder.mPrivateLetterContent.setText(mList.get(position).getPrivateLetterContent());
+        holder.mReleaseTime.setText(mList.get(position).getReleaseTime());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +51,7 @@ public class PrivateLetterRecyclerAdapter extends RecyclerView.Adapter<PrivateLe
 
     @Override
     public int getItemCount() {
-        return 8;
+        return mList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

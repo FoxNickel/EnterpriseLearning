@@ -37,6 +37,7 @@ public class SecondClassificationAdapter extends RecyclerView.Adapter<SecondClas
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.mSecondClassificationName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
         holder.mSecondClassificationName.setText(mSecondClassificationNameList.get(position));
         StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.HORIZONTAL);
         holder.mThirdClassificationRecycler.setLayoutManager(manager);

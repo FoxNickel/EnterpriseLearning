@@ -16,6 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.foxnickel.enterpriselearning.ExamActivity;
 import cn.foxnickel.enterpriselearning.PlayVideoActivity;
 import cn.foxnickel.enterpriselearning.R;
 
@@ -24,6 +25,7 @@ import cn.foxnickel.enterpriselearning.R;
  */
 
 public class PlanStageRecyclerAdapter extends RecyclerView.Adapter<PlanStageRecyclerAdapter.ViewHolder> {
+    private boolean f;
     private List<String> mList;
     private Context mContext;
     private OnItemClickListener mOnItemClickListener = null;
@@ -35,13 +37,14 @@ public class PlanStageRecyclerAdapter extends RecyclerView.Adapter<PlanStageRecy
         void onItemClick(View view, int position);
     }
 
-    public PlanStageRecyclerAdapter(Context context, List<String> list) {
+    public PlanStageRecyclerAdapter(Context context, List<String> list, boolean f1) {
         mContext = context;
         mList = list;
         isClicks = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             isClicks.add(false);
         }
+        f = f1;
     }
 
     @Override
@@ -55,6 +58,10 @@ public class PlanStageRecyclerAdapter extends RecyclerView.Adapter<PlanStageRecy
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mCourseName.setText(mList.get(position));
         holder.mFinished.setVisibility(View.GONE);
+        if (position == mList.size() - 1 && f) {
+            holder.mCourseProgress.setVisibility(View.GONE);
+            holder.mIvStop.setVisibility(View.GONE);
+        }
         holder.mCourseProgress.setProgress(0);
         if (isClicks.get(position)) {
             holder.mCourseName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
@@ -75,7 +82,11 @@ public class PlanStageRecyclerAdapter extends RecyclerView.Adapter<PlanStageRecy
                 }
                 isClicks.set(position, true);
                 notifyDataSetChanged();
-                mContext.startActivity(new Intent(mContext, PlayVideoActivity.class).putExtra("title", holder.mCourseName.getText().toString().trim()));
+                if (position != mList.size() - 1) {
+                    mContext.startActivity(new Intent(mContext, PlayVideoActivity.class).putExtra("title", holder.mCourseName.getText().toString().trim()));
+                } else {
+                    mContext.startActivity(new Intent(mContext, ExamActivity.class));
+                }
                  /*   mFinished.setVisibility(View.VISIBLE);
                     mFinished.setText("已完成10%");
                     mFinished.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));

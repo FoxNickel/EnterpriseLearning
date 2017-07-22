@@ -10,8 +10,11 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
+import cn.foxnickel.enterpriselearning.bean.Course;
 
 /**
  * Created by Night on 2017/7/15.
@@ -19,11 +22,13 @@ import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
 
 public class CourseListRecyclerAdapter extends RecyclerView.Adapter<CourseListRecyclerAdapter.ViewHolder> {
 
+    private List<Course> mList;
     private Context mContext;
 
 
-    public CourseListRecyclerAdapter(Context context) {
+    public CourseListRecyclerAdapter(Context context, List<Course> list) {
         mContext = context;
+        mList = list;
     }
 
     @Override
@@ -34,11 +39,13 @@ public class CourseListRecyclerAdapter extends RecyclerView.Adapter<CourseListRe
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.mTvCourseName.setText(mList.get(position).getCourseName());
+        holder.mRbCourseScore.setRating(mList.get(position).getCourseStars());
     }
 
     @Override
     public int getItemCount() {
-        return 8;
+        return mList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
