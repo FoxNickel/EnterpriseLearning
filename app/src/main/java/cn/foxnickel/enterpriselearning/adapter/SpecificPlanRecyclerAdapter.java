@@ -56,7 +56,7 @@ public class SpecificPlanRecyclerAdapter extends RecyclerView.Adapter<SpecificPl
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         holder.mRecyclerView.setLayoutManager(linearLayoutManager);
         holder.mStageName.setText(mStageList.get(position));
-        PlanStageRecyclerAdapter planStageRecyclerAdapter = new PlanStageRecyclerAdapter(mContext, mStageNodeList.get(position), mBooleanList.get(position));
+        PlanStageRecyclerAdapter planStageRecyclerAdapter = new PlanStageRecyclerAdapter(mContext, mStageNodeList.get(position));
         holder.mRecyclerView.setAdapter(planStageRecyclerAdapter);
         holder.mRecyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
