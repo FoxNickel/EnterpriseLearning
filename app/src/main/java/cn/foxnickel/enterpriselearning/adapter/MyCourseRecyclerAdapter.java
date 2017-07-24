@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
+import cn.foxnickel.enterpriselearning.bean.Course;
 
 /**
  * Created by NickelFox on 2017/7/5.
@@ -19,9 +22,11 @@ import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
 public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecyclerAdapter.ViewHolder> {
 
     private Context mContext;
+    private List<Course> mCourseList;
 
-    public MyCourseRecyclerAdapter(Context context) {
+    public MyCourseRecyclerAdapter(Context context, List<Course> courseList) {
         mContext = context;
+        mCourseList = courseList;
     }
 
     @Override
@@ -32,8 +37,9 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mCourseName.setText("Java-从入门到放弃");
-        holder.mCoursePic.setImageResource(R.drawable.login_bg2);
+        Course course = mCourseList.get(position);
+        holder.mCourseName.setText(course.getCourseName());
+        holder.mCoursePic.setImageResource(Integer.valueOf(course.getCoursePic()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +50,7 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
 
     @Override
     public int getItemCount() {
-        return 8;
+        return mCourseList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
