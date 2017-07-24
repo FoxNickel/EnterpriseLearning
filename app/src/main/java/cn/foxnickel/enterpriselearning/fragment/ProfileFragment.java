@@ -15,6 +15,7 @@ import cn.foxnickel.enterpriselearning.HistoryActivity;
 import cn.foxnickel.enterpriselearning.LearningDataActivity;
 import cn.foxnickel.enterpriselearning.MyDiscussActivity;
 import cn.foxnickel.enterpriselearning.MyPlanActivity;
+import cn.foxnickel.enterpriselearning.MyTrainingActivity;
 import cn.foxnickel.enterpriselearning.NoteActivity;
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.SettingsActivity;
@@ -37,13 +38,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private ConstraintLayout mLayoutMyPlan;
     private ConstraintLayout mLayoutMyTask;
     private ConstraintLayout mLayoutMyNote;
+    private ConstraintLayout mLayoutMyTraining;
 
     public ProfileFragment() {
         // Required empty public constructor
     }
 
     public static ProfileFragment newInstance() {
-
         return new ProfileFragment();
     }
 
@@ -91,6 +92,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         mLayoutMyTask.setOnClickListener(this);
         mLayoutMyNote = (ConstraintLayout) mRootView.findViewById(R.id.layout_my_note);
         mLayoutMyNote.setOnClickListener(this);
+        mLayoutMyTraining = (ConstraintLayout) mRootView.findViewById(R.id.layout_my_training);
+        mLayoutMyTraining.setOnClickListener(this);
     }
 
     @Override
@@ -122,6 +125,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.layout_my_note:
                 startActivity(new Intent(getContext(), NoteActivity.class));
+                break;
+            case R.id.layout_my_training:
+                startActivity(new Intent(getContext(), MyTrainingActivity.class));
                 break;
 
         }

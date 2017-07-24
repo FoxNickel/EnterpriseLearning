@@ -63,7 +63,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_training_name"
-            app:srcCompat="@drawable/login_bg2"/>
+            app:srcCompat="@drawable/bg_training"/>
 
         <ImageView
             android:id="@+id/imageView2"

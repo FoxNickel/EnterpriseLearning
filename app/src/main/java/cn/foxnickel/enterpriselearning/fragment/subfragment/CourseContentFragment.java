@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,8 @@ public class CourseContentFragment extends Fragment {
 
     private String firstClassification;
     private View mRootView;
-    List<String> secondClassificationNameList, thirdClassificationNameList;
+    List<String> secondClassificationNameList;
+    List<List<String>> thirdClassificationNameList;
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
 
@@ -45,10 +47,53 @@ public class CourseContentFragment extends Fragment {
         mRootView = inflater.inflate(R.layout.fragment_course_content, container, false);
         Bundle args = getArguments();
         TextView textView = (TextView) mRootView.findViewById(R.id.tv_first_classification_name);
-        textView.setText(args.getString("firstClassificationName") + " · 精选好课");
-
+        String firstClassificationName = args.getString("firstClassificationName");
+        textView.setText(firstClassificationName + " · 精选好课");
+        List<String> list = new ArrayList<>();
         secondClassificationNameList = new ArrayList<>();
         thirdClassificationNameList = new ArrayList<>();
+        if (TextUtils.equals(firstClassificationName, "技术分享")) {
+            technology(list);
+        } else if (TextUtils.equals(firstClassificationName, "项目管理")) {
+            projectManagement(list);
+        } else {
+            processManagement(list);
+        }
+        initView();
+
+        return mRootView;
+    }
+
+    private void processManagement(List<String> list) {
+        secondClassificationNameList.add("流程管理系列");
+
+        list.add("流程管理层次");
+        list.add("流程管理思路");
+        list.add("流程管理模式");
+        list.add("职能管理模式");
+        list.add("流程建模规范");
+        list.add("流程管理优化");
+        list.add("制度与平台管理");
+        list.add("项目管理工具与技巧");
+        thirdClassificationNameList.add(list);
+    }
+
+    private void projectManagement(List<String> list) {
+        secondClassificationNameList.add("项目管理系列");
+
+        list.add("项目风险管理");
+        list.add("项目范围管理");
+        list.add("项目质量管理");
+        list.add("项目成本管理");
+        list.add("项目计划");
+        list.add("项目执行");
+        list.add("项目结束");
+        list.add("项目管理十大模板");
+        list.add("项目管理工具与技巧");
+        thirdClassificationNameList.add(list);
+    }
+
+    private void technology(List<String> list) {
         secondClassificationNameList.add("通用技术");
         secondClassificationNameList.add("专业技术");
 
@@ -64,19 +109,27 @@ public class CourseContentFragment extends Fragment {
         thirdClassificationNameList.add("R");
         thirdClassificationNameList.add("JavaScript");*/
 
-        thirdClassificationNameList.add("防抖技术");
-        thirdClassificationNameList.add("全景技术");
-        thirdClassificationNameList.add("人脸技术");
-        thirdClassificationNameList.add("HDR技术");
-        thirdClassificationNameList.add("暗光高清拍摄技术");
-        thirdClassificationNameList.add("手势识别技术");
-        thirdClassificationNameList.add("3D立体成像技术");
-        thirdClassificationNameList.add("场景检测与物体识别技术");
-        thirdClassificationNameList.add("AR/VR技术");
-
-        initView();
-
-        return mRootView;
+        list.add("防抖技术");
+        list.add("全景技术");
+        list.add("人脸技术");
+        list.add("HDR技术");
+        list.add("暗光高清拍摄技术");
+        list.add("手势识别技术");
+        list.add("3D立体成像技术");
+        list.add("场景检测与物体识别技术");
+        list.add("AR/VR技术");
+        thirdClassificationNameList.add(list);
+        list = new ArrayList<>();
+        list.add("防抖技术");
+        list.add("全景技术");
+        list.add("人脸技术");
+        list.add("HDR技术");
+        list.add("暗光高清拍摄技术");
+        list.add("手势识别技术");
+        list.add("3D立体成像技术");
+        list.add("场景检测与物体识别技术");
+        list.add("AR/VR技术");
+        thirdClassificationNameList.add(list);
     }
 
     private void initView() {

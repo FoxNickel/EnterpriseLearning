@@ -41,18 +41,18 @@ public class SCQAAdapter extends RecyclerView.Adapter<SCQAAdapter.ViewHolder> {
         if (position == 0) {
             holder.mExamName.setText("UI怎么切图");
             holder.mWriteAnswer.setVisibility(View.GONE);
-            holder.mLastAnswer.setText("[最新 沐曦尘x 的回答] ps里面有切片工具");
-            holder.mLastAnswer.setTextToHighlight("[最新 沐曦尘x 的回答]");
-            holder.mLastAnswer.setTextHighlightColor(R.color.colorPrimary);
+            holder.mLastAnswer.setText("[已采纳 123456小王 的回答]  ps里面有切片工具");
+            holder.mLastAnswer.setTextToHighlight("[已采纳 123456小王 的回答]");
+            holder.mLastAnswer.setTextHighlightColor(R.color.green);
             holder.mLastAnswer.setCaseInsensitive(false);
             holder.mLastAnswer.setHighlightMode(HighlightMode.TEXT);
             holder.mLastAnswer.highlight();
         } else if (position == 1) {
             holder.mExamName.setText("有哪些浏览器支持css3？");
             holder.mWriteAnswer.setVisibility(View.GONE);
-            holder.mLastAnswer.setText("[已采纳 梦飞翔2 的回答] ie9+；chrome；flex以及主流浏览器");
-            holder.mLastAnswer.setTextToHighlight("[已采纳 梦飞翔2 的回答]");
-            holder.mLastAnswer.setTextHighlightColor(R.color.green);
+            holder.mLastAnswer.setText("[最新 123457小张 的回答] ie9+；chrome；flex以及主流浏览器");
+            holder.mLastAnswer.setTextToHighlight("[最新 123457小张 的回答]");
+            holder.mLastAnswer.setTextHighlightColor(R.color.colorPrimary);
             holder.mLastAnswer.setCaseInsensitive(false);
             holder.mLastAnswer.setHighlightMode(HighlightMode.TEXT);
             holder.mLastAnswer.highlight();

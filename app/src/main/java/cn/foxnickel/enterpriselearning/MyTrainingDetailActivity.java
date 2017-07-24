@@ -1,13 +1,11 @@
 package cn.foxnickel.enterpriselearning;
 
 import android.app.DownloadManager;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -16,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TrainingDetailActivity extends AppCompatActivity implements View.OnClickListener {
+public class MyTrainingDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Toolbar mToolbar;
     /**
@@ -54,8 +52,8 @@ public class TrainingDetailActivity extends AppCompatActivity implements View.On
     private Button mBtSignUp;
 
     private Intent mIntent;
-    private DownloadManager mDownloadManager;
     private DownloadManager.Request mRequest;
+    private DownloadManager mDownloadManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +94,7 @@ public class TrainingDetailActivity extends AppCompatActivity implements View.On
         mTvDownload = (TextView) findViewById(R.id.tv_download);
         mTvDownload.setOnClickListener(this);
         mBtSignUp = (Button) findViewById(R.id.bt_sign_up);
-        mBtSignUp.setOnClickListener(this);
+        mBtSignUp.setVisibility(View.GONE);
     }
 
     @Override
@@ -104,23 +102,6 @@ public class TrainingDetailActivity extends AppCompatActivity implements View.On
         switch (v.getId()) {
             case R.id.tv_download:
                 download();
-                break;
-            case R.id.bt_sign_up:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("信息核实")
-                        .setMessage("请核实自己的信息确认无误后确定报名\n姓名：123456小王\n电话：13777777777")
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        })
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(TrainingDetailActivity.this, "报名成功", Toast.LENGTH_SHORT).show();
-                            }
-                        }).show();
                 break;
         }
     }

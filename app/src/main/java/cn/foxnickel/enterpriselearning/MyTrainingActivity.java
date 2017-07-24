@@ -14,16 +14,17 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.foxnickel.enterpriselearning.adapter.TrainingRecyclerAdapter;
+import cn.foxnickel.enterpriselearning.adapter.MyTrainingRecyclerAdapter;
 import cn.foxnickel.enterpriselearning.bean.Training;
 
-public class TrainingActivity extends AppCompatActivity {
+public class MyTrainingActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerViewTraining;
     private SwipeRefreshLayout mSwipeRefresh;
     private LinearLayoutManager mLinearLayoutManager;
     private Toolbar mToolbar;
     private List<Training> mList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +45,8 @@ public class TrainingActivity extends AppCompatActivity {
 
         mList = new ArrayList<>();
         mList.add(new Training("新员工入职培训", "针对公司七月所有新进员工进行就职培训", 36, "二楼会议室", "2017年7月7日 12:00", "2小时"));
-        mList.add(new Training("Android开发规范培训", "针对公司七月所有新进Android开发工程师进行Android开发规范培训", 7, "二楼会议室", "2017年7月2日 14:00", "1小时"));
         mLinearLayoutManager = new LinearLayoutManager(this);
-        TrainingRecyclerAdapter trainingRecyclerAdapter = new TrainingRecyclerAdapter(this, mList);
+        MyTrainingRecyclerAdapter trainingRecyclerAdapter = new MyTrainingRecyclerAdapter(this, mList);
 
         mRecyclerViewTraining.setLayoutManager(mLinearLayoutManager);
         mRecyclerViewTraining.setAdapter(trainingRecyclerAdapter);

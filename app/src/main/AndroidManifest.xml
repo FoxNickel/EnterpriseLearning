@@ -90,6 +90,8 @@
                   android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
         <activity android:name=".TaskActivity"/>
+        <activity android:name=".MyTrainingActivity"/>
+        <activity android:name=".MyTrainingDetailActivity"/>
     </application>
 
 </manifest>

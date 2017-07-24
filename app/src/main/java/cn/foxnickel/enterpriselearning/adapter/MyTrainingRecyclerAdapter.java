@@ -11,20 +11,20 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import cn.foxnickel.enterpriselearning.MyTrainingDetailActivity;
 import cn.foxnickel.enterpriselearning.R;
-import cn.foxnickel.enterpriselearning.TrainingDetailActivity;
 import cn.foxnickel.enterpriselearning.bean.Training;
 
 /**
  * Created by NickelFox on 2017/7/8.
  */
 
-public class TrainingRecyclerAdapter extends RecyclerView.Adapter<TrainingRecyclerAdapter.ViewHolder> {
+public class MyTrainingRecyclerAdapter extends RecyclerView.Adapter<MyTrainingRecyclerAdapter.ViewHolder> {
 
     private List<Training> mList;
     private Context mContext;
 
-    public TrainingRecyclerAdapter(Context context, List<Training> list) {
+    public MyTrainingRecyclerAdapter(Context context, List<Training> list) {
         mContext = context;
         mList = list;
     }
@@ -46,7 +46,7 @@ public class TrainingRecyclerAdapter extends RecyclerView.Adapter<TrainingRecycl
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startTrainingDetailActivity = new Intent(mContext, TrainingDetailActivity.class);
+                Intent startTrainingDetailActivity = new Intent(mContext, MyTrainingDetailActivity.class);
                 startTrainingDetailActivity.putExtra("training_name", mList.get(position).getTrainingName());
                 startTrainingDetailActivity.putExtra("training_intro", mList.get(position).getTrainingName());
                 startTrainingDetailActivity.putExtra("training_num", "报名人数:" + mList.get(position).getNum() + "人");
@@ -59,7 +59,7 @@ public class TrainingRecyclerAdapter extends RecyclerView.Adapter<TrainingRecycl
         holder.mSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startTrainingDetailActivity = new Intent(mContext, TrainingDetailActivity.class);
+                Intent startTrainingDetailActivity = new Intent(mContext, MyTrainingDetailActivity.class);
                 startTrainingDetailActivity.putExtra("training_name", mList.get(position).getTrainingName());
                 startTrainingDetailActivity.putExtra("training_intro", mList.get(position).getTrainingName());
                 startTrainingDetailActivity.putExtra("training_num", "报名人数:" + mList.get(position).getNum() + "人");
@@ -69,6 +69,8 @@ public class TrainingRecyclerAdapter extends RecyclerView.Adapter<TrainingRecycl
                 mContext.startActivity(startTrainingDetailActivity);
             }
         });
+
+        holder.mSignUp.setText("已报名");
     }
 
     @Override

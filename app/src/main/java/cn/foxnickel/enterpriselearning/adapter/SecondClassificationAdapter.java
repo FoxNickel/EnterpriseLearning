@@ -20,10 +20,11 @@ import cn.foxnickel.enterpriselearning.R;
 
 public class SecondClassificationAdapter extends RecyclerView.Adapter<SecondClassificationAdapter.ViewHolder> {
 
-    private List<String> mSecondClassificationNameList, mThirdClassificationNameList;
+    private List<String> mSecondClassificationNameList;
+    private List<List<String>> mThirdClassificationNameList;
     private Context mContext;
 
-    public SecondClassificationAdapter(List<String> secondClassificationNameList, List<String> thirdClassificationNameList, Context context) {
+    public SecondClassificationAdapter(List<String> secondClassificationNameList, List<List<String>> thirdClassificationNameList, Context context) {
         mSecondClassificationNameList = secondClassificationNameList;
         mThirdClassificationNameList = thirdClassificationNameList;
         mContext = context;
@@ -41,11 +42,12 @@ public class SecondClassificationAdapter extends RecyclerView.Adapter<SecondClas
         holder.mSecondClassificationName.setText(mSecondClassificationNameList.get(position));
         StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.HORIZONTAL);
         holder.mThirdClassificationRecycler.setLayoutManager(manager);
-        ThirdClassificationAdapter thirdClassificationAdapter = new ThirdClassificationAdapter(mThirdClassificationNameList, mContext);
+        ThirdClassificationAdapter thirdClassificationAdapter = new ThirdClassificationAdapter(mThirdClassificationNameList.get(position), mContext);
+        final int i = position;
         thirdClassificationAdapter.setOnItemClickListener(new ThirdClassificationAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                mContext.startActivity(new Intent(mContext, CourseListActivity.class).putExtra("title", mThirdClassificationNameList.get(position)));
+                mContext.startActivity(new Intent(mContext, CourseListActivity.class).putExtra("title", mThirdClassificationNameList.get(i).get(position)));
             }
         });
         holder.mThirdClassificationRecycler.setAdapter(thirdClassificationAdapter);

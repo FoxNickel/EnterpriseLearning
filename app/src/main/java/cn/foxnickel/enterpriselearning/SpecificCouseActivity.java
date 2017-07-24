@@ -254,7 +254,6 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_evaluate) {
-            Toast.makeText(this, "课程评价", Toast.LENGTH_SHORT).show();
             mEtComment.setText("");
             mRatingBar.setCountSelected(0);
             popupWindow.showAtLocation(
