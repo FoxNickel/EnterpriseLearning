@@ -48,12 +48,12 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<NoteRecyclerAdapte
                 if (expanded) {
                     holder.mContent.setMaxLines(2);
                     holder.mExpand.setText("展开");
-                    // holder.mSource.setVisibility(View.GONE);
+                    holder.mSource.setVisibility(View.GONE);
                     expanded = false;
                 } else {
                     holder.mContent.setMaxLines(9999);
                     holder.mExpand.setText("收起");
-                    // holder.mSource.setVisibility(View.VISIBLE);
+                    holder.mSource.setVisibility(View.VISIBLE);
                     expanded = true;
                 }
             }

@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.shuyu.gsyvideoplayer.GSYPreViewManager;
 import com.shuyu.gsyvideoplayer.GSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
@@ -58,6 +59,7 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
     private ConstraintLayout mVideoLayout;
     private Toolbar mToolbar;
     private FloatingActionButton mFabNote, mFabComment, mFabCollect;
+    private FloatingActionMenu mFloatingActionMenu;
     //popupwindow组件
     private LayoutInflater mLayoutInflater;
     View popupView;
@@ -123,6 +125,7 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
         mFabNote.setOnClickListener(this);
         mFabComment.setOnClickListener(this);
         mFabCollect.setOnClickListener(this);
+        mFloatingActionMenu = (FloatingActionMenu) findViewById(R.id.float_menu);
     }
 
     private void setupVideo() {
@@ -209,12 +212,14 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
             setVideoViewScale(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             isFullScreen = true;
             mToolbar.setVisibility(View.GONE);
+            mFloatingActionMenu.setVisibility(View.GONE);
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         } else {
             setVideoViewScale(ViewGroup.LayoutParams.MATCH_PARENT, DisplayUtil.dp2px(this, 240f));
             isFullScreen = false;
             mToolbar.setVisibility(View.VISIBLE);
+            mFloatingActionMenu.setVisibility(View.VISIBLE);
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
         }

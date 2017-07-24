@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,7 +117,6 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.iv_task:
                 startActivity(new Intent(getContext(), TaskActivity.class));
-                Toast.makeText(getContext(), "任务", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iv_plan:
                 startActivity(new Intent(getContext(), PlanActivity.class));
