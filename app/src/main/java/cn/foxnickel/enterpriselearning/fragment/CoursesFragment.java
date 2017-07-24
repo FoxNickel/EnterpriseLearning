@@ -28,6 +28,7 @@ public class CoursesFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     List<String> mFirstClassificationNameList;
+    private List<Integer> mBackgroundPic;
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -46,6 +47,11 @@ public class CoursesFragment extends Fragment {
         mFirstClassificationNameList.add("技术分享");
         mFirstClassificationNameList.add("项目管理");
         mFirstClassificationNameList.add("流程管理");
+
+        mBackgroundPic = new ArrayList<>();
+        mBackgroundPic.add(R.drawable.arc_tech3);
+        mBackgroundPic.add(R.drawable.manage_pic);
+        mBackgroundPic.add(R.drawable.arc_tech4);
         initFragment(0);
         return mRootView;
     }
@@ -61,6 +67,7 @@ public class CoursesFragment extends Fragment {
     private void initFragment(int position) {
         Bundle args = new Bundle();
         args.putString("firstClassificationName", mFirstClassificationNameList.get(position));
+        args.putInt("bg_pic", mBackgroundPic.get(position));
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.replace(R.id.chapter_content, CourseContentFragment.newInstance(args));
         transaction.commit();
@@ -107,6 +114,7 @@ public class CoursesFragment extends Fragment {
                     notifyItemChanged(selectedPos);
                     Bundle args = new Bundle();
                     args.putString("firstClassificationName", mFirstClassificationNameList.get(pos));
+                    args.putInt("bg_pic", mBackgroundPic.get(position));
                     FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
                     transaction.replace(R.id.chapter_content, CourseContentFragment.newInstance(args));
                     transaction.commit();
