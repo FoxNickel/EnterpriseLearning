@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cn.foxnickel.enterpriselearning.R;
 
 /**
@@ -17,9 +19,14 @@ import cn.foxnickel.enterpriselearning.R;
 public class HistoryRecyclerAdapter extends RecyclerView.Adapter<HistoryRecyclerAdapter.ViewHolder> {
 
     private Context mContext;
+    private List<String> mDateList;
+    private List<List<String>> mCourseNameList, mChapterNameList;
 
-    public HistoryRecyclerAdapter(Context context) {
+    public HistoryRecyclerAdapter(Context context, List<String> dateList, List<List<String>> courseNameList, List<List<String>> chapterNameList) {
         mContext = context;
+        mDateList = dateList;
+        mCourseNameList = courseNameList;
+        mChapterNameList = chapterNameList;
     }
 
     @Override
@@ -31,15 +38,15 @@ public class HistoryRecyclerAdapter extends RecyclerView.Adapter<HistoryRecycler
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
-        holder.mTime.setText("今天");
+        holder.mTime.setText(mDateList.get(position));
         holder.mRecyclerView.setLayoutManager(linearLayoutManager);
-        HistoryItemRecyclerAdapter historyItemRecyclerAdapter = new HistoryItemRecyclerAdapter(mContext);
+        HistoryItemRecyclerAdapter historyItemRecyclerAdapter = new HistoryItemRecyclerAdapter(mContext, mCourseNameList.get(position), mChapterNameList.get(position));
         holder.mRecyclerView.setAdapter(historyItemRecyclerAdapter);
     }
 
     @Override
     public int getItemCount() {
-        return 8;
+        return mDateList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

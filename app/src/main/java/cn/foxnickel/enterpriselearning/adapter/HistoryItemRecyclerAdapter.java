@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
 
@@ -18,9 +20,12 @@ import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
 public class HistoryItemRecyclerAdapter extends RecyclerView.Adapter<HistoryItemRecyclerAdapter.ViewHolder> {
 
     private Context mContext;
+    private List<String> mCourseNameList, mChapterNameList;
 
-    public HistoryItemRecyclerAdapter(Context context) {
+    public HistoryItemRecyclerAdapter(Context context, List<String> courseNameList, List<String> chapterNameList) {
         mContext = context;
+        mCourseNameList = courseNameList;
+        mChapterNameList = chapterNameList;
     }
 
     @Override
@@ -31,8 +36,8 @@ public class HistoryItemRecyclerAdapter extends RecyclerView.Adapter<HistoryItem
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int i) {
-        holder.mCourseName.setText("Java-从入门到放弃");
-        holder.mChapterName.setText("1-1 如何放弃Java");
+        holder.mCourseName.setText(mCourseNameList.get(i));
+        holder.mChapterName.setText(mChapterNameList.get(i));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +48,7 @@ public class HistoryItemRecyclerAdapter extends RecyclerView.Adapter<HistoryItem
 
     @Override
     public int getItemCount() {
-        return 3;
+        return mCourseNameList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

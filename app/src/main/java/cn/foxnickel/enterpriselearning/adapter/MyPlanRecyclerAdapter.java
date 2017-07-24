@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.SpecificPlanActivity;
 
@@ -18,10 +20,11 @@ import cn.foxnickel.enterpriselearning.SpecificPlanActivity;
 
 public class MyPlanRecyclerAdapter extends AnimRecyclerViewAdapter<MyPlanRecyclerAdapter.ViewHolder> {
     private Context mContext;
+    private List<String> mPlanNameList;
 
-
-    public MyPlanRecyclerAdapter(Context context) {
+    public MyPlanRecyclerAdapter(Context context, List<String> planNameList) {
         mContext = context;
+        mPlanNameList = planNameList;
     }
 
     @Override
@@ -32,18 +35,27 @@ public class MyPlanRecyclerAdapter extends AnimRecyclerViewAdapter<MyPlanRecycle
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mPlanName.setText("新员工入职计划");
-        if (position % 2 == 0) {
-            holder.mPlanState.setText("未开始");
-        } else {
-            holder.mPlanState.setText("已开始");
+        holder.mPlanName.setText(mPlanNameList.get(position));
+        holder.mPlanState.setText("已学25%");
+        switch (position) {
+            case 0:
+                holder.mIVPlan.setImageResource(R.drawable.new_employee);
+                break;
+            case 1:
+                holder.mIVPlan.setImageResource(R.drawable.android2);
+                break;
+            case 2:
+                holder.mIVPlan.setImageResource(R.drawable.android3);
+                break;
+            default:
+                break;
         }
         showItemAnim(holder.rootview, position);
     }
 
     @Override
     public int getItemCount() {
-        return 8;
+        return mPlanNameList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
