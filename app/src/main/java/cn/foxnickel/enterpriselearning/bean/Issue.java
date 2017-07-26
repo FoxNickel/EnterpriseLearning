@@ -6,7 +6,6 @@ package cn.foxnickel.enterpriselearning.bean;
  */
 
 public class Issue {
-
     //试题题目
     private String question;
     //试题类别 0--单选  1--多选

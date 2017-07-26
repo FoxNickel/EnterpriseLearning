@@ -17,8 +17,13 @@ import android.widget.TextView;
 
 import com.athkalia.emphasis.EmphasisTextView;
 import com.athkalia.emphasis.HighlightMode;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.List;
 
 import cn.foxnickel.enterpriselearning.bean.Issue;
+import cn.foxnickel.enterpriselearning.config.Config;
 
 /**
  * Created by Night on 2017/7/19.
@@ -46,7 +51,8 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
     private int current = 0;
     //记录多选选项
     private int[] selectIds;
-
+    private List<Issue> mIssueList;
+    int grade;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +62,10 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void initView() {
+        String strJson = Config.sSp.getString("issueList", null);
+        Gson gson = new Gson();
+        mIssueList = gson.fromJson(strJson, new TypeToken<List<Issue>>() {
+        }.getType());
         mTvExamName = (TextView) findViewById(R.id.tv_exam_name);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mTvYourAnswer = (TextView) findViewById(R.id.tv_your_answer);
@@ -88,8 +98,8 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
         mTvAnalysis = (TextView) findViewById(R.id.tv_analysis);
         mBtLastQuestion = (Button) findViewById(R.id.bt_last_question);
         mBtNextQuestion = (Button) findViewById(R.id.bt_next_question);
-
-        mTvExamScore.setText(SpecificExamActivity.mExam.getGrade() + "分");
+        grade = Config.sSp.getInt("grade", 0);
+        mTvExamScore.setText(grade + "分");
         //初始化多选数组
         selectIds = new int[]{-1, -1, -1, -1};
         mIvSparseArray = new SparseArrayCompat<>();
@@ -137,7 +147,7 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
             }
             startTest(current);
             //初始化多选数组，可优化
-            selectIds = SpecificExamActivity.mIssueList.get(current).getSelectedIds();
+            selectIds = mIssueList.get(current).getSelectedIds();
         } else if (current == 0) {
             mBtLastQuestion.setVisibility(View.INVISIBLE);
         }
@@ -147,9 +157,9 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
      * 下一题
      */
     private void goNext() {
-        if (current < SpecificExamActivity.mIssueList.size() - 1) {
+        if (current < mIssueList.size() - 1) {
             current++;
-            if (current == SpecificExamActivity.mIssueList.size() - 1) {
+            if (current == mIssueList.size() - 1) {
                 mBtNextQuestion.setVisibility(View.INVISIBLE);
             }
             if (mBtLastQuestion.getVisibility() == View.INVISIBLE) {
@@ -157,12 +167,12 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
             }
             startTest(current);
             //初始化多选数组，可优化
-            selectIds = SpecificExamActivity.mIssueList.get(current).getSelectedIds();
+            selectIds = mIssueList.get(current).getSelectedIds();
         }
     }
 
     private void startTest(int current) {
-        Issue question = SpecificExamActivity.mIssueList.get(current);
+        Issue question = mIssueList.get(current);
 
         if (question.getType() == 0) {
             mTvRightAnswer.setText(mAnswerArray.get(Integer.parseInt(question.getRight())));
@@ -216,7 +226,7 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
             ivOptions[i].setImageResource(mIvSparseArray.get(i));
         }
 
-        Issue question = SpecificExamActivity.mIssueList.get(position);
+        Issue question = mIssueList.get(position);
         for (int selectedId : question.getSelectedIds()) {
             if (selectedId != -1) {
                 ivOptions[selectedId].setImageResource(mIvSparseArray.get(selectedId + 4));
@@ -229,7 +239,7 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
             ivOptions[i].setImageResource(mIvSparseArray.get(i));
         }
 
-        Issue question = SpecificExamActivity.mIssueList.get(position);
+        Issue question = mIssueList.get(position);
         int selectedId = question.getSelectedId();
         if (selectedId != -1) {
             ivOptions[selectedId].setImageResource(mIvSparseArray.get(selectedId + 4));

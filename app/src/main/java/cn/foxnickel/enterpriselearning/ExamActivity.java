@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import cn.foxnickel.enterpriselearning.config.Config;
+
 /**
  * Created by Night on 2017/7/18.
  * Desc:
@@ -57,10 +59,20 @@ public class ExamActivity extends AppCompatActivity {
         mTvExamCredit = (TextView) findViewById(R.id.tv_exam_credit);
         mTvExamScore = (TextView) findViewById(R.id.tv_exam_score);
         mBtStartExam = (Button) findViewById(R.id.bt_start_exam);
+        final int grade = Config.sSp.getInt("grade", -1);
+        if (grade != -1) {
+            mBtStartExam.setText("查看答案");
+            mTvExamScore.setText(grade + "分");
+            mTvExamState.setText("已完成");
+        }
         mBtStartExam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ExamActivity.this, SpecificExamActivity.class));
+                if (grade == -1)
+                    startActivity(new Intent(ExamActivity.this, SpecificExamActivity.class));
+                else
+                    startActivity(new Intent(ExamActivity.this, ExamAnalysisActivity.class));
+
             }
         });
     }

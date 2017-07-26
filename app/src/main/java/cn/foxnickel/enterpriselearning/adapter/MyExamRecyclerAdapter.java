@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import cn.foxnickel.enterpriselearning.ExamActivity;
 import cn.foxnickel.enterpriselearning.R;
+import cn.foxnickel.enterpriselearning.config.Config;
 
 /**
  * Created by NickelFox on 2017/7/5.
@@ -34,10 +35,20 @@ public class MyExamRecyclerAdapter extends RecyclerView.Adapter<MyExamRecyclerAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mExamName.setText("新员工入职考试");
+        int grade = Config.sSp.getInt("grade", -1);
         if (position == 0) {
             holder.mExamScore.setTextSize(16);
-            holder.mExamScore.setText("未开始");
-            holder.mExamScore.setBackgroundColor(Color.WHITE);
+            if (grade == -1) {
+                holder.mExamScore.setText("未开始");
+                holder.mExamScore.setBackgroundColor(Color.WHITE);
+            } else {
+                holder.mExamScore.setText(grade + "分");
+                if (grade < 80 && grade >= 60) {
+                    holder.mExamScore.setBackgroundResource(R.drawable.shape_exam_score_yellow);
+                } else if (grade < 60) {
+                    holder.mExamScore.setBackgroundResource(R.drawable.shape_exam_score_red);
+                }
+            }
             holder.mExamTime.setText("2017-5-13 09:00—2017-5-20 00:00");
         } else if (position % 2 == 0) {
             holder.mExamScore.setText("80分");

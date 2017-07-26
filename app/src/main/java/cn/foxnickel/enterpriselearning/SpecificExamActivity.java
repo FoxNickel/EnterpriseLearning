@@ -2,6 +2,7 @@ package cn.foxnickel.enterpriselearning;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.util.SparseArrayCompat;
@@ -26,6 +27,7 @@ import java.util.List;
 
 import cn.foxnickel.enterpriselearning.bean.Exam;
 import cn.foxnickel.enterpriselearning.bean.Issue;
+import cn.foxnickel.enterpriselearning.config.Config;
 
 /**
  * Created by Night on 2017/7/19.
@@ -418,6 +420,10 @@ public class SpecificExamActivity extends AppCompatActivity implements View.OnCl
         }
         mExam.setGrade((int) (grade * 1.0 / mIssueList.size() * 100));
         finish();
+        Config.setDataList("issueList", mIssueList);
+        SharedPreferences.Editor editor = Config.sSp.edit();
+        editor.putInt("grade", (int) (grade * 1.0 / mIssueList.size() * 100));
+        editor.apply();
         startActivity(new Intent(this, ExamAnalysisActivity.class));
     }
 
