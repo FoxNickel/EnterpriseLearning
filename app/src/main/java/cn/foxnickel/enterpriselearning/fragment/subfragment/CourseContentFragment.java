@@ -49,6 +49,9 @@ public class CourseContentFragment extends Fragment {
         TextView textView = (TextView) mRootView.findViewById(R.id.tv_first_classification_name);
         String firstClassificationName = args.getString("firstClassificationName");
         textView.setText(firstClassificationName + " · 精选好课");
+        View courseRankView = mRootView.findViewById(R.id.courses_rank);
+        int bgPicId = args.getInt("bg_pic");
+        courseRankView.setBackgroundResource(bgPicId);
         List<String> list = new ArrayList<>();
         secondClassificationNameList = new ArrayList<>();
         thirdClassificationNameList = new ArrayList<>();
@@ -97,27 +100,18 @@ public class CourseContentFragment extends Fragment {
         secondClassificationNameList.add("通用技术");
         secondClassificationNameList.add("专业技术");
 
-        /*thirdClassificationNameList.add("Python");
-        thirdClassificationNameList.add("PHP");
-        thirdClassificationNameList.add("Java");
-        thirdClassificationNameList.add("C");
-        thirdClassificationNameList.add("c++");
-        thirdClassificationNameList.add("C#");
-        thirdClassificationNameList.add("HTML/CSS");
-        thirdClassificationNameList.add("Swift");
-        thirdClassificationNameList.add("Git");
-        thirdClassificationNameList.add("R");
-        thirdClassificationNameList.add("JavaScript");*/
+        list.add("Python");
+        list.add("PHP");
+        list.add("Java");
+        list.add("C");
+        list.add("C++");
+        list.add("C#");
+        list.add("HTML/CSS");
+        list.add("Swift");
+        list.add("Git");
+        list.add("R");
+        list.add("JavaScript");
 
-        list.add("防抖技术");
-        list.add("全景技术");
-        list.add("人脸技术");
-        list.add("HDR技术");
-        list.add("暗光高清拍摄技术");
-        list.add("手势识别技术");
-        list.add("3D立体成像技术");
-        list.add("场景检测与物体识别技术");
-        list.add("AR/VR技术");
         thirdClassificationNameList.add(list);
         list = new ArrayList<>();
         list.add("防抖技术");

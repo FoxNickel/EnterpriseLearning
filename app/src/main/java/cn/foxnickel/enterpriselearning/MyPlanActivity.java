@@ -11,6 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.foxnickel.enterpriselearning.adapter.MyPlanRecyclerAdapter;
 
 /**
@@ -25,11 +28,18 @@ public class MyPlanActivity extends AppCompatActivity {
     private AppBarLayout mAppBarLayout;
     private RecyclerView mRecyclerViewMyExam;
     private SwipeRefreshLayout mExamSwipeRefresh;
+    private List<String> mPlanNameList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_plan);
+
+        mPlanNameList = new ArrayList<>();
+        mPlanNameList.add("新员工入职计划");
+        mPlanNameList.add("Android强化:" + "\n\n" + "网络与数据存储");
+        mPlanNameList.add("Android强化:" + "\n\n" + "高级动画开发");
+
         initView();
     }
 
@@ -55,7 +65,7 @@ public class MyPlanActivity extends AppCompatActivity {
         mRecyclerViewMyExam = (RecyclerView) findViewById(R.id.recycler_view_plan);
         mExamSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        MyPlanRecyclerAdapter planContentRecyclerAdapter = new MyPlanRecyclerAdapter(this);
+        MyPlanRecyclerAdapter planContentRecyclerAdapter = new MyPlanRecyclerAdapter(this, mPlanNameList);
         mRecyclerViewMyExam.setLayoutManager(linearLayoutManager);
         mRecyclerViewMyExam.setAdapter(planContentRecyclerAdapter);
     }

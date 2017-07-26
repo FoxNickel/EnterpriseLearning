@@ -63,7 +63,7 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
 
     private void initBanner() {
         mBGABanner = (BGABanner) mRootView.findViewById(R.id.banner);
-        mBGABanner.setData(R.drawable.login_bg2, R.drawable.login_bg2, R.drawable.login_bg4, R.drawable.login_bg4);
+        mBGABanner.setData(R.drawable.arc_tech1, R.drawable.arc_tech2, R.drawable.arc_tech3, R.drawable.arc_tech4);
         mBGABanner.setDelegate(new BGABanner.Delegate() {
             @Override
             public void onBannerItemClick(BGABanner banner, View itemView, Object model, int position) {
@@ -90,10 +90,10 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
 
         mGridLayoutManager = new GridLayoutManager(getContext(), 2);
         mList = new ArrayList<>();
-        mList.add(new CourseRecommend("设计基础", "UI设计小锦囊", "成为UI设计师的正确打开方法", "3000人学习"));
-        mList.add(new CourseRecommend("Android", "Android常用异常集及解决方案", "介绍Android常用异常集及解决方案", "3000人学习"));
-        mList.add(new CourseRecommend("Android", "Android语音词典", "讲解第三方讯飞语音如何使用，如何实现数据解析", "3000人学习"));
-        mList.add(new CourseRecommend("Android", "APP性能优化之内存优化", "介绍内存优化的理论，优化的问题，方法等知识，如何实现数据解析", "3000人学习"));
+        mList.add(new CourseRecommend("暗光高清拍摄", "暗光高清拍摄技术", "暗光高清拍摄技术的正确打开方法", "30人学习"));
+        mList.add(new CourseRecommend("Android", "Android常用异常集及解决方案", "介绍Android常用异常集及解决方案", "200人学习"));
+        mList.add(new CourseRecommend("Java", "Java正则表达式", "讲解Java中正则表达式如何使用", "100人学习"));
+        mList.add(new CourseRecommend("Android", "APP性能优化之内存优化", "介绍内存优化的理论，优化的问题，方法等知识，如何实现数据解析", "25人学习"));
 
         mCourseRecommendAdapter = new CourseRecommendAdapter(getContext(), mList);
 
