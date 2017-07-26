@@ -92,6 +92,7 @@
         <activity android:name=".TaskActivity"/>
         <activity android:name=".MyTrainingActivity"/>
         <activity android:name=".MyTrainingDetailActivity"/>
+        <activity android:name=".SearchActivity"/>
     </application>
 
 </manifest>

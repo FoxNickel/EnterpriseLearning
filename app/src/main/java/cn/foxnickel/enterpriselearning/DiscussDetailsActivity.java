@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +34,7 @@ public class DiscussDetailsActivity extends AppCompatActivity implements View.On
     private ImageView mIvOpen;
     private TextView mTvQuestionContent;
     private Button mBtAnswer;
+    private TextView mTvQuestionFrom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,11 @@ public class DiscussDetailsActivity extends AppCompatActivity implements View.On
         mTvQuestionContent = (TextView) findViewById(R.id.tv_question_content);
         mBtAnswer = (Button) findViewById(R.id.bt_answer);
         mBtAnswer.setOnClickListener(this);
+        mTvQuestionFrom = (TextView) findViewById(R.id.tv_question_from);
+        String s = getIntent().getStringExtra("discussfrom");
+        if (!TextUtils.isEmpty(s)) {
+            mTvQuestionFrom.setText(s);
+        }
     }
 
     @Override

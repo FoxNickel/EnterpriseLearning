@@ -129,11 +129,11 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
     }
 
     private void setupVideo() {
-        String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
+        String source1 = "http://www.foxnickel.cn/team_intro.mp4";
         String name = "普通";
         SwitchVideoModel switchVideoModel = new SwitchVideoModel(name, source1);
 
-        String source2 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f30.mp4";
+        String source2 = "http://www.foxnickel.cn/team_intro.mp4";
         String name2 = "清晰";
         SwitchVideoModel switchVideoModel2 = new SwitchVideoModel(name2, source2);
 

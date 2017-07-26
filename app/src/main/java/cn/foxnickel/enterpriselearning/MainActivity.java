@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
                 break;
             case R.id.action_notification:
                 startActivity(new Intent(MainActivity.this, NotificationActivity.class));

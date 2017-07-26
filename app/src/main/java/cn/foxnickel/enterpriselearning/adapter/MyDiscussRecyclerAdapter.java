@@ -34,19 +34,19 @@ public class MyDiscussRecyclerAdapter extends AnimRecyclerViewAdapter<MyDiscussR
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (position % 2 != 0) {
+        if (position % 2 == 0) {
             holder.mTvDiscussName.setText("UI怎么切图");
-            holder.mTvDiscussContent.setText("[最新 沐曦尘x 的回答] ps里面有切片工具");
-            holder.mTvDiscussContent.setTextToHighlight("[最新 沐曦尘x 的回答]");
-            holder.mTvDiscussContent.setTextHighlightColor(R.color.colorPrimary);
+            holder.mTvDiscussContent.setText("[已采纳 123456小王 的回答]  ps里面有切片工\n具");
+            holder.mTvDiscussContent.setTextToHighlight("[已采纳 123456小王 的回答]");
+            holder.mTvDiscussContent.setTextHighlightColor(R.color.green);
             holder.mTvDiscussContent.setCaseInsensitive(false);
             holder.mTvDiscussContent.setHighlightMode(HighlightMode.TEXT);
             holder.mTvDiscussContent.highlight();
         } else {
             holder.mTvDiscussName.setText("有哪些浏览器支持css3？");
-            holder.mTvDiscussContent.setText("[已采纳 梦飞翔2 的回答] ie9+；chrome；flex\n以及主流浏览器");
-            holder.mTvDiscussContent.setTextToHighlight("[已采纳 梦飞翔2 的回答]");
-            holder.mTvDiscussContent.setTextHighlightColor(R.color.green);
+            holder.mTvDiscussContent.setText("[最新 123457小张 的回答] ie9+；chrome；flex以及主流浏览器");
+            holder.mTvDiscussContent.setTextToHighlight("[最新 123457小张 的回答]");
+            holder.mTvDiscussContent.setTextHighlightColor(R.color.colorPrimary);
             holder.mTvDiscussContent.setCaseInsensitive(false);
             holder.mTvDiscussContent.setHighlightMode(HighlightMode.TEXT);
             holder.mTvDiscussContent.highlight();
@@ -57,7 +57,7 @@ public class MyDiscussRecyclerAdapter extends AnimRecyclerViewAdapter<MyDiscussR
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 2;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -77,7 +77,7 @@ public class MyDiscussRecyclerAdapter extends AnimRecyclerViewAdapter<MyDiscussR
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mContext.startActivity(new Intent(mContext, DiscussDetailsActivity.class));
+                    mContext.startActivity(new Intent(mContext, DiscussDetailsActivity.class).putExtra("discussfrom", mTvDiscussFrom.getText().toString().trim()));
                 }
             });
         }

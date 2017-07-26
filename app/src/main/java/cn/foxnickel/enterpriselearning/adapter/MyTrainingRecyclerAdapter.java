@@ -52,7 +52,7 @@ public class MyTrainingRecyclerAdapter extends RecyclerView.Adapter<MyTrainingRe
                 startTrainingDetailActivity.putExtra("training_num", "报名人数:" + mList.get(position).getNum() + "人");
                 startTrainingDetailActivity.putExtra("training_place", "培训地点:" + mList.get(position).getPlace());
                 startTrainingDetailActivity.putExtra("training_start_time", "开始时间:" + mList.get(position).getStartTime());
-                startTrainingDetailActivity.putExtra("training_duration", "培训时长:" + mList.get(position).getDuration() + "小时");
+                startTrainingDetailActivity.putExtra("training_duration", "培训时长:" + mList.get(position).getDuration());
                 mContext.startActivity(startTrainingDetailActivity);
             }
         });
