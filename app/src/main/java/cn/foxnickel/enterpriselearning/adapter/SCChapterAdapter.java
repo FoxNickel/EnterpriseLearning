@@ -34,7 +34,6 @@ public class SCChapterAdapter extends RecyclerView.Adapter<SCChapterAdapter.View
         for (int i = 0; i < 7; i++) {
             isClicks.add(false);
         }
-        isClicks.set(1, true);
     }
 
     @Override

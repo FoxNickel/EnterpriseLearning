@@ -8,14 +8,15 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,6 +68,7 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
     private EditText mEtComment;
     private Button mBtRelease;
     private XLHRatingBar mRatingBar;
+    private AlertDialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,13 +147,13 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
 
         //增加封面
         ImageView imageView = new ImageView(this);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setImageResource(R.drawable.login_bg2);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        imageView.setImageResource(R.drawable.arc_tech1);
         mVpPlayer.setThumbImageView(imageView);
 
         //增加title
         mVpPlayer.getTitleTextView().setVisibility(View.VISIBLE);
-        mVpPlayer.getTitleTextView().setText("测试视频");
+      /*  mVpPlayer.getTitleTextView().setText("测试视频");*/
 
         //设置返回键
         mVpPlayer.getBackButton().setVisibility(View.GONE);
@@ -259,14 +261,27 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_evaluate) {
-            mEtComment.setText("");
+      /*      mEtComment.setText("");
             mRatingBar.setCountSelected(0);
             popupWindow.showAtLocation(
                     mVpPlayer,
                     Gravity.CENTER,
                     0,
-                    0);
-
+                    0);*/
+            mVpPlayer.onVideoPause();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            mDialog = builder.create();
+            View view = View.inflate(this, R.layout.popupwindow_course_score, null);
+            Button release = (Button) view.findViewById(R.id.bt_release);
+            release.setOnClickListener(this);
+            int density = (int) ScreenUtil.getDeviceDensity(this);
+            mDialog.setView(view, 0, 0, 0, 0);
+            mDialog.show();
+            Window dialogWindow = mDialog.getWindow();
+            WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+            lp.width = 300 * density;
+            lp.height = 300 * density;
+            dialogWindow.setAttributes(lp);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -285,7 +300,7 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.bt_release:
                 Toast.makeText(this, "评价成功", Toast.LENGTH_SHORT).show();
-                popupWindow.dismiss();
+                mDialog.cancel();
                 break;
         }
     }

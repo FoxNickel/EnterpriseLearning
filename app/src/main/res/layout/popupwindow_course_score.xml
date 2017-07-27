@@ -29,7 +29,7 @@
                     android:orientation="vertical">
         <EditText android:id="@+id/et_comment"
                   android:layout_width="match_parent"
-                  android:layout_height="match_parent"
+                  android:layout_height="100dp"
                   android:background="@null"
                   android:hint="评价：100字以内"
                   android:textSize="12sp"
