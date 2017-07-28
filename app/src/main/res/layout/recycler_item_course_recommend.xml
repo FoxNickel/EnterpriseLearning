@@ -6,14 +6,70 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="4dp"
-    android:background="@drawable/ripple_white">
+    android:background="@drawable/ripple_white"
+    app:cardCornerRadius="4dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/ripple_white">
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linear_layout"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/course_recommend_pic1">
+
+            <TextView
+                android:id="@+id/tv_course_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:text="这是课程名称"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_chapter_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:maxLines="2"
+            android:text="这是课程描述这是课程描述这是课程描述"
+            android:textSize="12sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_chapter_title"/>
+
+        <TextView
+            android:id="@+id/tv_chapter_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Android常用异常及解决方案Android常用异常及解决方案Android常用异常及解决方案Android常用异常及解决方案Android常用异常及解决方案"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear_layout"
+            app:layout_constraintHorizontal_bias="0.0"
+            />
 
         <TextView
             android:id="@+id/tv_learning_numbers"
@@ -23,63 +79,12 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
-            android:textSize="10sp"
+            android:text="300人学习"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_chapter_description"
-            tools:ignore="SmallSp"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_chapter_description"/>
 
-        <TextView
-            android:id="@+id/tv_chapter_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_chapter_title"
-            android:maxLines="2"
-            android:layout_marginRight="8dp"
-            android:textSize="10sp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            tools:ignore="SmallSp"/>
-
-        <TextView
-            android:id="@+id/tv_chapter_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="8dp"
-            android:textColor="@android:color/black"
-            android:textSize="14sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linear_layout"/>
-
-        <LinearLayout
-            android:id="@+id/linear_layout"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="0dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/tv_course_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:textColor="@android:color/white"
-                android:textSize="10sp"
-                tools:ignore="SmallSp"/>
-        </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>

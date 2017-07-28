@@ -77,7 +77,6 @@ public class CourseContentFragment extends Fragment {
         list.add("流程建模规范");
         list.add("流程管理优化");
         list.add("制度与平台管理");
-        list.add("项目管理工具与技巧");
         thirdClassificationNameList.add(list);
     }
 
@@ -111,7 +110,6 @@ public class CourseContentFragment extends Fragment {
         list.add("Git");
         list.add("R");
         list.add("JavaScript");
-
         thirdClassificationNameList.add(list);
         list = new ArrayList<>();
         list.add("防抖技术");

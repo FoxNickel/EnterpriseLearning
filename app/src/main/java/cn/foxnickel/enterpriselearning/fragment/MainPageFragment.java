@@ -68,8 +68,8 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onBannerItemClick(BGABanner banner, View itemView, Object model, int position) {
                 Intent startTrainingDetailActivity = new Intent(getContext(), TrainingDetailActivity.class);
-                startTrainingDetailActivity.putExtra("training_name", "这是培训名称");
-                startTrainingDetailActivity.putExtra("training_intro", "        这是培训介绍，这是培训介绍，这是培训介绍，这是培训介绍，这是培训介绍，这是培训介绍，这是培训介绍，这是培训介绍，这是培训介绍");
+                startTrainingDetailActivity.putExtra("training_name", "新员工入职培训");
+                startTrainingDetailActivity.putExtra("training_intro", "针对公司七月所有新进员工进行培训");
                 startTrainingDetailActivity.putExtra("training_num", "报名人数:36人");
                 startTrainingDetailActivity.putExtra("training_place", "培训地点:二楼会议室");
                 startTrainingDetailActivity.putExtra("training_start_time", "开始时间:2017年7月7日 12:00");

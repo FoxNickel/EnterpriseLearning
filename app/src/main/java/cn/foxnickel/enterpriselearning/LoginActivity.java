@@ -183,14 +183,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         protected Boolean doInBackground(Void... params) {
             // TODO: 删除下面的sleep并 attempt authentication against a network service.
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-
             // TODO: register the new account here.
             return true;
         }

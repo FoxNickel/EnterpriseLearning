@@ -139,7 +139,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/chapter_complete"
+                android:text="时长分布"
                 android:textSize="16sp"/>
 
             <View
@@ -147,12 +147,12 @@
                 android:layout_height="0.5dp"
                 android:background="@color/gray"/>
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/chart_chapter_complete"
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pie_chart_time"
                 android:layout_width="match_parent"
                 android:layout_height="300dp">
 
-            </com.github.mikephil.charting.charts.BarChart>
+            </com.github.mikephil.charting.charts.PieChart>
 
         </LinearLayout>
 

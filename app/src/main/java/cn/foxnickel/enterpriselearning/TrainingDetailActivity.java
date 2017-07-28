@@ -108,7 +108,7 @@ public class TrainingDetailActivity extends AppCompatActivity implements View.On
             case R.id.bt_sign_up:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("信息核实")
-                        .setMessage("请核实自己的信息确认无误后确定报名\n姓名：123456小王\n电话：13777777777")
+                        .setMessage("请核实自己的信息，确认无误后进行报名\n\n姓名：小王\n\n电话：18100171234")
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
