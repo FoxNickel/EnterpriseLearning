@@ -1,7 +1,7 @@
 package cn.foxnickel.enterpriselearning;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -11,8 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.concurrent.TimeUnit;
+
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 
 import static cn.foxnickel.enterpriselearning.R.id.et_password;
 import static cn.foxnickel.enterpriselearning.R.id.et_repassword;
@@ -29,7 +37,6 @@ public class RetriPasswordActivity extends AppCompatActivity implements View.OnC
     private AutoCompleteTextView mEtVerifyNumber;
     private Button mBtVerify;
     private EventHandler mEventHandler;
-    private CountDownTime mTime;
     private boolean isSuccess = false;
 
     @Override
@@ -69,7 +76,6 @@ public class RetriPasswordActivity extends AppCompatActivity implements View.OnC
         mEtVerifyNumber = (AutoCompleteTextView) findViewById(R.id.et_verify_number);
         mBtVerify = (Button) findViewById(R.id.bt_verify);
         Button btOk = (Button) findViewById(R.id.bt_ok);
-        mTime = new CountDownTime(60000, 1000);
         mBtVerify.setOnClickListener(this);
         btOk.setOnClickListener(this);
     }
@@ -85,7 +91,7 @@ public class RetriPasswordActivity extends AppCompatActivity implements View.OnC
             case R.id.bt_verify:
                 if (isMobileNO(userPhone) &&
                         isPassword(pass, repass)) {
-                    mTime.start();
+                    countDown();
                     SMSSDK.getVerificationCode("86", userPhone);
                     isSuccess = false;
                 }
@@ -108,6 +114,45 @@ public class RetriPasswordActivity extends AppCompatActivity implements View.OnC
                 isSuccess = false;
                 break;
         }
+    }
+
+    private void countDown() {
+        final long count = 60;
+        Observable.interval(0, 1, TimeUnit.SECONDS)
+                .take(count + 1)//take设置超过多少秒停止执行
+                .map(new Function<Long, Long>() {
+                    @Override
+                    public Long apply(Long aLong) throws Exception {
+                        return count - aLong;
+                    }
+                }).observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        mBtVerify.setEnabled(false);
+                        mBtVerify.setTextColor(Color.BLACK);
+                    }
+                }).subscribe(new Observer<Long>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+            }
+
+            @Override
+            public void onNext(Long value) {
+                mBtVerify.setText(value + "秒后重新开始");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                mBtVerify.setEnabled(true);
+                mBtVerify.setText("发送验证码");
+            }
+        });
     }
 
 
@@ -156,26 +201,6 @@ public class RetriPasswordActivity extends AppCompatActivity implements View.OnC
     protected void onDestroy() {
         super.onDestroy();
         SMSSDK.unregisterEventHandler(mEventHandler);
-    }
-
-    private class CountDownTime extends CountDownTimer {
-
-        //构造函数  第一个参数代表总的计时时长  第二个参数代表计时间隔  单位都是毫秒
-        CountDownTime(long millisInFuture, long countDownInterval) {
-            super(millisInFuture, countDownInterval);
-        }
-
-        @Override
-        public void onTick(long l) { //每计时一次回调一次该方法
-            mBtVerify.setClickable(false);
-            mBtVerify.setText(l / 1000 + "秒后重新开始");
-        }
-
-        @Override
-        public void onFinish() { //计时结束回调该方法
-            mBtVerify.setClickable(true);
-            mBtVerify.setText(R.string.verify);
-        }
     }
 
 }

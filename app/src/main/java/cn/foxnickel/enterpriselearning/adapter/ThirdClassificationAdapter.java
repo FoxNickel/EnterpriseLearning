@@ -2,6 +2,7 @@ package cn.foxnickel.enterpriselearning.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,9 @@ public class ThirdClassificationAdapter extends RecyclerView.Adapter<ThirdClassi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        if (TextUtils.equals(mThirdClassificationNameList.get(position), "更多")) {
+            holder.mTextView.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+        }
         holder.mTextView.setText(mThirdClassificationNameList.get(position));
     }
 

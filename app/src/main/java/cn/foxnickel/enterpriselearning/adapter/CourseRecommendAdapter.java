@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.foxnickel.enterpriselearning.R;
@@ -22,9 +23,11 @@ public class CourseRecommendAdapter extends RecyclerView.Adapter<CourseRecommend
     private List<CourseRecommend> mList;
     private Context mContext;
 
+    private List<Integer> mIntegers;
     public CourseRecommendAdapter(Context context, List<CourseRecommend> list) {
         mContext = context;
         mList = list;
+        mIntegers = new ArrayList<>();
     }
 
     int mCourseRecommendPic[] = {R.drawable.course_recommend_pic4, R.drawable.course_recommend_pic2,
@@ -38,7 +41,14 @@ public class CourseRecommendAdapter extends RecyclerView.Adapter<CourseRecommend
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mLinearLayout.setBackgroundResource(mCourseRecommendPic[(int) (Math.random() * mCourseRecommendPic.length)]);
+        int d = (int) (Math.random() * mCourseRecommendPic.length);
+        if (mIntegers.size() > 0) {
+            while (mIntegers.contains(d)) {
+                d = (int) (Math.random() * mCourseRecommendPic.length);
+            }
+        }
+        mIntegers.add(d);
+        holder.mLinearLayout.setBackgroundResource(mCourseRecommendPic[d]);
         CourseRecommend courseRecommend = mList.get(position);
         holder.mCourseName.setText(courseRecommend.getCourseName());
         holder.mChapterTitle.setText(courseRecommend.getChapterTitle());
@@ -51,6 +61,9 @@ public class CourseRecommendAdapter extends RecyclerView.Adapter<CourseRecommend
                 mContext.startActivity(new Intent(mContext, SpecificCouseActivity.class));
             }
         });
+        if (position == mList.size() - 1) {
+            mIntegers = new ArrayList<>();
+        }
     }
 
     @Override

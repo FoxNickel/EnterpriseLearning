@@ -77,7 +77,8 @@ public class CourseContentFragment extends Fragment {
         list.add("流程建模规范");
         list.add("流程管理优化");
         list.add("制度与平台管理");
-        list.add("项目管理工具与技巧");
+        list.add("更多");
+
         thirdClassificationNameList.add(list);
     }
 
@@ -90,9 +91,9 @@ public class CourseContentFragment extends Fragment {
         list.add("项目成本管理");
         list.add("项目计划");
         list.add("项目执行");
-        list.add("项目结束");
         list.add("项目管理十大模板");
-        list.add("项目管理工具与技巧");
+        list.add("更多");
+
         thirdClassificationNameList.add(list);
     }
 
@@ -110,19 +111,20 @@ public class CourseContentFragment extends Fragment {
         list.add("Swift");
         list.add("Git");
         list.add("R");
+        list.add("更多");
         list.add("JavaScript");
-
         thirdClassificationNameList.add(list);
         list = new ArrayList<>();
         list.add("防抖技术");
         list.add("全景技术");
         list.add("人脸技术");
         list.add("HDR技术");
-        list.add("暗光高清拍摄技术");
+        list.add("更多");
         list.add("手势识别技术");
         list.add("3D立体成像技术");
-        list.add("场景检测与物体识别技术");
-        list.add("AR/VR技术");
+        list.add("暗光高清拍摄技术");
+
+
         thirdClassificationNameList.add(list);
     }
 

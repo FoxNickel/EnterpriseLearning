@@ -1,5 +1,6 @@
 package cn.foxnickel.enterpriselearning;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -290,7 +291,7 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab_note:
-                Toast.makeText(this, "记笔记", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SpecificCouseActivity.this, WriteNoteActivity.class));
                 break;
             case R.id.fab_comment:
                 Toast.makeText(this, "发讨论", Toast.LENGTH_SHORT).show();

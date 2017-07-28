@@ -108,7 +108,7 @@ public class TrainingDetailActivity extends AppCompatActivity implements View.On
             case R.id.bt_sign_up:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("信息核实")
-                        .setMessage("请核实自己的信息确认无误后确定报名\n姓名：123456小王\n电话：13777777777")
+                        .setMessage("请核实自己的信息确认无误后确定报名\n姓名：张伟\n电话：1388583728")
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -130,7 +130,7 @@ public class TrainingDetailActivity extends AppCompatActivity implements View.On
         mDownloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
         mRequest = new DownloadManager.Request(Uri.parse("http://ucdl.25pp.com/fs08/2017/01/20/2/2_87a290b5f041a8b512f0bc51595f839a.apk"));
 
-        mRequest.setTitle("大象投教");
+        mRequest.setTitle("新员工入职培训");
         mRequest.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
         mRequest.setAllowedOverRoaming(false);
         mRequest.setMimeType("application/vnd.android.package-archive");

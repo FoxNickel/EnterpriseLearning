@@ -150,7 +150,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         if (cancel) {
             focusView.requestFocus();
         } else {
-            showProgress(true);
+            showProgress(false);
             mAuthTask = new UserLoginTask(jobNumber, password);
             mAuthTask.execute((Void) null);
         }
