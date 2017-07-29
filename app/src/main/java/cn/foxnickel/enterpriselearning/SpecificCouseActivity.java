@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -32,6 +33,7 @@ import com.shuyu.gsyvideoplayer.GSYPreViewManager;
 import com.shuyu.gsyvideoplayer.GSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -132,11 +134,13 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
     }
 
     private void setupVideo() {
-        String source1 = "http://www.foxnickel.cn/team_intro.mp4";
+        File file = new File(Environment.getExternalStorageDirectory(), "1.mp4");
+
+        String source1 = file.getPath();
         String name = "普通";
         SwitchVideoModel switchVideoModel = new SwitchVideoModel(name, source1);
 
-        String source2 = "http://www.foxnickel.cn/team_intro.mp4";
+        String source2 = file.getPath();
         String name2 = "清晰";
         SwitchVideoModel switchVideoModel2 = new SwitchVideoModel(name2, source2);
 
@@ -294,7 +298,7 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
                 startActivity(new Intent(SpecificCouseActivity.this, WriteNoteActivity.class));
                 break;
             case R.id.fab_comment:
-                Toast.makeText(this, "发讨论", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SpecificCouseActivity.this, WriteDiscussActivity.class));
                 break;
             case R.id.fab_collect:
                 Toast.makeText(this, "收藏课程", Toast.LENGTH_SHORT).show();

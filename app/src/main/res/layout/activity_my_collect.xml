@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/my_plan"
+                android:text="@string/my_collect"
                 android:textColor="@android:color/white"
                 android:id="@+id/tv_my_plan"
                 android:textSize="16sp"/>

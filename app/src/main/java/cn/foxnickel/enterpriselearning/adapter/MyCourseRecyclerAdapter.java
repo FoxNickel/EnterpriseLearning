@@ -24,6 +24,7 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
     private Context mContext;
     private List<Course> mCourseList;
 
+
     public MyCourseRecyclerAdapter(Context context, List<Course> courseList) {
         mContext = context;
         mCourseList = courseList;
@@ -39,6 +40,9 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
     public void onBindViewHolder(ViewHolder holder, int position) {
         Course course = mCourseList.get(position);
         holder.mCourseName.setText(course.getCourseName());
+        int learningRate = course.getLearningRate();
+        holder.mTvLearnRate.setText("已学习" + learningRate + "%");
+        holder.mTvLastLearnTime.setText("上次学习时间：" + course.getLastLearningTime());
         holder.mCoursePic.setImageResource(Integer.valueOf(course.getCoursePic()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,10 +60,13 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView mCourseName;
         private ImageView mCoursePic;
-
+        private TextView mTvLearnRate;
+        private TextView mTvLastLearnTime;
         public ViewHolder(View itemView) {
             super(itemView);
             mCourseName = (TextView) itemView.findViewById(R.id.tv_course_name);
+            mTvLearnRate = (TextView) itemView.findViewById(R.id.tv_learn_rate);
+            mTvLastLearnTime = (TextView) itemView.findViewById(R.id.tv_last_learn_time);
             mCoursePic = (ImageView) itemView.findViewById(R.id.iv_course_pic);
         }
     }

@@ -37,7 +37,7 @@ public class MyExamRecyclerAdapter extends RecyclerView.Adapter<MyExamRecyclerAd
         holder.mExamName.setText("新员工入职考试");
         int grade = Config.sSp.getInt("grade", -1);
         if (position == 0) {
-            holder.mExamScore.setTextSize(16);
+            holder.mExamScore.setTextSize(11.66f);
             if (grade == -1) {
                 holder.mExamScore.setText("未开始");
                 holder.mExamScore.setBackgroundColor(Color.WHITE);

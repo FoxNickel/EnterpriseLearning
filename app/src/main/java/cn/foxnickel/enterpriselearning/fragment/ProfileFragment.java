@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import cn.foxnickel.enterpriselearning.HistoryActivity;
 import cn.foxnickel.enterpriselearning.LearningDataActivity;
+import cn.foxnickel.enterpriselearning.MyCollectActivity;
 import cn.foxnickel.enterpriselearning.MyDiscussActivity;
 import cn.foxnickel.enterpriselearning.MyPlanActivity;
 import cn.foxnickel.enterpriselearning.MyTrainingActivity;
@@ -39,6 +40,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private ConstraintLayout mLayoutMyTask;
     private ConstraintLayout mLayoutMyNote;
     private ConstraintLayout mLayoutMyTraining;
+    private TextView mTvMyCollect;
+    private ImageView mIvMyCollect;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -58,6 +61,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 initView();
             }
         });
+        initView();
         return mRootView;
     }
 
@@ -94,6 +98,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         mLayoutMyNote.setOnClickListener(this);
         mLayoutMyTraining = (ConstraintLayout) mRootView.findViewById(R.id.layout_my_training);
         mLayoutMyTraining.setOnClickListener(this);
+        mTvMyCollect = (TextView) mRootView.findViewById(R.id.tv_my_collect);
+        mTvMyCollect.setOnClickListener(this);
+        mIvMyCollect = (ImageView) mRootView.findViewById(R.id.iv_my_collect);
+        mIvMyCollect.setOnClickListener(this);
     }
 
     @Override
@@ -116,6 +124,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             case R.id.iv_my_history:
             case R.id.tv_my_history:
                 startActivity(new Intent(getContext(), HistoryActivity.class));
+                break;
+            case R.id.iv_my_collect:
+            case R.id.tv_my_collect:
+                startActivity(new Intent(getContext(), MyCollectActivity.class));
                 break;
             case R.id.layout_my_plan:
                 startActivity(new Intent(getContext(), MyPlanActivity.class));

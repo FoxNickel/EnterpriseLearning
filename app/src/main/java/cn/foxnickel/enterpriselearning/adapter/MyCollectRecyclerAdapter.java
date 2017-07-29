@@ -16,23 +16,23 @@ import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
 import cn.foxnickel.enterpriselearning.bean.Course;
 
 /**
- * Created by NickelFox on 2017/7/5.
+ * Created by NickelFox on 2017/7/28.
  */
 
-public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecyclerAdapter.ViewHolder> {
+public class MyCollectRecyclerAdapter extends RecyclerView.Adapter<MyCollectRecyclerAdapter.ViewHolder> {
 
     private Context mContext;
     private List<Course> mCourseList;
 
 
-    public MyCourseRecyclerAdapter(Context context, List<Course> courseList) {
+    public MyCollectRecyclerAdapter(Context context, List<Course> courseList) {
         mContext = context;
         mCourseList = courseList;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_item_my_course, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_item_my_collect, parent, false);
         return new ViewHolder(view);
     }
 
@@ -43,7 +43,7 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
         int learningRate = course.getLearningRate();
         if (learningRate != 0) {
             holder.mTvLearnRate.setText("已学习" + learningRate + "%");
-            holder.mTvLastLearnTime.setText("上次学习时间："+course.getLastLearningTime());
+            holder.mTvLastLearnTime.setText("上次学习时间：" + course.getLastLearningTime());
         } else {
             holder.mTvLearnRate.setText("开始学习");
             holder.mTvLastLearnTime.setText("");
@@ -68,6 +68,7 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
         private ImageView mCoursePic;
         private TextView mTvLearnRate;
         private TextView mTvLastLearnTime;
+
         public ViewHolder(View itemView) {
             super(itemView);
             mCourseName = (TextView) itemView.findViewById(R.id.tv_course_name);

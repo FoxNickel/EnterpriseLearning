@@ -51,11 +51,11 @@ public class MyCourseFragment extends Fragment {
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         List<Course> courseList = new ArrayList<>();
-        courseList.add(new Course("Java-从入门到精通", Integer.toString(R.drawable.java1), 4));
-        courseList.add(new Course("Android网络与数据存储", Integer.toString(R.drawable.android2), 5));
-        courseList.add(new Course("Python自动化运维篇", Integer.toString(R.drawable.python1), 4));
-        courseList.add(new Course("Java面向对象", Integer.toString(R.drawable.java2), 4));
-        courseList.add(new Course("Python装饰器", Integer.toString(R.drawable.python2), 4));
+        courseList.add(new Course("Java-从入门到精通", Integer.toString(R.drawable.java1), 4, "2017-07-25", 10));
+        courseList.add(new Course("Android网络与数据存储", Integer.toString(R.drawable.android2), 5, "2017-07-24", 80));
+        courseList.add(new Course("Python自动化运维篇", Integer.toString(R.drawable.python1), 4, "2017-07-23", 70));
+        courseList.add(new Course("Java面向对象", Integer.toString(R.drawable.java2), 4, "2017-07-21", 80));
+        courseList.add(new Course("Python装饰器", Integer.toString(R.drawable.python2), 4, "2017-07-22", 100));
         MyCourseRecyclerAdapter myCourseRecyclerAdapter = new MyCourseRecyclerAdapter(getContext(), courseList);
         mRecyclerView.setAdapter(myCourseRecyclerAdapter);
         mSwipeRefresh = (SwipeRefreshLayout) mRootView.findViewById(R.id.course_swipe_refresh);

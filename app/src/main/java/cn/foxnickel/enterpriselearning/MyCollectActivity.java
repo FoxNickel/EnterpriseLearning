@@ -14,32 +14,28 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.foxnickel.enterpriselearning.adapter.MyPlanRecyclerAdapter;
+import cn.foxnickel.enterpriselearning.adapter.MyCollectRecyclerAdapter;
+import cn.foxnickel.enterpriselearning.bean.Course;
+
+import static com.mob.MobSDK.getContext;
 
 /**
  * Created by Night on 2017/7/13.
  * Desc:My plan activity
  */
 
-public class MyPlanActivity extends AppCompatActivity {
+public class MyCollectActivity extends AppCompatActivity {
 
     private TextView mTvPlanName;
     private Toolbar mToolbar;
     private AppBarLayout mAppBarLayout;
-    private RecyclerView mRecyclerViewMyExam;
+    private RecyclerView mRecyclerViewMyTask;
     private SwipeRefreshLayout mExamSwipeRefresh;
-    private List<String> mPlanNameList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_plan);
-
-        mPlanNameList = new ArrayList<>();
-        mPlanNameList.add("新员工入职计划");
-        mPlanNameList.add("Android强化:" + "\n\n" + "网络与数据存储");
-        mPlanNameList.add("Android强化:" + "\n\n" + "高级动画开发");
-
+        setContentView(R.layout.activity_my_collect);
         initView();
     }
 
@@ -62,11 +58,17 @@ public class MyPlanActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout);
-        mRecyclerViewMyExam = (RecyclerView) findViewById(R.id.recycler_view_plan);
+        mRecyclerViewMyTask = (RecyclerView) findViewById(R.id.recycler_view_plan);
         mExamSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        MyPlanRecyclerAdapter planContentRecyclerAdapter = new MyPlanRecyclerAdapter(this, mPlanNameList);
-        mRecyclerViewMyExam.setLayoutManager(linearLayoutManager);
-        mRecyclerViewMyExam.setAdapter(planContentRecyclerAdapter);
+        List<Course> courseList = new ArrayList<>();
+        courseList.add(new Course("Java-从入门到精通", Integer.toString(R.drawable.java1), 4, "2017-07-25", 10));
+        courseList.add(new Course("Android网络与数据存储", Integer.toString(R.drawable.android2), 5, "2017-07-24", 80));
+        courseList.add(new Course("Python自动化运维篇", Integer.toString(R.drawable.python1), 4, "2017-07-23", 70));
+        courseList.add(new Course("Java面向对象", Integer.toString(R.drawable.java2), 4, "2017-07-21", 80));
+        courseList.add(new Course("Python装饰器", Integer.toString(R.drawable.python2), 4, "2017-07-22", 100));
+        MyCollectRecyclerAdapter myCourseRecyclerAdapter = new MyCollectRecyclerAdapter(getContext(), courseList);
+        mRecyclerViewMyTask.setLayoutManager(linearLayoutManager);
+        mRecyclerViewMyTask.setAdapter(myCourseRecyclerAdapter);
     }
 }

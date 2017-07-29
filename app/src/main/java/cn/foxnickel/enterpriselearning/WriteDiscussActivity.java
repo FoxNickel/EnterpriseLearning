@@ -13,11 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Created by Night on 2017/7/16.
+ * Created by Night on 2017/7/28.
  * Desc:
  */
 
-public class WriteNoteActivity extends AppCompatActivity {
+public class WriteDiscussActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private EditText mEtWriteReply;
@@ -51,16 +51,16 @@ public class WriteNoteActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
         mEtWriteReply = (EditText) findViewById(R.id.et_write_reply);
-        mEtWriteReply.setHint("请输入笔记内容");
+        mEtWriteReply.setHint("请输入评论内容");
         mBtRelease = (Button) findViewById(R.id.bt_release);
         mBtRelease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(WriteNoteActivity.this, "发布成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(WriteDiscussActivity.this, "发布成功", Toast.LENGTH_SHORT).show();
             }
         });
         mTvTitle = (TextView) findViewById(R.id.tv_title);
-        mTvTitle.setText("记笔记");
+        mTvTitle.setText("写评论");
     }
 
 

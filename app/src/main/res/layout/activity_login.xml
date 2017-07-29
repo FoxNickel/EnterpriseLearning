@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="cn.foxnickel.enterpriselearning.LoginActivity"
     android:fitsSystemWindows="true"
-    android:background="@drawable/login_bg2">
+>
 
     <ProgressBar
         android:id="@+id/login_progress"

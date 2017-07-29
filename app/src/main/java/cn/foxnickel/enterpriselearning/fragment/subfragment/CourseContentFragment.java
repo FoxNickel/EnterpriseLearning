@@ -119,10 +119,11 @@ public class CourseContentFragment extends Fragment {
         list.add("全景技术");
         list.add("人脸技术");
         list.add("HDR技术");
-        list.add("更多");
         list.add("手势识别技术");
         list.add("3D立体成像技术");
         list.add("暗光高清拍摄技术");
+        list.add("更多");
+
 
 
         thirdClassificationNameList.add(list);

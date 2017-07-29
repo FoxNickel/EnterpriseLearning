@@ -20,7 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
-        >
+    >
         <activity android:name=".MainActivity">
         </activity>
         <activity
@@ -97,6 +97,8 @@
         <activity android:name=".MyTrainingDetailActivity"/>
         <activity android:name=".SearchActivity"/>
         <activity android:name=".WriteNoteActivity"/>
+        <activity android:name=".WriteDiscussActivity"/>
+        <activity android:name=".MyCollectActivity"/>
     </application>
 
 </manifest>
