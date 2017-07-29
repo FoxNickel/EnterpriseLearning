@@ -33,6 +33,7 @@
                 android:textSize="16sp"/>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
+
     <TextView
         android:id="@+id/tv_question_from"
         android:layout_width="wrap_content"
@@ -43,6 +44,7 @@
         android:text="源自：1-1课程介绍"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"/>
+
     <TextView
         android:id="@+id/tv_question_name"
         android:layout_width="wrap_content"
@@ -55,6 +57,7 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_question_from"/>
+
     <TextView
         android:id="@+id/tv_askname"
         android:layout_width="wrap_content"
@@ -66,6 +69,7 @@
         android:textSize="12sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_question_name"/>
+
     <TextView
         android:id="@+id/tv_answer_count"
         android:layout_width="wrap_content"
@@ -80,6 +84,7 @@
         app:layout_constraintLeft_toRightOf="@+id/tv_askname"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"/>
+
     <TextView
         android:id="@+id/tv_question_content"
         android:layout_width="wrap_content"
@@ -95,6 +100,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_askname"/>
+
     <ImageView
         android:id="@+id/iv_open"
         android:layout_width="wrap_content"
@@ -107,6 +113,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_question_content"
         app:srcCompat="@drawable/ic_open_gray"/>
+
     <TextView
         android:id="@+id/textView17"
         android:layout_width="0dp"
@@ -123,6 +130,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_open"/>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="0dp"
@@ -137,19 +145,22 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rl_all_answer"
             android:layout_width="0dp"
-            android:layout_height="0dp" tools:layout_editor_absoluteX="8dp"
+            android:layout_height="0dp"
+            tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
 
         </android.support.v7.widget.RecyclerView>
     </android.support.v4.widget.SwipeRefreshLayout>
-    <Button android:id="@+id/bt_answer"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:text="我要回答"
-            android:textColor="@color/gray_bg"
-            android:textSize="16sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/swipe_refresh"/>
+
+    <Button
+        android:id="@+id/bt_answer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="我要回答"
+        android:textColor="@color/gray_bg"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/swipe_refresh"/>
 </android.support.constraint.ConstraintLayout>

@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
     <application
         android:name=".config.Config"
         android:allowBackup="true"
@@ -19,7 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
-    >
+        >
         <activity android:name=".MainActivity">
         </activity>
         <activity
@@ -72,9 +73,10 @@
         <activity android:name=".PlanActivity"/>
         <activity android:name=".SpecificPlanActivity"/>
         <activity android:name="MyPlanActivity"/>
-        <activity android:name=".PlayVideoActivity"
-                  android:configChanges="keyboardHidden|orientation|screenSize"
-                  android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".PlayVideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".MyDiscussActivity"/>
         <activity android:name=".CourseListActivity">
         </activity>
@@ -85,9 +87,10 @@
         <activity android:name=".ExamActivity"/>
         <activity android:name=".SpecificExamActivity"/>
         <activity android:name=".ExamAnalysisActivity"/>
-        <activity android:name=".PlayPPTActivity"
-                  android:configChanges="keyboardHidden|orientation|screenSize"
-                  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".PlayPPTActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
         <activity android:name=".TaskActivity"/>
         <activity android:name=".MyTrainingActivity"/>
