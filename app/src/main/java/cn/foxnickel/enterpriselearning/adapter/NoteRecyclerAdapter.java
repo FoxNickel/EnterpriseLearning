@@ -34,6 +34,8 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<NoteRecyclerAdapte
         return new ViewHolder(view);
     }
 
+    boolean expanded = false;
+
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
@@ -41,14 +43,12 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<NoteRecyclerAdapte
         holder.mContent.setText(mList.get(position).getContent());
         holder.mSource.setText(mList.get(position).getSourse());
         holder.mExpand.setOnClickListener(new View.OnClickListener() {
-            boolean expanded = false;
 
             @Override
             public void onClick(View v) {
                 if (expanded) {
                     holder.mContent.setMaxLines(2);
                     holder.mExpand.setText("展开");
-                    holder.mSource.setVisibility(View.GONE);
                     expanded = false;
                 } else {
                     holder.mContent.setMaxLines(9999);
@@ -86,6 +86,21 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<NoteRecyclerAdapte
             mExpand = (TextView) itemView.findViewById(R.id.tv_expand);
             mDelete = (ImageView) itemView.findViewById(R.id.iv_delete);
             mSource = (TextView) itemView.findViewById(R.id.tv_source);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (expanded) {
+                        mContent.setMaxLines(2);
+                        mExpand.setText("展开");
+                        expanded = false;
+                    } else {
+                        mContent.setMaxLines(9999);
+                        mExpand.setText("收起");
+                        mSource.setVisibility(View.VISIBLE);
+                        expanded = true;
+                    }
+                }
+            });
         }
     }
 }

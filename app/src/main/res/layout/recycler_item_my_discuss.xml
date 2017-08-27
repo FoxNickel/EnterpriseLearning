@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:paddingEnd="16dp"
         android:paddingRight="16dp"
+        android:background="@drawable/ripple_white"
         android:paddingStart="16dp">
         <TextView android:id="@+id/tv_discuss_name"
                   android:layout_width="wrap_content"

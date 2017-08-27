@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ImageView;
 
 import com.shuyu.gsyvideoplayer.GSYPreViewManager;
 import com.shuyu.gsyvideoplayer.GSYVideoPlayer;
@@ -60,11 +59,6 @@ public class PlayVideoActivity extends AppCompatActivity {
 
         mVpPlayer.setUp(list, true, "");
 
-        //增加封面
-        ImageView imageView = new ImageView(this);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setImageResource(R.drawable.login_bg2);
-        mVpPlayer.setThumbImageView(imageView);
 
         //增加title
         mVpPlayer.getTitleTextView().setVisibility(View.VISIBLE);

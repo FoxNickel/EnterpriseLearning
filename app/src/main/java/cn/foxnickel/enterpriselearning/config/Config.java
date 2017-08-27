@@ -25,6 +25,9 @@ public class Config extends MobApplication {
     public static SharedPreferences sSp;
 
     public static String KEY_REMEMBER_PAS = "KEY_REMEMBER_PAS";
+    public static String KEY_NOTIFICATION = "KEY_NOTIFICATION";
+    public static String KEY_WIFI_OPEN = "KEY_WIFI_OPEN";
+
     public static ExecutorService fixedThreadPool;
 
     @Override

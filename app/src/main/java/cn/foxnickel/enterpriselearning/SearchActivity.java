@@ -46,6 +46,7 @@ public class SearchActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private LinearLayout mLinearLayout;
     private TextView mTvCourseCount;
+    private SearchView.SearchAutoComplete searchAutoComplete;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,9 +66,10 @@ public class SearchActivity extends AppCompatActivity {
         mSearchView = (SearchView) findViewById(R.id.search_view);
         mSearchView.setIconified(false);
         mSearchView.setSubmitButtonEnabled(true);
-        final TextView textView = (TextView) mSearchView
-                .findViewById(android.support.v7.appcompat.R.id.search_src_text);
         mViewPager = (ViewPager) findViewById(R.id.view_pager_search);
+
+        searchAutoComplete = (SearchView.SearchAutoComplete) mSearchView.findViewById(R.id.search_src_text);
+        searchAutoComplete.setThreshold(1);//设置触发查询的最少字符数
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(SearchCourseFragment.newInstance());
         fragmentList.add(SearchTaskFragment.newInstance());
@@ -151,7 +153,7 @@ public class SearchActivity extends AppCompatActivity {
             public boolean onSuggestionClick(int position) {
                 Cursor c = (Cursor) mAdapter.getItem(position);
                 String query = c.getString(c.getColumnIndex("name"));
-                textView.setText(query);
+                searchAutoComplete.setText(query);
                 mTabLayout.setVisibility(View.VISIBLE);
                 mViewPager.setVisibility(View.VISIBLE);
                 mLinearLayout.setVisibility(View.VISIBLE);
@@ -164,7 +166,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private Cursor queryData(String key) {
         SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + "music.db", null);
-        Cursor cursor = null;
+        Cursor cursor;
         try {
             String querySql = "select * from tb_music where name like '%" + key + "%'";
             cursor = db.rawQuery(querySql, null);
@@ -192,11 +194,24 @@ public class SearchActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
+                if (TextUtils.isEmpty(searchAutoComplete.getText().toString().trim())) {
+                    finish();
+                } else {
+                    searchAutoComplete.setText("");
+                }
                 break;
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (TextUtils.isEmpty(searchAutoComplete.getText().toString().trim())) {
+            finish();
+        } else {
+            searchAutoComplete.setText("");
+        }
     }
 }

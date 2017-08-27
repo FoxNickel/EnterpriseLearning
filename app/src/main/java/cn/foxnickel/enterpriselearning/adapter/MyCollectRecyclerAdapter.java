@@ -68,9 +68,10 @@ public class MyCollectRecyclerAdapter extends RecyclerView.Adapter<MyCollectRecy
         private ImageView mCoursePic;
         private TextView mTvLearnRate;
         private TextView mTvLastLearnTime;
-
+        private View itemView;
         public ViewHolder(View itemView) {
             super(itemView);
+            this.itemView = itemView;
             mCourseName = (TextView) itemView.findViewById(R.id.tv_course_name);
             mTvLearnRate = (TextView) itemView.findViewById(R.id.tv_learn_rate);
             mTvLastLearnTime = (TextView) itemView.findViewById(R.id.tv_last_learn_time);

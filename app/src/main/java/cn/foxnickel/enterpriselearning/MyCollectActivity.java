@@ -17,8 +17,6 @@ import java.util.List;
 import cn.foxnickel.enterpriselearning.adapter.MyCollectRecyclerAdapter;
 import cn.foxnickel.enterpriselearning.bean.Course;
 
-import static com.mob.MobSDK.getContext;
-
 /**
  * Created by Night on 2017/7/13.
  * Desc:My plan activity
@@ -55,8 +53,10 @@ public class MyCollectActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
         mAppBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout);
         mRecyclerViewMyTask = (RecyclerView) findViewById(R.id.recycler_view_plan);
         mExamSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
@@ -67,7 +67,7 @@ public class MyCollectActivity extends AppCompatActivity {
         courseList.add(new Course("Python自动化运维篇", Integer.toString(R.drawable.python1), 4, "2017-07-23", 70));
         courseList.add(new Course("Java面向对象", Integer.toString(R.drawable.java2), 4, "2017-07-21", 80));
         courseList.add(new Course("Python装饰器", Integer.toString(R.drawable.python2), 4, "2017-07-22", 100));
-        MyCollectRecyclerAdapter myCourseRecyclerAdapter = new MyCollectRecyclerAdapter(getContext(), courseList);
+        MyCollectRecyclerAdapter myCourseRecyclerAdapter = new MyCollectRecyclerAdapter(MyCollectActivity.this, courseList);
         mRecyclerViewMyTask.setLayoutManager(linearLayoutManager);
         mRecyclerViewMyTask.setAdapter(myCourseRecyclerAdapter);
     }

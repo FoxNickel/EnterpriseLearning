@@ -22,7 +22,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
@@ -84,8 +83,10 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,11 +151,6 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
 
         mVpPlayer.setUp(list, true, "");
 
-        //增加封面
-        ImageView imageView = new ImageView(this);
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setImageResource(R.drawable.arc_tech1);
-        mVpPlayer.setThumbImageView(imageView);
 
         //增加title
         mVpPlayer.getTitleTextView().setVisibility(View.VISIBLE);

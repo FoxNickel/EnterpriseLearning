@@ -9,7 +9,9 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_white_gray_border"
+    >
 
         <TextView
             android:id="@+id/tv_training_name"
