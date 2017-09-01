@@ -1,9 +1,11 @@
 package cn.foxnickel.enterpriselearning;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -69,11 +71,24 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_sign_out:
-                finish();
-                SharedPreferences.Editor editor = Config.sSp.edit();
-                editor.putBoolean(Config.KEY_REMEMBER_PAS, false);
-                editor.apply();
-                startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
+                builder.setTitle("")
+                        .setMessage("确定要退出吗？")
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }).setPositiveButton("退出", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        SharedPreferences.Editor editor = Config.sSp.edit();
+                        editor.putBoolean(Config.KEY_REMEMBER_PAS, false);
+                        editor.apply();
+                        startActivity(new Intent(SettingsActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                    }
+                }).show();
                 break;
         }
     }

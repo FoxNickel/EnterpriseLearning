@@ -3,11 +3,11 @@
               android:layout_width="100dp"
               android:layout_height="50dp"
               android:orientation="vertical"
-              android:background="#f5f6f8">
+>
     <Button android:id="@+id/bt_reply"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@null"
+            android:background="@drawable/ripple_button_red"
             android:text="回复"
             android:textColor="@android:color/black"
     />

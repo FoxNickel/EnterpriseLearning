@@ -156,7 +156,7 @@
         android:id="@+id/bt_answer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/ripple_button_red"
         android:text="我要回答"
         android:textColor="@color/gray_bg"
         android:textSize="16sp"

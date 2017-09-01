@@ -48,8 +48,10 @@ public class WriteDiscussActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
         mEtWriteReply = (EditText) findViewById(R.id.et_write_reply);
         mEtWriteReply.setHint("请输入评论内容");
         mBtRelease = (Button) findViewById(R.id.bt_release);

@@ -7,7 +7,8 @@
 >
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+    >
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="0dp"
@@ -331,7 +332,7 @@
                 android:layout_marginLeft="64dp"
                 android:layout_marginRight="64dp"
                 android:layout_marginTop="75dp"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/ripple_button_red"
                 android:text="开始答题"
                 android:id="@+id/bt_start_exam"
                 app:layout_constraintLeft_toLeftOf="parent"

@@ -1,17 +1,22 @@
 package cn.foxnickel.enterpriselearning;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
@@ -55,6 +60,8 @@ public class SpecificExamActivity extends AppCompatActivity implements View.OnCl
     //记录多选选项
     private int[] selectIds;
     private SparseArrayCompat<Integer> mIvSparseArray;
+    private ConstraintLayout mClExam;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +70,7 @@ public class SpecificExamActivity extends AppCompatActivity implements View.OnCl
         initView();
     }
 
+    float lastX = 0, x;
     private void initView() {
         mCtCountTime = (Chronometer) findViewById(R.id.ct_count_time);
         mCtCountTime.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
@@ -80,16 +88,26 @@ public class SpecificExamActivity extends AppCompatActivity implements View.OnCl
         mIvSparseArray.put(5, R.drawable.ic_b_red);
         mIvSparseArray.put(6, R.drawable.ic_c_red);
         mIvSparseArray.put(7, R.drawable.ic_d_red);
+        mIvSparseArray.put(8, R.drawable.ic_a_rec_gray);
+        mIvSparseArray.put(9, R.drawable.ic_b_rec_gray);
+        mIvSparseArray.put(10, R.drawable.ic_c_rec_gray);
+        mIvSparseArray.put(11, R.drawable.ic_d_rec_gray);
+        mIvSparseArray.put(12, R.drawable.ic_a_rec_red);
+        mIvSparseArray.put(13, R.drawable.ic_b_rec_red);
+        mIvSparseArray.put(14, R.drawable.ic_c_rec_red);
+        mIvSparseArray.put(15, R.drawable.ic_d_rec_red);
         mCtCountTime.start();
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackPressed();
             }
         });
         mQuestiobCount = (TextView) findViewById(R.id.tv_question_count);
@@ -111,66 +129,6 @@ public class SpecificExamActivity extends AppCompatActivity implements View.OnCl
         lloptions[2] = (LinearLayout) findViewById(R.id.ll_c);
         lloptions[3] = (LinearLayout) findViewById(R.id.ll_d);
 
-        for (int i = 0; i < lloptions.length; i++) {
-            final int a = i;
-            lloptions[i].setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            for (int j = 0; j < lloptions.length; j++) {
-                                ivOptions[j].setImageResource(mIvSparseArray.get(j));
-                            }
-                            ivOptions[a].setImageResource(mIvSparseArray.get(a + 4));
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            ivOptions[a].setImageResource(mIvSparseArray.get(a));
-                            break;
-                        default:
-                            break;
-                    }
-                    return false;
-                }
-            });
-            tvOptions[i].setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            for (int j = 0; j < lloptions.length; j++) {
-                                ivOptions[j].setImageResource(mIvSparseArray.get(j));
-                            }
-                            ivOptions[a].setImageResource(mIvSparseArray.get(a + 4));
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            ivOptions[a].setImageResource(mIvSparseArray.get(a));
-                            break;
-                        default:
-                            break;
-                    }
-                    return false;
-                }
-            });
-            ivOptions[i].setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            for (int j = 0; j < lloptions.length; j++) {
-                                ivOptions[j].setImageResource(mIvSparseArray.get(j));
-                            }
-                            ivOptions[a].setImageResource(mIvSparseArray.get(a + 4));
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            ivOptions[a].setImageResource(mIvSparseArray.get(a));
-                            break;
-                        default:
-                            break;
-                    }
-                    return false;
-                }
-            });
-        }
         for (ImageView ivOption : ivOptions) {
             ivOption.setOnClickListener(this);
         }
@@ -189,7 +147,112 @@ public class SpecificExamActivity extends AppCompatActivity implements View.OnCl
         dataInit();
         mTvExamName.setText(mExam.getExamName());
         startTest(0);
+        int density = getDeviceDensity();
+        int slideDis = 5 * density;
 
+        mClExam = (ConstraintLayout) findViewById(R.id.cl_exam);
+        mClExam.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        lastX = event.getX();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        x = event.getX();
+                        Log.e("TAG", (x - lastX) + "");
+                        Log.e("TAG", (lastX - x) + "");
+                        Log.e("TAG", (8 * getDeviceDensity()) + "");
+
+                        if ((x - lastX) > 0) {
+                            goPrevious();
+                        } else if ((lastX - x) > 0) {
+                            goNext();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+        for (int i = 0; i < lloptions.length; i++) {
+            final int a = i;
+            lloptions[i].setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    Issue issue = mIssueList.get(current);
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN:
+                            doActionDown(issue, a);
+                            break;
+                        case MotionEvent.ACTION_UP:
+                            doActionUp(issue, a);
+                            break;
+                        default:
+                            break;
+                    }
+                    return false;
+                }
+            });
+            tvOptions[i].setOnTouchListener(new View.OnTouchListener() {
+                Issue issue = mIssueList.get(current);
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    Issue issue = mIssueList.get(current);
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN:
+                            doActionDown(issue, a);
+                            break;
+                        case MotionEvent.ACTION_UP:
+                            doActionUp(issue, a);
+                            break;
+                        default:
+                            break;
+                    }
+                    return false;
+                }
+            });
+            ivOptions[i].setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    Issue issue = mIssueList.get(current);
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN:
+                            doActionDown(issue, a);
+                            break;
+                        case MotionEvent.ACTION_UP:
+                            doActionUp(issue, a);
+                            break;
+                        default:
+                            break;
+                    }
+                    return false;
+                }
+            });
+        }
+    }
+
+    private void doActionUp(Issue issue, int a) {
+        Log.e("TAG", issue.getType() + ":a");
+        if (issue.getType() == 0) {
+            ivOptions[a].setImageResource(mIvSparseArray.get(a));
+        } else {
+            ivOptions[a].setImageResource(mIvSparseArray.get(a + 8));
+        }
+    }
+
+    private void doActionDown(Issue issue, int a) {
+        if (issue.getType() == 0) {
+            for (int j = 0; j < lloptions.length; j++) {
+                ivOptions[j].setImageResource(mIvSparseArray.get(j));
+            }
+            ivOptions[a].setImageResource(mIvSparseArray.get(a + 4));
+        } else {
+            ivOptions[a].setImageResource(mIvSparseArray.get(a + 12));
+        }
     }
 
     private void dataInit() {
@@ -419,6 +482,7 @@ public class SpecificExamActivity extends AppCompatActivity implements View.OnCl
             }
         }
         mExam.setGrade((int) (grade * 1.0 / mIssueList.size() * 100));
+        mCtCountTime.stop();
         finish();
         Config.setDataList("issueList", mIssueList);
         SharedPreferences.Editor editor = Config.sSp.edit();
@@ -454,14 +518,14 @@ public class SpecificExamActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void resetCheckeds(int position) {
-        for (int i = 0; i < ivOptions.length; i++) {
-            ivOptions[i].setImageResource(mIvSparseArray.get(i));
+        for (int i = 0; i < 4; i++) {
+            ivOptions[i].setImageResource(mIvSparseArray.get(i + 8));
         }
-
+        Log.e("TAG", "checkeds come in");
         Issue question = mIssueList.get(position);
         for (int selectedId : question.getSelectedIds()) {
             if (selectedId != -1) {
-                ivOptions[selectedId].setImageResource(mIvSparseArray.get(selectedId + 4));
+                ivOptions[selectedId].setImageResource(mIvSparseArray.get(selectedId + 12));
             }
         }
     }
@@ -470,12 +534,39 @@ public class SpecificExamActivity extends AppCompatActivity implements View.OnCl
         for (int i = 0; i < ivOptions.length; i++) {
             ivOptions[i].setImageResource(mIvSparseArray.get(i));
         }
-
+        Log.e("TAG", "checked come in");
         Issue question = mIssueList.get(position);
         int selectedId = question.getSelectedId();
         if (selectedId != -1) {
             ivOptions[selectedId].setImageResource(mIvSparseArray.get(selectedId + 4));
         }
+    }
 
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SpecificExamActivity.this);
+        builder.setTitle("")
+                .setMessage("确定要退出考试吗？")
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mCtCountTime.stop();
+                finish();
+            }
+        }).show();
+
+    }
+
+    private int getDeviceDensity() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager wm = (WindowManager) getSystemService(
+                Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metrics);
+        return (int) metrics.density;
     }
 }

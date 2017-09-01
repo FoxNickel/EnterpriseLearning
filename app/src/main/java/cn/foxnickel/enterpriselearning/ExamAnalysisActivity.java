@@ -1,18 +1,25 @@
 package cn.foxnickel.enterpriselearning;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.athkalia.emphasis.EmphasisTextView;
@@ -53,6 +60,9 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
     private int[] selectIds;
     private List<Issue> mIssueList;
     int grade;
+    private float lastX, x;
+    private ConstraintLayout mClExam;
+    private ScrollView mScrollView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +72,19 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void initView() {
+        mScrollView = (ScrollView) findViewById(R.id.sv_exam);
+        mScrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    mScrollView.requestDisallowInterceptTouchEvent(false);
+                } else {
+                    mScrollView.requestDisallowInterceptTouchEvent(true);
+                }
+                return false;
+            }
+        });
+
         String strJson = Config.sSp.getString("issueList", null);
         Gson gson = new Gson();
         mIssueList = gson.fromJson(strJson, new TypeToken<List<Issue>>() {
@@ -109,6 +132,7 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
         mAnswerArray.put(3, "C");
         mAnswerArray.put(4, "D");
 
+        mIvSparseArray = new SparseArrayCompat<>();
         mIvSparseArray.put(0, R.drawable.ic_a_gray);
         mIvSparseArray.put(1, R.drawable.ic_b_gray);
         mIvSparseArray.put(2, R.drawable.ic_c_gray);
@@ -117,8 +141,44 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
         mIvSparseArray.put(5, R.drawable.ic_b_red);
         mIvSparseArray.put(6, R.drawable.ic_c_red);
         mIvSparseArray.put(7, R.drawable.ic_d_red);
+        mIvSparseArray.put(8, R.drawable.ic_a_rec_gray);
+        mIvSparseArray.put(9, R.drawable.ic_b_rec_gray);
+        mIvSparseArray.put(10, R.drawable.ic_c_rec_gray);
+        mIvSparseArray.put(11, R.drawable.ic_d_rec_gray);
+        mIvSparseArray.put(12, R.drawable.ic_a_rec_red);
+        mIvSparseArray.put(13, R.drawable.ic_b_rec_red);
+        mIvSparseArray.put(14, R.drawable.ic_c_rec_red);
+        mIvSparseArray.put(15, R.drawable.ic_d_rec_red);
         mBtLastQuestion.setOnClickListener(this);
         mBtNextQuestion.setOnClickListener(this);
+        mClExam = (ConstraintLayout) findViewById(R.id.cl_exam);
+        mClExam.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        lastX = event.getX();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        x = event.getX();
+                        Log.e("TAG", (x - lastX) + "");
+                        Log.e("TAG", (lastX - x) + "");
+                        Log.e("TAG", (80 * getDeviceDensity()) + "");
+
+                        if ((x - lastX) > 8 * getDeviceDensity()) {
+                            goPrevious();
+                        } else if ((lastX - x) > 8 * getDeviceDensity()) {
+                            goNext();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     @Override
@@ -198,6 +258,11 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
                     sb.append(mAnswerArray.get(ids + 1));
                 }
             }
+            if (question.isRight()) {
+                mTvYourAnswer.setTextColor(Color.GREEN);
+            } else {
+                mTvYourAnswer.setTextColor(Color.RED);
+            }
             mTvYourAnswer.setText(sb);
             sb = new StringBuilder();
             String s = question.getRight().trim();
@@ -222,14 +287,14 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void resetCheckeds(int position) {
-        for (int i = 0; i < ivOptions.length; i++) {
-            ivOptions[i].setImageResource(mIvSparseArray.get(i));
+        for (int i = 0; i < 4; i++) {
+            ivOptions[i].setImageResource(mIvSparseArray.get(i + 8));
         }
-
+        Log.e("TAG", "checkeds come in");
         Issue question = mIssueList.get(position);
         for (int selectedId : question.getSelectedIds()) {
             if (selectedId != -1) {
-                ivOptions[selectedId].setImageResource(mIvSparseArray.get(selectedId + 4));
+                ivOptions[selectedId].setImageResource(mIvSparseArray.get(selectedId + 12));
             }
         }
     }
@@ -238,11 +303,18 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
         for (int i = 0; i < ivOptions.length; i++) {
             ivOptions[i].setImageResource(mIvSparseArray.get(i));
         }
-
         Issue question = mIssueList.get(position);
         int selectedId = question.getSelectedId();
         if (selectedId != -1) {
             ivOptions[selectedId].setImageResource(mIvSparseArray.get(selectedId + 4));
         }
+    }
+
+    private int getDeviceDensity() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager wm = (WindowManager) getSystemService(
+                Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metrics);
+        return (int) metrics.density;
     }
 }

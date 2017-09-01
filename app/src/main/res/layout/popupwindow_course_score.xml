@@ -3,7 +3,6 @@
               xmlns:xlhRatingBar="http://schemas.android.com/apk/res-auto"
               android:layout_width="184dp"
               android:layout_height="168dp"
-              android:background="#FFFF"
               android:orientation="vertical" android:weightSum="1">
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -40,7 +39,7 @@
                 android:layout_height="40dp"
                 android:text="发布"
                 android:id="@+id/bt_release"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/ripple_button_red"
                 android:layout_alignParentBottom="true"
                 android:textColor="@color/gray_bg"/>
     </RelativeLayout>
