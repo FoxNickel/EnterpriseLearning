@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="viewpagerflextitle-1.0.3">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/803b39a6e23b4cd554bfe7fc0c8e318fac869429/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/803b39a6e23b4cd554bfe7fc0c8e318fac869429/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.xu.viewpagerflextitle/viewpagerflextitle/1.0.3/ecefec096bfcf44e7155db7c6f546a111a8ceba/viewpagerflextitle-1.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

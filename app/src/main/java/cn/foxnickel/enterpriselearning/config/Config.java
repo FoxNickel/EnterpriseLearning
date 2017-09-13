@@ -1,6 +1,7 @@
 package cn.foxnickel.enterpriselearning.config;
 
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
 import android.text.Layout;
 import android.util.Log;
@@ -8,12 +9,16 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.itheima.retrofitutils.ItheimaHttp;
 import com.mob.MobApplication;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import cn.foxnickel.enterpriselearning.bean.DaoMaster;
+import cn.foxnickel.enterpriselearning.bean.DaoSession;
 
 /**
  * Created by Night on 2017/7/4
@@ -33,8 +38,10 @@ public class Config extends MobApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        setupDatabase();
         sSp = PreferenceManager.getDefaultSharedPreferences(this);
         fixedThreadPool = Executors.newFixedThreadPool(5);
+        ItheimaHttp.init(this, " http://www.oschina.net");
     }
 
     public static int getTextViewHeight(TextView pTextView) {
@@ -78,5 +85,25 @@ public class Config extends MobApplication {
         Gson gson = new Gson();
         datalist = gson.fromJson(strJson, new TypeToken<List<T>>() {
         }.getType());
+    }
+
+    private static DaoSession daoSession;
+
+    /**
+     * 配置数据库
+     */
+    private void setupDatabase() {
+        //创建数据库shop.db"
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "shop.db", null);
+        //获取可写数据库
+        SQLiteDatabase db = helper.getWritableDatabase();
+        //获取数据库对象
+        DaoMaster daoMaster = new DaoMaster(db);
+        //获取Dao对象管理者
+        daoSession = daoMaster.newSession();
+    }
+
+    public static DaoSession getDaoInstant() {
+        return daoSession;
     }
 }

@@ -179,11 +179,35 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             mPassword = password;
         }
 
+        int loginFlag = 1;
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: 删除下面的sleep并 attempt authentication against a network service.
 
             // TODO: register the new account here.
+            //TODO: 与阿中交互
+           /* Request request = ItheimaHttp.newPostRequest("action/apiv2/banner");//apiUrl格式：
+            Map<String, Object> map = new HashMap<>();
+            map.put("catalog", 1);
+            request.putParamsMap(map);
+
+            Call call = ItheimaHttp.send(request, new HttpResponseListener<LoginRequest>() {
+                @Override
+                public void onResponse(LoginRequest bean) {
+                    loginFlag = bean.getStatus();
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable e) {
+                    loginFlag = 1;
+                    Log.e("TAG", e.getMessage() + "");
+                }
+            });
+            if (loginFlag == 0) {
+                return true;
+            } else {
+                return false;
+            }*/
             return true;
         }
 

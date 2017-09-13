@@ -90,10 +90,10 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
 
         mGridLayoutManager = new GridLayoutManager(getContext(), 2);
         mList = new ArrayList<>();
-        mList.add(new CourseRecommend("暗光高清拍摄", "暗光高清拍摄技术", "暗光高清拍摄技术的正确打开方法", "30人学习"));
-        mList.add(new CourseRecommend("Android", "Android常用异常集及解决方案", "介绍Android常用异常集及解决方案", "200人学习"));
-        mList.add(new CourseRecommend("Java", "Java正则表达式", "讲解Java中正则表达式如何使用", "100人学习"));
-        mList.add(new CourseRecommend("Android", "APP性能优化之内存优化", "介绍内存优化的理论，优化的问题，方法等知识，如何实现数据解析", "25人学习"));
+        mList.add(new CourseRecommend("Web", "Web UI设计理论入门", "介绍Web UI的入门课程", "30人学习"));
+        mList.add(new CourseRecommend("Android", "kotlin从零基础到进阶", "介绍kotlin基础、进阶知识", "200人学习"));
+        mList.add(new CourseRecommend("Java", "Java基础-反射", "讲解Java中反射如何使用", "100人学习"));
+        mList.add(new CourseRecommend("Android", "Android自动化测试", "介绍Android自动化测试相关知识", "25人学习"));
 
         mCourseRecommendAdapter = new CourseRecommendAdapter(getContext(), mList);
 
@@ -131,11 +131,11 @@ public class MainPageFragment extends Fragment implements View.OnClickListener {
                 mList.clear();
                 mList.add(new CourseRecommend("Android", "Android-QQ登录", "介绍1、登录流程" +
                         "2、官方DEMO" +
-                        "3、友盟实现第三方登录", "3000人学习"));
-                mList.add(new CourseRecommend("Android", "Android Multidex原理及实现", "介绍如何通过DexClassLoader动态加载分dex。", "3000人学习"));
-                mList.add(new CourseRecommend("Android", "自定义实现顶部粘性下拉刷新效果", "利用贝塞尔曲线，自定义实现粘性下拉控件", "3000人学习"));
+                        "3、友盟实现第三方登录", "30人学习"));
+                mList.add(new CourseRecommend("Android", "Android Multidex原理及实现", "介绍如何通过DexClassLoader动态加载分dex。", "20人学习"));
+                mList.add(new CourseRecommend("Android", "自定义实现顶部粘性下拉刷新效果", "利用贝塞尔曲线，自定义实现粘性下拉控件", "40人学习"));
                 mList.add(new CourseRecommend("Android", "Android-心愿分享", "介绍：1、调用手机系统图库\n" +
-                        "2、添加自定义字体", "3000人学习"));
+                        "2、添加自定义字体", "10人学习"));
                 mCourseRecommendAdapter.notifyDataSetChanged();
                 break;
         }

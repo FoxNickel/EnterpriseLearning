@@ -66,7 +66,7 @@ public class MyExamRecyclerAdapter extends RecyclerView.Adapter<MyExamRecyclerAd
 
     @Override
     public int getItemCount() {
-        return 8;
+        return 1;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

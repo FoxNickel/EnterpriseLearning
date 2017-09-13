@@ -13,6 +13,7 @@ import java.util.List;
 
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.bean.Note;
+import cn.foxnickel.enterpriselearning.config.Config;
 
 /**
  * Created by NickelFox on 2017/7/8.
@@ -41,7 +42,7 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<NoteRecyclerAdapte
 
         holder.mTime.setText(mList.get(position).getTime());
         holder.mContent.setText(mList.get(position).getContent());
-        holder.mSource.setText(mList.get(position).getSourse());
+        holder.mSource.setText(mList.get(position).getSource());
         holder.mExpand.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -62,7 +63,9 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<NoteRecyclerAdapte
         holder.mDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Config.getDaoInstant().getNoteDao().deleteAll();
                 mList.remove(position);
+                Config.getDaoInstant().getNoteDao().insertInTx(mList);
                 notifyDataSetChanged();
                 Toast.makeText(mContext, "删除了一条笔记", Toast.LENGTH_SHORT).show();
                 notifyDataSetChanged();

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ViewPagerTitle="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -34,19 +35,20 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.TabLayout
-        android:layout_width="0dp"
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="0dp"
+        android:background="@color/colorAccent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        android:id="@+id/tabLayout"
-        android:background="@color/colorAccent"
         app:tabIndicatorColor="@color/colorPrimary"
         app:tabSelectedTextColor="@color/colorPrimary"
-        app:tabTextColor="@android:color/black">
+        app:tabTextColor="@android:color/black"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
 
     </android.support.design.widget.TabLayout>
 
@@ -54,16 +56,15 @@
         android:id="@+id/view_pager_notification"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="0dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="1.0" android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp">
 
     </android.support.v4.view.ViewPager>
 

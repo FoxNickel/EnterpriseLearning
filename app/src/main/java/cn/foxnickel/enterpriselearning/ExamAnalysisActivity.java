@@ -53,6 +53,7 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
     private Button mBtNextQuestion;
     private ImageView[] ivOptions;
     private TextView[] tvOptions;
+    private LinearLayout[] lloptions;
     private SparseArrayCompat<Integer> mIvSparseArray;
     private SparseArrayCompat<String> mAnswerArray;
     private int current = 0;
@@ -60,9 +61,11 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
     private int[] selectIds;
     private List<Issue> mIssueList;
     int grade;
-    private float lastX, x;
+    private float lastX, x, lastY, y, startX, endX, s0, e0, s1, e1, s2, e2;
+
     private ConstraintLayout mClExam;
     private ScrollView mScrollView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,17 +76,6 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
 
     private void initView() {
         mScrollView = (ScrollView) findViewById(R.id.sv_exam);
-        mScrollView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    mScrollView.requestDisallowInterceptTouchEvent(false);
-                } else {
-                    mScrollView.requestDisallowInterceptTouchEvent(true);
-                }
-                return false;
-            }
-        });
 
         String strJson = Config.sSp.getString("issueList", null);
         Gson gson = new Gson();
@@ -108,6 +100,7 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
         mQuestionName = (EmphasisTextView) findViewById(R.id.emphasisTextView);
         ivOptions = new ImageView[4];
         tvOptions = new TextView[4];
+        lloptions = new LinearLayout[4];
         ivOptions[0] = (ImageView) findViewById(R.id.iv_a);
         ivOptions[1] = (ImageView) findViewById(R.id.iv_b);
         ivOptions[2] = (ImageView) findViewById(R.id.iv_c);
@@ -116,6 +109,10 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
         tvOptions[1] = (TextView) findViewById(R.id.tv_b);
         tvOptions[2] = (TextView) findViewById(R.id.tv_c);
         tvOptions[3] = (TextView) findViewById(R.id.tv_d);
+        lloptions[0] = (LinearLayout) findViewById(R.id.ll_a);
+        lloptions[1] = (LinearLayout) findViewById(R.id.ll_b);
+        lloptions[2] = (LinearLayout) findViewById(R.id.ll_c);
+        lloptions[3] = (LinearLayout) findViewById(R.id.ll_d);
         mTvRightAnswer = (TextView) findViewById(R.id.tv_right_answer);
         mLlAnswer = (LinearLayout) findViewById(R.id.ll_answer);
         mTvAnalysis = (TextView) findViewById(R.id.tv_analysis);
@@ -158,18 +155,27 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         lastX = event.getX();
+                        lastY = event.getY();
+                        startX = lastX;
                         break;
                     case MotionEvent.ACTION_MOVE:
+                        x = event.getX();
+                        y = event.getY();
+                        int offsetX = (int) (x - lastX);
+                        int offsetY = (int) (y - lastY);
+                        if ((mClExam.getBottom() + offsetY) <= mClExam.getWidth()) {
+                            mClExam.layout(mClExam.getLeft(), mClExam.getTop() + offsetY,
+                                    mClExam.getRight(), mClExam.getBottom() + offsetY);
+                            lastX = x;
+                            lastY = y;
+                        }
                         break;
                     case MotionEvent.ACTION_UP:
-                        x = event.getX();
-                        Log.e("TAG", (x - lastX) + "");
-                        Log.e("TAG", (lastX - x) + "");
-                        Log.e("TAG", (80 * getDeviceDensity()) + "");
-
-                        if ((x - lastX) > 8 * getDeviceDensity()) {
+                        endX = event.getX();
+                        Log.e("TAG", "come in");
+                        if ((endX - startX) > 8) {
                             goPrevious();
-                        } else if ((lastX - x) > 8 * getDeviceDensity()) {
+                        } else if ((startX - endX) > 8) {
                             goNext();
                         }
                         break;
@@ -179,6 +185,7 @@ public class ExamAnalysisActivity extends AppCompatActivity implements View.OnCl
                 return true;
             }
         });
+
     }
 
     @Override

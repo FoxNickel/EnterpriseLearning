@@ -9,8 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.adapter.SCChapterAdapter;
+import cn.foxnickel.enterpriselearning.bean.Chapter;
+import cn.foxnickel.enterpriselearning.bean.Course;
 
 /**
  * Created by Night on 2017/7/8.
@@ -21,14 +25,12 @@ public class SCChaptersFragment extends Fragment {
     private View mRootView;
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
-
-
+    private Course mCourse;
+    private ArrayList<Chapter> mList;
     public SCChaptersFragment() {
-        // Required empty public constructor
     }
 
     public static SCChaptersFragment newInstance() {
-
         return new SCChaptersFragment();
     }
 
@@ -44,7 +46,10 @@ public class SCChaptersFragment extends Fragment {
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recycler_view_my_exam);
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        SCChapterAdapter scChapterAdapter = new SCChapterAdapter(getContext());
+        mList = new ArrayList<>();
+        mCourse = getArguments().getParcelable("course");
+
+        SCChapterAdapter scChapterAdapter = new SCChapterAdapter(getContext(), mCourse.getChapters());
         mRecyclerView.setAdapter(scChapterAdapter);
     }
 }

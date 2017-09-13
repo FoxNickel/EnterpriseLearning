@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ import java.util.List;
 import cn.foxnickel.enterpriselearning.PlayPPTActivity;
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
+import cn.foxnickel.enterpriselearning.bean.Chapter;
+import cn.foxnickel.enterpriselearning.utils.Resources;
 
 /**
  * Created by NickelFox on 2017/7/5.
@@ -24,14 +27,16 @@ import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
 
 public class SCChapterAdapter extends RecyclerView.Adapter<SCChapterAdapter.ViewHolder> {
 
+    private List<Chapter> mList;
     private Context mContext;
     private List<Boolean> isClicks;//控件是否被点击,默认为false，如果被点击，改变值，控件根据值改变自身颜色
 
 
-    public SCChapterAdapter(Context context) {
+    public SCChapterAdapter(Context context, List<Chapter> list) {
         mContext = context;
         isClicks = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
+        mList = list;
+        for (int i = 0; i < mList.size(); i++) {
             isClicks.add(false);
         }
     }
@@ -44,58 +49,30 @@ public class SCChapterAdapter extends RecyclerView.Adapter<SCChapterAdapter.View
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        switch (position) {
-            case 0:
-                holder.mIVStop.setVisibility(View.GONE);
-                holder.mChapterName.setText("第1章 webUI课程简介");
-                holder.mChapterName.setTextSize(14);
-                holder.mChapterTime.setVisibility(View.GONE);
-                break;
-            case 1:
-                holder.mChapterName.setText("1-1课程介绍");
-                holder.mChapterName.setTextSize(12);
-                break;
-            case 2:
-                holder.mIVStop.setVisibility(View.GONE);
-                holder.mChapterName.setText("第2章 从设计角度初识web页面");
-                holder.mChapterName.setTextSize(14);
-                holder.mChapterTime.setVisibility(View.GONE);
-                break;
-            case 3:
-                holder.mChapterName.setText("2-1 webUI是什么");
-                holder.mChapterName.setTextSize(12);
-                break;
-            case 4:
-                holder.mChapterName.setText("2-2 关于分辨率");
-                holder.mChapterName.setTextSize(12);
-                break;
-            case 5:
-                holder.mChapterName.setText("2-3 web的基本分类");
-                holder.mChapterName.setTextSize(12);
-                break;
-            case 6:
-                holder.mIVStop.setBackgroundResource(R.drawable.ic_ppt_gray);
-                holder.mChapterName.setText("2-4 网页是如何实现的");
-                holder.mChapterName.setTextSize(12);
-                break;
-            default:
-                break;
+        final Chapter chapter = mList.get(position);
+        if (chapter.isChapter()) {
+            holder.mIVStop.setVisibility(View.GONE);
+            holder.mChapterName.setTextSize(14);
+            holder.mChapterTime.setVisibility(View.GONE);
+            holder.itemView.setClickable(false);
+        } else {
+            holder.mIVStop.setVisibility(View.VISIBLE);
+            holder.mChapterName.setTextSize(12);
+            holder.mChapterTime.setVisibility(View.VISIBLE);
         }
-
+        holder.mChapterName.setText(chapter.getChapterName());
         if (isClicks.get(position)) {
             Log.e("TAG", "come in");
-            if (position == 6) {
+            if (chapter.getResources() == Resources.PPT) {
                 holder.mIVStop.setBackgroundResource(R.drawable.ic_ppt_red);
             } else {
                 holder.mIVStop.setBackgroundResource(R.drawable.ic_stop_red_24dp);
                 SpecificCouseActivity.mVpPlayer.getTitleTextView().setText(holder.mChapterName.getText().toString());
-                SpecificCouseActivity.mVpPlayer.startPlayLogic();
-
             }
             holder.mChapterName.setTextColor(Color.argb(255, 253, 47, 81));
             holder.mChapterTime.setTextColor(Color.argb(255, 253, 47, 81));
         } else {
-            if (position == 6) {
+            if (chapter.getResources() == Resources.PPT) {
                 holder.mIVStop.setBackgroundResource(R.drawable.ic_ppt_gray);
             } else {
                 holder.mIVStop.setBackgroundResource(R.drawable.ic_stop_gray_24dp);
@@ -106,16 +83,22 @@ public class SCChapterAdapter extends RecyclerView.Adapter<SCChapterAdapter.View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i = 0; i < isClicks.size(); i++) {
-                    isClicks.set(i, false);
-                }
-                isClicks.set(position, true);
-                Log.e("TAG", position + "");
-                notifyDataSetChanged();
-                if (position != 6) {
-                } else {
-                    SpecificCouseActivity.mVpPlayer.onVideoPause();
-                    mContext.startActivity(new Intent(mContext, PlayPPTActivity.class));
+                if (!chapter.isChapter()) {
+                    for (int i = 0; i < isClicks.size(); i++) {
+                        isClicks.set(i, false);
+                    }
+                    isClicks.set(position, true);
+                    Log.e("TAG", position + "");
+                    notifyDataSetChanged();
+                    if (chapter.getResources() == Resources.PPT) {
+                        SpecificCouseActivity.mVpPlayer.onVideoPause();
+                        mContext.startActivity(new Intent(mContext, PlayPPTActivity.class));
+                    } else if (chapter.getResources() == Resources.VIDEO) {
+                        if (!TextUtils.isEmpty(chapter.getUrl())) {
+                            SpecificCouseActivity.mVpPlayer.setUp(chapter.getUrl(), false, chapter.getChapterName());
+                            SpecificCouseActivity.mVpPlayer.startPlayLogic();
+                        }
+                    }
                 }
             }
         });
@@ -125,7 +108,7 @@ public class SCChapterAdapter extends RecyclerView.Adapter<SCChapterAdapter.View
 
     @Override
     public int getItemCount() {
-        return 7;
+        return mList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

@@ -1,14 +1,25 @@
 package cn.foxnickel.enterpriselearning.bean;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Property;
+
+import java.io.Serializable;
+
 /**
  * Created by Night on 2017/7/23.
  * Desc:Note bean
  */
-
-public class Note {
-
+@Entity
+public class Note implements Serializable {
+    static final long serialVersionUID = 42L;
+    @Property(nameInDb = "NormalUserID")
+    private int mNormalUserID;
+    @Property(nameInDb = "CourseId")
     private int mCourseId;
-    private String mSourse;
+    @Property(nameInDb = "Source")
+    private String mSource;
+    @Property(nameInDb = "Content")
     private String mContent;
 
     public String getTime() {
@@ -21,18 +32,33 @@ public class Note {
 
     private String mTime;
 
-    public Note(String sourse, String content, String time) {
-        mSourse = sourse;
+    public Note(String source, String content, String time) {
+        mSource = source;
         mContent = content;
         mTime = time;
     }
 
-    public String getSourse() {
-        return mSourse;
+    @Generated(hash = 364999443)
+    public Note(int mNormalUserID, int mCourseId, String mSource, String mContent,
+                String mTime) {
+        this.mNormalUserID = mNormalUserID;
+        this.mCourseId = mCourseId;
+        this.mSource = mSource;
+        this.mContent = mContent;
+        this.mTime = mTime;
     }
 
-    public void setSourse(String sourse) {
-        mSourse = sourse;
+    @Generated(hash = 1272611929)
+    public Note() {
+    }
+
+
+    public String getSource() {
+        return mSource;
+    }
+
+    public void setSource(String source) {
+        mSource = source;
     }
 
     public String getContent() {
@@ -42,4 +68,46 @@ public class Note {
     public void setContent(String content) {
         mContent = content;
     }
+
+    public int getMNormalUserID() {
+        return this.mNormalUserID;
+    }
+
+    public void setMNormalUserID(int mNormalUserID) {
+        this.mNormalUserID = mNormalUserID;
+    }
+
+    public int getMCourseId() {
+        return this.mCourseId;
+    }
+
+    public void setMCourseId(int mCourseId) {
+        this.mCourseId = mCourseId;
+    }
+
+    public String getMSource() {
+        return this.mSource;
+    }
+
+    public void setMSource(String mSource) {
+        this.mSource = mSource;
+    }
+
+    public String getMContent() {
+        return this.mContent;
+    }
+
+    public void setMContent(String mContent) {
+        this.mContent = mContent;
+    }
+
+    public String getMTime() {
+        return this.mTime;
+    }
+
+    public void setMTime(String mTime) {
+        this.mTime = mTime;
+    }
+
+
 }

@@ -1,13 +1,18 @@
 package cn.foxnickel.enterpriselearning.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import cn.foxnickel.enterpriselearning.R;
+import cn.foxnickel.enterpriselearning.SpecificCouseActivity;
+import cn.foxnickel.enterpriselearning.bean.CourseRecommend;
 
 /**
  * Created by NickelFox on 2017/7/2.
@@ -16,9 +21,11 @@ import cn.foxnickel.enterpriselearning.R;
 public class SCRecommendAdapter extends RecyclerView.Adapter<SCRecommendAdapter.ViewHolder> {
 
     private Context mContext;
+    private ArrayList<CourseRecommend> mList;
 
-    public SCRecommendAdapter(Context context) {
+    public SCRecommendAdapter(Context context, ArrayList<CourseRecommend> list) {
         mContext = context;
+        mList = list;
     }
 
     private int mCourseRecommendPic[] = {R.drawable.course_recommend_pic4, R.drawable.course_recommend_pic2,
@@ -33,10 +40,17 @@ public class SCRecommendAdapter extends RecyclerView.Adapter<SCRecommendAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mLinearLayout.setBackgroundResource(mCourseRecommendPic[position]);
-        holder.mCourseName.setText("这是课程名称");
-        holder.mChapterTitle.setText("这是章节名称");
-        holder.mChapterDescription.setText("这是章节内容，这是章节内容，这是章节内容，这是章节内容。");
-        holder.mLearningNumber.setText("3000人学习");
+        final CourseRecommend courseRecommend = mList.get(position);
+        holder.mCourseName.setText(courseRecommend.getCourseName());
+        holder.mChapterTitle.setText(courseRecommend.getChapterTitle());
+        holder.mChapterDescription.setText(courseRecommend.getChapterDescription());
+        holder.mLearningNumber.setText(courseRecommend.getLearningNumber());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, SpecificCouseActivity.class).putExtra("course_name", courseRecommend.getCourseName()));
+            }
+        });
     }
 
     @Override

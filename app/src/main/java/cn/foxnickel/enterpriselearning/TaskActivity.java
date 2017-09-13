@@ -40,7 +40,6 @@ public class TaskActivity extends AppCompatActivity {
                 finish();
             }
         });
-
         mViewPager = (ViewPager) findViewById(R.id.view_pager_notification);
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(MyCourseFragment.newInstance());

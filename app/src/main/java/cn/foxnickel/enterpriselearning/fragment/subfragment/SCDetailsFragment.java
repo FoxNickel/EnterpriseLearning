@@ -16,8 +16,12 @@ import android.view.animation.Transformation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import cn.foxnickel.enterpriselearning.R;
 import cn.foxnickel.enterpriselearning.adapter.SCRecommendAdapter;
+import cn.foxnickel.enterpriselearning.bean.Course;
+import cn.foxnickel.enterpriselearning.bean.CourseRecommend;
 import cn.foxnickel.enterpriselearning.config.Config;
 
 import static cn.foxnickel.enterpriselearning.config.Config.getTextViewHeight;
@@ -37,14 +41,15 @@ public class SCDetailsFragment extends Fragment implements View.OnClickListener 
     private RecyclerView mRecyclerViewCourseRecommend;//相关课程推荐
     private View mViewDivider1;
     private TextView mTvCredit;//学分
-
+    private ArrayList<CourseRecommend> mList;
+    private Course mCourse;
 
     public SCDetailsFragment() {
         // Required empty public constructor
     }
 
-    public static SCDetailsFragment newInstance() {
 
+    public static SCDetailsFragment newInstance() {
         return new SCDetailsFragment();
     }
 
@@ -57,6 +62,9 @@ public class SCDetailsFragment extends Fragment implements View.OnClickListener 
     }
 
     private void initView() {
+        mCourse = getArguments().getParcelable("course");
+        mTvCredit = (TextView) mRootView.findViewById(R.id.tv_credit);
+        mTvCredit.setOnClickListener(this);
         mTvCourseName = (TextView) mRootView.findViewById(R.id.tv_course_name);
         mTvShortIntro = (TextView) mRootView.findViewById(R.id.tv_short_intro);
         mTvShortIntro.setOnClickListener(this);
@@ -64,16 +72,29 @@ public class SCDetailsFragment extends Fragment implements View.OnClickListener 
         mIvOpen.setOnClickListener(this);
         mTvCourseNotes = (TextView) mRootView.findViewById(R.id.tv_course_notes);
         mTvLearningWhat = (TextView) mRootView.findViewById(R.id.tv_learning_what);
+        if (mCourse != null) {
+            mTvCredit.setText(mCourse.getCredit() + "学分");
+            mTvCourseName.setText(mCourse.getCourseName());
+            mTvShortIntro.setText(mCourse.getShortIntro());
+            mTvLearningWhat.setText(mCourse.getLearningWhat());
+            mTvCourseNotes.setText(mCourse.getCourseNotes());
+        }
+        mList = new ArrayList<>();
+
+        mList.add(new CourseRecommend("Web", "从零开始HTML5前\n端开发", "介绍常用HTML相关知识", "30人学习"));
+        mList.add(new CourseRecommend("Web", "零基础学习前端", "介绍HTML、CSS、js的基础知识", "20人学习"));
+        mList.add(new CourseRecommend("Web", "Web前端开发零基\n础入门", "讲解前端基础课程", "100人学习"));
+        mList.add(new CourseRecommend("Web", "UI入门小锦囊", "介绍UI设计基础的知识", "25人学习"));
+
         mRecyclerViewCourseRecommend = (RecyclerView) mRootView.findViewById(R.id.recycler_view_course_recommend);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerViewCourseRecommend.setLayoutManager(linearLayoutManager);
-        SCRecommendAdapter courseRecommendAdapter = new SCRecommendAdapter(getContext());
+        SCRecommendAdapter courseRecommendAdapter = new SCRecommendAdapter(getContext(), mList);
         mRecyclerViewCourseRecommend.setAdapter(courseRecommendAdapter);
         mViewDivider1 = (View) mRootView.findViewById(R.id.view_divider1);
         mViewDivider1.setOnClickListener(this);
-        mTvCredit = (TextView) mRootView.findViewById(R.id.tv_credit);
-        mTvCredit.setOnClickListener(this);
+
     }
 
     @Override

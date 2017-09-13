@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -32,17 +31,20 @@ import com.shuyu.gsyvideoplayer.GSYPreViewManager;
 import com.shuyu.gsyvideoplayer.GSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.foxnickel.enterpriselearning.adapter.SpecificCoursePagerAdapter;
+import cn.foxnickel.enterpriselearning.bean.Chapter;
+import cn.foxnickel.enterpriselearning.bean.Course;
+import cn.foxnickel.enterpriselearning.bean.Note;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.SCChaptersFragment;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.SCDetailsFragment;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.SCNoteFragment;
 import cn.foxnickel.enterpriselearning.fragment.subfragment.SCQAFragment;
 import cn.foxnickel.enterpriselearning.module.SwitchVideoModel;
 import cn.foxnickel.enterpriselearning.utils.DisplayUtil;
+import cn.foxnickel.enterpriselearning.utils.Resources;
 import cn.foxnickel.enterpriselearning.utils.ScreenUtil;
 
 import static com.mob.MobSDK.getContext;
@@ -71,6 +73,8 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
     private Button mBtRelease;
     private XLHRatingBar mRatingBar;
     private AlertDialog mDialog;
+    private String mCourseName;
+    private Course mCourse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,10 +114,53 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
         mVideoLayout = (ConstraintLayout) findViewById(R.id.cl_specific_course);
         mViewPagerCourse = (ViewPager) findViewById(R.id.view_pager_course);
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(SCChaptersFragment.newInstance());
-        fragmentList.add(SCDetailsFragment.newInstance());
-        fragmentList.add(SCQAFragment.newInstance());
-        fragmentList.add(SCNoteFragment.newInstance());
+        Bundle bundle1 = getIntent().getExtras();
+        mCourse = null;
+        if (bundle1 != null) {
+            mCourse = bundle1.getParcelable("course");
+        }
+        if (mCourse == null) {
+            List<Chapter> chapters = new ArrayList<>();
+            List<Note> notes = new ArrayList<>();
+            chapters.add(new Chapter("第1章 webUI课程简介", true, null, ""));
+            chapters.add(new Chapter("1-1课程介绍", false, Resources.VIDEO, "http://112.17.2.183/video.study.163.com/edu-video/nos/mp4/2017/04/27/1006157378_79df7d044dc644c0b0abdacc51f3f7dc_shd.mp4?ak=99ed7479ee303d1b1361b0ee5a4abcee4e96dd59549ea432cc13c8ad7b52a9e476d57ed0438f9d1ecf50b33bb61d8c7b8760bbae5996a1ed191108c718bc022fc5c2392413a096f94c1b700ffc15fb5490b601143824cf18b58a69ea00438816e2c4caba0e116581c14e4824cb46dc107feb6d0bf73a0d052df948b3525aefb09eed6bb2ffe8530b0f8655d97b53dc6197cbdc8f6a5d1563323094d2340ba3cf2919f5e4aded4ea11a82dd96c04efc1a&wshc_tag=0&wsts_tag=59b7bd9f&wsid_tag=700ab4b2&wsiphost=ipdbm"));
+            chapters.add(new Chapter("第2章 从设计角度初识web页面", true, null, ""));
+            chapters.add(new Chapter("2-1 webUI是什么", false, Resources.VIDEO, "http://112.17.2.183/video.study.163.com/edu-video/nos/mp4/2017/04/27/1006157378_79df7d044dc644c0b0abdacc51f3f7dc_shd.mp4?ak=99ed7479ee303d1b1361b0ee5a4abcee4e96dd59549ea432cc13c8ad7b52a9e476d57ed0438f9d1ecf50b33bb61d8c7b8760bbae5996a1ed191108c718bc022fc5c2392413a096f94c1b700ffc15fb5490b601143824cf18b58a69ea00438816e2c4caba0e116581c14e4824cb46dc107feb6d0bf73a0d052df948b3525aefb09eed6bb2ffe8530b0f8655d97b53dc6197cbdc8f6a5d1563323094d2340ba3cf2919f5e4aded4ea11a82dd96c04efc1a&wshc_tag=0&wsts_tag=59b7bd9f&wsid_tag=700ab4b2&wsiphost=ipdbm"));
+            chapters.add(new Chapter("2-2 关于分辨率", false, Resources.VIDEO, "http://112.17.2.183/video.study.163.com/edu-video/nos/mp4/2017/04/27/1006157378_79df7d044dc644c0b0abdacc51f3f7dc_shd.mp4?ak=99ed7479ee303d1b1361b0ee5a4abcee4e96dd59549ea432cc13c8ad7b52a9e476d57ed0438f9d1ecf50b33bb61d8c7b8760bbae5996a1ed191108c718bc022fc5c2392413a096f94c1b700ffc15fb5490b601143824cf18b58a69ea00438816e2c4caba0e116581c14e4824cb46dc107feb6d0bf73a0d052df948b3525aefb09eed6bb2ffe8530b0f8655d97b53dc6197cbdc8f6a5d1563323094d2340ba3cf2919f5e4aded4ea11a82dd96c04efc1a&wshc_tag=0&wsts_tag=59b7bd9f&wsid_tag=700ab4b2&wsiphost=ipdbm"));
+            chapters.add(new Chapter("2-3 web的基本分类", false, Resources.VIDEO, "http://112.17.2.183/video.study.163.com/edu-video/nos/mp4/2017/04/27/1006157378_79df7d044dc644c0b0abdacc51f3f7dc_shd.mp4?ak=99ed7479ee303d1b1361b0ee5a4abcee4e96dd59549ea432cc13c8ad7b52a9e476d57ed0438f9d1ecf50b33bb61d8c7b8760bbae5996a1ed191108c718bc022fc5c2392413a096f94c1b700ffc15fb5490b601143824cf18b58a69ea00438816e2c4caba0e116581c14e4824cb46dc107feb6d0bf73a0d052df948b3525aefb09eed6bb2ffe8530b0f8655d97b53dc6197cbdc8f6a5d1563323094d2340ba3cf2919f5e4aded4ea11a82dd96c04efc1a&wshc_tag=0&wsts_tag=59b7bd9f&wsid_tag=700ab4b2&wsiphost=ipdbm"));
+            chapters.add(new Chapter("2-4 网页是如何实现的", false, Resources.VIDEO, "http://112.17.2.183/video.study.163.com/edu-video/nos/mp4/2017/04/27/1006157378_79df7d044dc644c0b0abdacc51f3f7dc_shd.mp4?ak=99ed7479ee303d1b1361b0ee5a4abcee4e96dd59549ea432cc13c8ad7b52a9e476d57ed0438f9d1ecf50b33bb61d8c7b8760bbae5996a1ed191108c718bc022fc5c2392413a096f94c1b700ffc15fb5490b601143824cf18b58a69ea00438816e2c4caba0e116581c14e4824cb46dc107feb6d0bf73a0d052df948b3525aefb09eed6bb2ffe8530b0f8655d97b53dc6197cbdc8f6a5d1563323094d2340ba3cf2919f5e4aded4ea11a82dd96c04efc1a&wshc_tag=0&wsts_tag=59b7bd9f&wsid_tag=700ab4b2&wsiphost=ipdbm"));
+            notes.add(new Note("源自:web UI设计理论入门-网页是如何实现的", "web 标准化布局原理\n" +
+                    "把网页看成多个网格\n" +
+                    "先有行再有列（从上到下）\n" +
+                    "先做容器再做内容（从外到内）", "2017-07-10"));
+            notes.add(new Note("源自:web UI设计理论入门-关于分辨率", "分辨率：水平和垂直像素个数", "2017-07-09"));
+            notes.add(new Note("源自:web UI设计理论入门-webUI是什么", "UI的3个方向：\n" +
+                    "1.用户研究\n" +
+                    "2.交互设计\n" +
+                    "3.界面设计", "2017-07-08"));
+            notes.add(new Note("源自:web UI设计理论入门-课程介绍", "ie9+、chrome、flex及主流浏览器都可兼容css3", "2017-07-07"));
+            notes.add(new Note("源自:web UI设计理论入门-课程介绍", "ps里面有切片工具可以用来切图", "2017-07-07"));
+
+            mCourse = new Course("Web UI设计理论入门", chapters, 2, "网页在我们生活中已经占据了重要地位,相对于移动端，web的优点是信息展示更具多样性。我们在课程中为大家详细的剖析web的特征属性、构成、设计逻辑等，为webUI设计提供扎实的理论基础。"
+                    , "本课程是webUI的入门课程,以理论与赏析为主，\n没有门槛", "1、教你如何从设计的角度去了解web\n"
+                    + "2、明白设计思路，我们更多的使用脑而不是用软件去做设计\n"
+                    + "3、设计流程和设计规范的重要性\n"
+                    + "4、学会分析页面，逆向解析作品", notes);
+        }
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("course", mCourse);
+        SCChaptersFragment scChaptersFragment = SCChaptersFragment.newInstance();
+        scChaptersFragment.setArguments(bundle);
+        SCDetailsFragment scDetailsFragment = SCDetailsFragment.newInstance();
+        SCQAFragment scQAFragment = SCQAFragment.newInstance();
+        scQAFragment.setArguments(bundle);
+        SCNoteFragment scNoteFragment = SCNoteFragment.newInstance();
+        scNoteFragment.setArguments(bundle);
+        scDetailsFragment.setArguments(bundle);
+        fragmentList.add(scChaptersFragment);
+        fragmentList.add(scDetailsFragment);
+        fragmentList.add(scQAFragment);
+        fragmentList.add(scNoteFragment);
         SpecificCoursePagerAdapter specificCoursePagerAdapter = new SpecificCoursePagerAdapter(getSupportFragmentManager(), fragmentList, getContext());
         mViewPagerCourse.setAdapter(specificCoursePagerAdapter);
         mTabLayout.setupWithViewPager(mViewPagerCourse);
@@ -135,13 +182,12 @@ public class SpecificCouseActivity extends AppCompatActivity implements View.OnC
     }
 
     private void setupVideo() {
-        File file = new File(Environment.getExternalStorageDirectory(), "1.mp4");
-
-        String source1 = file.getPath();
+        Chapter chapter = mCourse.getChapters().get(1);
+        String source1 = chapter.getUrl();
         String name = "普通";
         SwitchVideoModel switchVideoModel = new SwitchVideoModel(name, source1);
 
-        String source2 = file.getPath();
+        String source2 = chapter.getUrl();
         String name2 = "清晰";
         SwitchVideoModel switchVideoModel2 = new SwitchVideoModel(name2, source2);
 

@@ -2,7 +2,9 @@ package cn.foxnickel.enterpriselearning.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,9 +40,22 @@ public class CourseListRecyclerAdapter extends RecyclerView.Adapter<CourseListRe
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTvCourseName.setText(mList.get(position).getCourseName());
-        holder.mRbCourseScore.setRating(mList.get(position).getCourseStars());
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        final Course course = mList.get(position);
+        holder.mTvCourseName.setText(course.getCourseName());
+        holder.mRbCourseScore.setRating(course.getCourseStars());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                if (TextUtils.equals(course.getCourseName(), "web UI设计理论入门") || TextUtils.equals(course.getCourseName(), "UI设计小锦囊")) {
+                    bundle.putParcelable("course", null);
+                } else {
+                    bundle.putParcelable("course", mList.get(position));
+                }
+                mContext.startActivity(new Intent(mContext, SpecificCouseActivity.class).putExtras(bundle));
+            }
+        });
     }
 
     @Override
@@ -60,12 +75,7 @@ public class CourseListRecyclerAdapter extends RecyclerView.Adapter<CourseListRe
             mTvCourseName = (TextView) itemView.findViewById(R.id.tv_course_name);
             mTvCourseLearned = (TextView) itemView.findViewById(R.id.tv_course_learned);
             mRbCourseScore = (RatingBar) itemView.findViewById(R.id.rb_course_score);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mContext.startActivity(new Intent(mContext, SpecificCouseActivity.class));
-                }
-            });
+
         }
     }
 }

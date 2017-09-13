@@ -100,14 +100,14 @@ public class CourseContentFragment extends Fragment {
     private void technology(List<String> list) {
         secondClassificationNameList.add("通用技术");
         secondClassificationNameList.add("专业技术");
-
-        list.add("Python");
+        list.add("HTML");
         list.add("PHP");
         list.add("Java");
         list.add("C");
         list.add("C++");
         list.add("C#");
-        list.add("HTML/CSS");
+        list.add("Python");
+        list.add("Android");
         list.add("Swift");
         list.add("Git");
         list.add("R");

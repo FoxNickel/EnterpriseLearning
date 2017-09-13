@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/sv_exam"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/sv_exam"
             android:orientation="vertical">
     <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/cl_exam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="beforeDescendants"
     >
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -51,8 +52,8 @@
                       android:layout_alignParentLeft="true"
                       android:layout_alignParentStart="true"
                       android:layout_marginLeft="22dp"
-                      android:layout_marginTop="8dp"
                       android:layout_marginStart="22dp"
+                      android:layout_marginTop="8dp"
                       android:text="新员工入职考试" android:textColor="#576c7f"
                       android:textSize="16sp"/>
             <TextView android:id="@+id/tv_exam_score"
@@ -223,38 +224,38 @@
                       android:layout_marginLeft="16dp"
                       android:text="正确答案："
             />
-            <TextView android:layout_width="wrap_content"
+            <TextView android:id="@+id/tv_right_answer"
+                      android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="A"
                       android:textColor="@color/green"
-                      android:id="@+id/tv_right_answer"
             />
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:text="你的答案："
                       android:layout_marginLeft="64dp"
+                      android:text="你的答案："
             />
-            <TextView android:layout_width="wrap_content"
+            <TextView android:id="@+id/tv_your_answer"
+                      android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="A"
-                      android:id="@+id/tv_your_answer"
                       android:textColor="@color/green"
             />
         </LinearLayout>
-        <TextView android:layout_width="368dp"
+        <TextView android:id="@+id/tv_analysis"
+                  android:layout_width="368dp"
                   android:layout_height="wrap_content"
-                  android:text="解析："
-                  android:id="@+id/tv_analysis"
-                  app:layout_constraintLeft_toLeftOf="parent"
                   android:layout_margin="16dp"
+                  android:text="解析："
                   android:textColor="@android:color/black"
+                  app:layout_constraintLeft_toLeftOf="parent"
                   app:layout_constraintTop_toBottomOf="@+id/ll_answer"
         />
         <LinearLayout android:layout_width="0dp"
                       android:layout_height="wrap_content"
+                      android:layout_marginTop="96dp"
                       android:background="@color/colorPrimary"
                       android:orientation="horizontal"
-                      android:layout_marginTop="96dp"
                       app:layout_constraintBottom_toBottomOf="parent"
                       app:layout_constraintHorizontal_bias="0.0"
                       app:layout_constraintLeft_toLeftOf="parent"
